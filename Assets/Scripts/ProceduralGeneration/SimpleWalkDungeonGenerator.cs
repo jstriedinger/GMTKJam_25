@@ -2,20 +2,21 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class DungeonGenerator : MonoBehaviour
+public class SimpleWalkDungeonGenerator : AbstractDungeonGenerator
 {
-    [SerializeField] protected Vector2Int startPosition = Vector2Int.zero;
     [SerializeField] private int iterations = 10;
     [SerializeField] private int walkLenth = 10;
     [SerializeField] private bool startRandomlyEachIteration = true;
 
-    public void RunProceduralGeneration()
+    protected override void RunProceduralGeneration()
     {
         var floorPositions = CreateFloors();
         foreach (var pos in floorPositions)
         {
             Debug.Log(string.Format("{0},{1}", pos.x, pos.y));
         }
+
+        tilemapVisualizer.PaintFloorTiles(floorPositions);
     }
 
     private HashSet<Vector2Int> CreateFloors()

@@ -11,7 +11,7 @@ public static class ProceduralGeneration
 
         for (int i = 0; i < walkLength; ++i)
         {
-            previousPostition = startPosition + GetRandomCardinalDirection();
+            previousPostition = previousPostition + GetRandomCardinalDirection();
             path.Add(previousPostition);
         }
 
