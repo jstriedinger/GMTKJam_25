@@ -20,12 +20,12 @@ public static class WallByteTypes3D
 
     public static HashSet<int> wallSideLeft = new HashSet<int>
     {
-        0b0100
+        0b1110
     };
 
     public static HashSet<int> wallSideRight = new HashSet<int>
     {
-        0b0001
+        0b1011
     };
 
     public static HashSet<int> wallBottom = new HashSet<int>
@@ -102,11 +102,12 @@ public static class WallByteTypes3D
 
     public static HashSet<int> wallFull = new HashSet<int>
     {
-        0b1101,
-        0b0101,
-        0b1101,
-        0b1001
-
+        0b1000,
+        0b0100,
+        0b0010,
+        0b0001,
+        0b1010,
+        0b0101
     };
 
     public static HashSet<int> wallFullEightDirections = new HashSet<int>
@@ -153,4 +154,43 @@ public static class WallByteTypes3D
         0b01000001
     };
 
+    public static HashSet<int> wallNorthWest = new HashSet<int>
+    {
+        0b0110
+    };
+
+    public static HashSet<int> wallNorthEast = new HashSet<int>
+    {
+        0b0011
+    };
+
+    public static HashSet<int> wallSouthEast = new HashSet<int>
+    {
+        0b1001
+    };
+
+    public static HashSet<int> wallSouthWest = new HashSet<int>
+    {
+        0b1100
+    };
+
+    public static HashSet<int> pillarNorthWest = new HashSet<int>
+    {
+        0b11111110
+    };
+
+    public static HashSet<int> pillarNorthEast = new HashSet<int>
+    {
+        0b10111111
+    };
+
+    public static HashSet<int> pillarSouthEast = new HashSet<int>
+    {
+        0b11101111
+    };
+
+    public static HashSet<int> pillarSouthWest = new HashSet<int>
+    {
+        0b11111011
+    };
 }

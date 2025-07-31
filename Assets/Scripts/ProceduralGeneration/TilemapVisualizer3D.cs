@@ -1,6 +1,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
@@ -8,12 +9,10 @@ public class TilemapVisualizer3D : AbstractTilemapVisualizer
 {
     [SerializeField] private Transform levelParent;
     [SerializeField] private GameObject floorTile;
-    [SerializeField] private GameObject basicWallTile;
+    [SerializeField] private GameObject fullWallTile;
     [SerializeField] private GameObject northWallTile;
-    [SerializeField]
-    private TileBase wallTop, wallSideRight, wallSideLeft, wallBottom, wallFull,
-        wallInnerCornerDownLeft, wallInnerCornerDownRight,
-        wallDiagonalCornerDownRight, wallDiagonalCornerDownLeft, wallDiagonalCornerUpRight, wallDiagonalCornerUpLeft;
+    [SerializeField] private GameObject northWestCornerWallTile;
+    [SerializeField] private GameObject northWestPillarWallTile;
 
     private List<GameObject> spawnedPieces = new List<GameObject>();
 
@@ -40,39 +39,50 @@ public class TilemapVisualizer3D : AbstractTilemapVisualizer
 
     public override void PaintBasicWallTile(Vector2Int pos, int wallType)
     {
-        //SpawnSinglePiece(basicWallTile, pos, Quaternion.identity);
-        //return;
-
-        GameObject piece = basicWallTile;
+        GameObject piece = null;
         Quaternion orientation = Quaternion.identity;
-        TileBase tile = null;
+
         if (WallByteTypes3D.wallTop.Contains(wallType))
         {
             piece = northWallTile;
         }
         else if (WallByteTypes3D.wallBottom.Contains(wallType))
         {
-            if (!generateSouthWalls)
-            {
-                piece = null;
-            }
-                //piece = northWallTile;
-                //piece = basicWallTile;
-                //orientation *= Quaternion.AngleAxis(180, Vector3.up);
+            piece = northWallTile;
+            orientation *= Quaternion.AngleAxis(180, Vector3.up);
         }
-        else if (WallByteTypes.wallSideLeft.Contains(wallType))
+        else if (WallByteTypes3D.wallSideLeft.Contains(wallType))
         {
-            //piece = northWallTile;
-            //orientation *= Quaternion.AngleAxis(270, Vector3.up);
+            piece = northWallTile;
+            orientation *= Quaternion.AngleAxis(270, Vector3.up);
         }
-        else if (WallByteTypes.wallSideRight.Contains(wallType))
+        else if (WallByteTypes3D.wallSideRight.Contains(wallType))
         {
-            //piece = northWallTile;
-            //orientation *= Quaternion.AngleAxis(90, Vector3.up);
+            piece = northWallTile;
+            orientation *= Quaternion.AngleAxis(90, Vector3.up);
         }
-        else if (WallByteTypes.wallFull.Contains(wallType))
+        else if (WallByteTypes3D.wallNorthWest.Contains(wallType))
         {
-            tile = wallFull;
+            piece = northWestCornerWallTile;
+        }
+        else if (WallByteTypes3D.wallNorthEast.Contains(wallType))
+        {
+            piece = northWestCornerWallTile;
+            orientation *= Quaternion.AngleAxis(90, Vector3.up);
+        }
+        else if (WallByteTypes3D.wallSouthEast.Contains(wallType))
+        {
+            piece = northWestCornerWallTile;
+            orientation *= Quaternion.AngleAxis(180, Vector3.up);
+        }
+        else if (WallByteTypes3D.wallSouthWest.Contains(wallType))
+        {
+            piece = northWestCornerWallTile;
+            orientation *= Quaternion.AngleAxis(270, Vector3.up);
+        }
+        else if (WallByteTypes3D.wallFull.Contains(wallType))
+        {
+            piece = fullWallTile;
         }
 
         if (!piece)
@@ -85,53 +95,43 @@ public class TilemapVisualizer3D : AbstractTilemapVisualizer
 
     public override void PaintCornerWallTile(Vector2Int pos, int wallType)
     {
-        //SpawnSinglePiece(basicWallTile, pos, Quaternion.identity);
+        GameObject piece = null;
+        Quaternion orientation = Quaternion.identity;
 
-        TileBase tile = null;
-        if (WallByteTypes.wallInnerCornerDownLeft.Contains(wallType))
+        if (WallByteTypes3D.pillarNorthWest.Contains(wallType))
         {
-            tile = wallInnerCornerDownLeft;
+            piece = northWestPillarWallTile;
         }
-        else if (WallByteTypes.wallInnerCornerDownRight.Contains(wallType))
+        else if (WallByteTypes3D.pillarNorthEast.Contains(wallType))
         {
-            tile = wallInnerCornerDownRight;
+            piece = northWestPillarWallTile;
+            orientation *= Quaternion.AngleAxis(90, Vector3.up);
         }
-        else if (WallByteTypes.wallDiagonalCornerDownRight.Contains(wallType))
+        else if (WallByteTypes3D.pillarSouthEast.Contains(wallType))
         {
-            tile = wallDiagonalCornerDownRight;
+            piece = northWestPillarWallTile;
+            orientation *= Quaternion.AngleAxis(180, Vector3.up);
         }
-        else if (WallByteTypes.wallDiagonalCornerDownLeft.Contains(wallType))
+        else if (WallByteTypes3D.pillarSouthWest.Contains(wallType))
         {
-            tile = wallDiagonalCornerDownLeft;
-        }
-        else if (WallByteTypes.wallDiagonalCornerUpRight.Contains(wallType))
-        {
-            tile = wallDiagonalCornerUpRight;
-        }
-        else if (WallByteTypes.wallDiagonalCornerUpLeft.Contains(wallType))
-        {
-            tile = wallDiagonalCornerUpLeft;
-        }
-        else if (WallByteTypes.wallFullEightDirections.Contains(wallType))
-        {
-            tile = wallFull;
-        }
-        else if (WallByteTypes.wallBottomEightDirections.Contains(wallType))
-        {
-            tile = wallBottom;
+            piece = northWestPillarWallTile;
+            orientation *= Quaternion.AngleAxis(270, Vector3.up);
         }
 
-        if (!tile)
+        if (!piece)
         {
             return;
         }
+
+        SpawnSinglePiece(piece, pos, orientation);
     }
 
     public override void Clear()
     {
-        foreach(var piece in spawnedPieces)
+        var children = levelParent.Cast<Transform>().ToList();
+        foreach (Transform t in children)
         {
-            DestroyImmediate(piece);
+            DestroyImmediate(t.gameObject);
         }
 
         spawnedPieces.Clear();
