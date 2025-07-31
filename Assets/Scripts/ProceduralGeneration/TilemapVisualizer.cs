@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
-public class TilemapVisualizer : MonoBehaviour
+public class TilemapVisualizer : AbstractTilemapVisualizer
 {
     [SerializeField] private Tilemap floorTilemap;
     [SerializeField] private Tilemap wallsTilemap;
@@ -14,7 +14,7 @@ public class TilemapVisualizer : MonoBehaviour
         wallInnerCornerDownLeft, wallInnerCornerDownRight,
         wallDiagonalCornerDownRight, wallDiagonalCornerDownLeft, wallDiagonalCornerUpRight, wallDiagonalCornerUpLeft;
 
-    public void PaintFloorTiles(IEnumerable<Vector2Int> floorPositions)
+    public override void PaintFloorTiles(IEnumerable<Vector2Int> floorPositions)
     {
         Clear();
         PaintTiles(floorPositions, floorTilemap, floorTile);
@@ -35,7 +35,7 @@ public class TilemapVisualizer : MonoBehaviour
         tilemap.SetTile(tilePosition, tile);
     }
 
-    public void PaintBasicWallTile(Vector2Int pos, int wallType)
+    public override void PaintBasicWallTile(Vector2Int pos, int wallType)
     {
         TileBase tile = null;
         if (WallByteTypes.wallTop.Contains(wallType))
@@ -67,7 +67,7 @@ public class TilemapVisualizer : MonoBehaviour
         PaintSingleTile(pos, wallsTilemap, tile);
     }
 
-    internal void PaintCornerWallTile(Vector2Int pos, int wallType)
+    public override void PaintCornerWallTile(Vector2Int pos, int wallType)
     {
         TileBase tile = null;
         if (WallByteTypes.wallInnerCornerDownLeft.Contains(wallType))
@@ -111,7 +111,7 @@ public class TilemapVisualizer : MonoBehaviour
         PaintSingleTile(pos, wallsTilemap, tile);
     }
 
-    public void Clear()
+    public override void Clear()
     {
         floorTilemap.ClearAllTiles();
         wallsTilemap.ClearAllTiles();

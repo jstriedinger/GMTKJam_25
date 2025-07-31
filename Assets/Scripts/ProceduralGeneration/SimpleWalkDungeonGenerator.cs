@@ -10,7 +10,7 @@ public class SimpleWalkDungeonGenerator : AbstractDungeonGenerator
     {
         var floorPositions = RunRandomWalk(randomWalkParams, startPosition);
         tilemapVisualizer.PaintFloorTiles(floorPositions);
-        WallGenerator.CreateWalls(floorPositions,tilemapVisualizer);
+        WallGenerator.CreateWalls(floorPositions, tilemapVisualizer);
     }
 
     protected HashSet<Vector2Int> RunRandomWalk(SimpleRandomWalkData parameters, Vector2Int roomStartPosition)
