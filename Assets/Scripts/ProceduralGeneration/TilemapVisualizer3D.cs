@@ -9,12 +9,15 @@ public class TilemapVisualizer3D : AbstractTilemapVisualizer
     [SerializeField] private Transform levelParent;
     [SerializeField] private GameObject floorTile;
     [SerializeField] private GameObject basicWallTile;
+    [SerializeField] private GameObject northWallTile;
     [SerializeField]
     private TileBase wallTop, wallSideRight, wallSideLeft, wallBottom, wallFull,
         wallInnerCornerDownLeft, wallInnerCornerDownRight,
         wallDiagonalCornerDownRight, wallDiagonalCornerDownLeft, wallDiagonalCornerUpRight, wallDiagonalCornerUpLeft;
 
     private List<GameObject> spawnedPieces = new List<GameObject>();
+
+    public bool generateSouthWalls = true;
 
     public override void PaintFloorTiles(IEnumerable<Vector2Int> floorPositions)
     {
@@ -37,39 +40,52 @@ public class TilemapVisualizer3D : AbstractTilemapVisualizer
 
     public override void PaintBasicWallTile(Vector2Int pos, int wallType)
     {
-        SpawnSinglePiece(basicWallTile, pos, Quaternion.identity);
+        //SpawnSinglePiece(basicWallTile, pos, Quaternion.identity);
+        //return;
 
+        GameObject piece = basicWallTile;
+        Quaternion orientation = Quaternion.identity;
         TileBase tile = null;
-        if (WallByteTypes.wallTop.Contains(wallType))
+        if (WallByteTypes3D.wallTop.Contains(wallType))
         {
-            tile = wallTop;
+            piece = northWallTile;
         }
-        else if (WallByteTypes.wallBottom.Contains(wallType))
+        else if (WallByteTypes3D.wallBottom.Contains(wallType))
         {
-            tile = wallBottom;
+            if (!generateSouthWalls)
+            {
+                piece = null;
+            }
+                //piece = northWallTile;
+                //piece = basicWallTile;
+                //orientation *= Quaternion.AngleAxis(180, Vector3.up);
         }
         else if (WallByteTypes.wallSideLeft.Contains(wallType))
         {
-            tile = wallSideLeft;
+            //piece = northWallTile;
+            //orientation *= Quaternion.AngleAxis(270, Vector3.up);
         }
         else if (WallByteTypes.wallSideRight.Contains(wallType))
         {
-            tile = wallSideRight;
+            //piece = northWallTile;
+            //orientation *= Quaternion.AngleAxis(90, Vector3.up);
         }
         else if (WallByteTypes.wallFull.Contains(wallType))
         {
             tile = wallFull;
         }
 
-        if (!tile)
+        if (!piece)
         {
             return;
         }
+
+        SpawnSinglePiece(piece, pos, orientation);
     }
 
     public override void PaintCornerWallTile(Vector2Int pos, int wallType)
     {
-        SpawnSinglePiece(basicWallTile, pos, Quaternion.identity);
+        //SpawnSinglePiece(basicWallTile, pos, Quaternion.identity);
 
         TileBase tile = null;
         if (WallByteTypes.wallInnerCornerDownLeft.Contains(wallType))

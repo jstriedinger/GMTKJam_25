@@ -120,10 +120,10 @@ public static class ProceduralGeneration
     public class Direction2D
     {
         public static List<Vector2Int> CardinalDirectionsList = new List<Vector2Int>() {
-            new Vector2Int(0, 1),
-            new Vector2Int(1, 0),
-            new Vector2Int(0, -1),
-            new Vector2Int(-1, 0)
+            new Vector2Int(0, 1), // NORTH
+            new Vector2Int(1, 0), // EAST
+            new Vector2Int(0, -1), // SOUTH
+            new Vector2Int(-1, 0)  // WEST
         };
 
         public static List<Vector2Int> DiagonalDirectionsList = new List<Vector2Int>() {

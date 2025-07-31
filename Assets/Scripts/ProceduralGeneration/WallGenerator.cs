@@ -59,7 +59,8 @@ public static class WallGenerator
                 if (!floorPositions.Contains(position + direction))
                 {
                     // Found a wall
-                    wallPositions.Add(position + direction);
+                    wallPositions.Add(position);
+                    continue;
                 }
             }
         }
