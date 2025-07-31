@@ -121,9 +121,27 @@ public static class ProceduralGeneration
     {
         public static List<Vector2Int> CardinalDirectionsList = new List<Vector2Int>() {
             new Vector2Int(0, 1),
-            new Vector2Int(0, -1),
             new Vector2Int(1, 0),
+            new Vector2Int(0, -1),
             new Vector2Int(-1, 0)
+        };
+
+        public static List<Vector2Int> DiagonalDirectionsList = new List<Vector2Int>() {
+            new Vector2Int(1, 1),
+            new Vector2Int(1, -1),
+            new Vector2Int(-1, -1),
+            new Vector2Int(-1, 1)
+        };
+
+        public static List<Vector2Int> EightDirectionsList = new List<Vector2Int>() {
+            new Vector2Int(0, 1),
+            new Vector2Int(1, 1),
+            new Vector2Int(1, 0),
+            new Vector2Int(1, -1),
+            new Vector2Int(0, -1),
+            new Vector2Int(-1, -1),
+            new Vector2Int(-1, 0),
+            new Vector2Int(-1, 1)
         };
     }
 
