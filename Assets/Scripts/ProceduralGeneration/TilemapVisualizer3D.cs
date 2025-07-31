@@ -20,7 +20,6 @@ public class TilemapVisualizer3D : AbstractTilemapVisualizer
 
     public override void PaintFloorTiles(IEnumerable<Vector2Int> floorPositions)
     {
-        Clear();
         SpawnFloorPieces(floorPositions);
     }
 
@@ -48,8 +47,11 @@ public class TilemapVisualizer3D : AbstractTilemapVisualizer
         }
         else if (WallByteTypes3D.wallBottom.Contains(wallType))
         {
-            piece = northWallTile;
-            orientation *= Quaternion.AngleAxis(180, Vector3.up);
+            if (generateSouthWalls)
+            {
+                piece = northWallTile;
+                orientation *= Quaternion.AngleAxis(180, Vector3.up);
+            }
         }
         else if (WallByteTypes3D.wallSideLeft.Contains(wallType))
         {
@@ -72,13 +74,19 @@ public class TilemapVisualizer3D : AbstractTilemapVisualizer
         }
         else if (WallByteTypes3D.wallSouthEast.Contains(wallType))
         {
-            piece = northWestCornerWallTile;
-            orientation *= Quaternion.AngleAxis(180, Vector3.up);
+            if (generateSouthWalls)
+            {
+                piece = northWestCornerWallTile;
+                orientation *= Quaternion.AngleAxis(180, Vector3.up);
+            }
         }
         else if (WallByteTypes3D.wallSouthWest.Contains(wallType))
         {
-            piece = northWestCornerWallTile;
-            orientation *= Quaternion.AngleAxis(270, Vector3.up);
+            if (generateSouthWalls)
+            {
+                piece = northWestCornerWallTile;
+                orientation *= Quaternion.AngleAxis(270, Vector3.up);
+            }
         }
         else if (WallByteTypes3D.wallFull.Contains(wallType))
         {

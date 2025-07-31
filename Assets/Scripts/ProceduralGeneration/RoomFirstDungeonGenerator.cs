@@ -11,16 +11,46 @@ public class RoomFirstDungeonGenerator : CorridorDungeonGenerator
     [SerializeField][Range(0, 10)] private int offset = 1;
     [SerializeField] private bool randomWalkRooms = false;
 
+    [SerializeField] private Transform levelParent;
+    [SerializeField] private GameObject spawnIndicator;
+    [SerializeField] private GameObject goalIndicator;
+    [SerializeField] [Range(1,10)] private int minRooms = 1;
+    [SerializeField] [Range(1, 15)] private int maxTries = 5;
+
     protected override void RunProceduralGeneration()
     {
-        CreateRooms();
+        int tries = 0;
+        while (tries < maxTries)
+        {
+            if (CreateRooms())
+            {
+                break;
+            }
+
+            ++tries;
+        }
+
+        if (tries >= maxTries)
+        {
+            CreateRooms(true);
+        }
+
+        Debug.Log(string.Format("Tries: {0}", tries));
     }
 
-    private void CreateRooms()
+    private bool CreateRooms(bool ignoreConstraints = false)
     {
         var roomList = ProceduralGeneration.BinarySpacePartitioning(new BoundsInt((Vector3Int)startPosition, new Vector3Int(dungeonWidth, dungeonHeight, 0)), minRoomWidth, minRoomHeight);
-        HashSet<Vector2Int> floor = new HashSet<Vector2Int>();
 
+        if (!ignoreConstraints)
+        {
+            if (roomList.Count < minRooms)
+            {
+                return false;
+            }
+        }
+
+        HashSet<Vector2Int> floor = new HashSet<Vector2Int>();
         if (randomWalkRooms)
         {
             floor = CreateRoomsRandomly(roomList);
@@ -36,6 +66,8 @@ public class RoomFirstDungeonGenerator : CorridorDungeonGenerator
             roomCenters.Add(Vector2Int.RoundToInt(room.center));
         }
 
+        FindAndSpawnStartAndGoal(roomCenters);
+
         List<List<Vector2Int>> corridors = ConnectRooms(roomCenters, floor);
         if (widenCorridors)
         {
@@ -44,6 +76,35 @@ public class RoomFirstDungeonGenerator : CorridorDungeonGenerator
 
         tilemapVisualizer.PaintFloorTiles(floor);
         WallGenerator.CreateWalls(floor, tilemapVisualizer);
+
+        return true;
+    }
+
+    private void FindAndSpawnStartAndGoal(List<Vector2Int> roomCenters)
+    {
+        Vector2Int startRoomCenter = roomCenters[0];
+        for (int i = 1; i < roomCenters.Count; ++i)
+        {
+            if (roomCenters[i].x < startRoomCenter.x)
+            {
+                startRoomCenter = roomCenters[i];
+            }
+        }
+
+        float maxDistance = 0;
+        Vector2Int goalRoomCenter = startRoomCenter;
+        for (int i = 0; i < roomCenters.Count; ++i)
+        {
+            float distance = Vector2Int.Distance(roomCenters[i], startRoomCenter);
+            if (distance > maxDistance)
+            {
+                maxDistance = distance;
+                goalRoomCenter = roomCenters[i];
+            }
+        }
+
+        Instantiate(spawnIndicator, new Vector3Int(startRoomCenter.x, 0, startRoomCenter.y), Quaternion.identity, levelParent);
+        Instantiate(goalIndicator, new Vector3Int(goalRoomCenter.x, 0, goalRoomCenter.y), Quaternion.identity, levelParent);
     }
 
     private HashSet<Vector2Int> CreateRoomsRandomly(List<BoundsInt> roomList)
