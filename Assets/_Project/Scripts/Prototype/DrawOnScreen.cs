@@ -10,6 +10,9 @@ public class DrawOnScreen : MonoBehaviour
     private Vector3 previousPosition;
     private Vector3 currentPosition;
     private Vector3[] linePositions;
+    private bool isDrawing;
+    private bool hasRun = true;
+    private bool previousHasRun;
     public Camera mainCamera;
     public GameObject mousePositionObject;
     public static event Action<bool> onDraw;
@@ -35,22 +38,44 @@ public class DrawOnScreen : MonoBehaviour
 
         if (Input.GetMouseButton(0))
         {
-            onDraw?.Invoke(true);
+            isDrawing = true;
 
             Draw();
+
+            if (!previousHasRun)
+            {
+                InvokeDraw();
+            }
         }
 
         if (Input.GetMouseButtonUp(0))
         {
-            onDraw?.Invoke(false);
+            isDrawing = false;
 
             CalculateDrawnCentroid();
 
             line.positionCount = 0;
-        }
 
+            InvokeDraw();
+            previousHasRun = false;
+        }
     }
 
+    private void InvokeDraw()
+    {      
+        if (isDrawing == true)
+        {
+            onDraw?.Invoke(true);
+            previousHasRun = true;
+        }
+        if (isDrawing == false)
+        {
+            onDraw?.Invoke(false);
+            previousHasRun = true;
+        }
+    }
+
+    // Draw the line based on 
     private void Draw()
     {
         if (previousPosition == transform.position)
@@ -64,12 +89,13 @@ public class DrawOnScreen : MonoBehaviour
             line.positionCount++;
             line.SetPosition(line.positionCount - 1, currentPosition);
             previousPosition = currentPosition;
-
-            speed = distance / Time.deltaTime;
-            drawSpeed?.Invoke(speed);
         }
+
+        speed = distance / Time.deltaTime;
+        drawSpeed?.Invoke(speed);
     }
 
+// Find the centre of all the points created by the line renderer
     private void CalculateDrawnCentroid()
     {
         linePositions = new Vector3[line.positionCount];
