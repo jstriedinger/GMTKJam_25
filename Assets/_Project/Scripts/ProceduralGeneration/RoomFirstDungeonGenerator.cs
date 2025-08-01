@@ -32,10 +32,19 @@ public class RoomFirstDungeonGenerator : CorridorDungeonGenerator
 
     protected override void RunProceduralGeneration()
     {
+        Dungeon dungeonData = FindFirstObjectByType<Dungeon>();
+        if (dungeonData == null)
+        {
+            Debug.LogError("Add a Dungeon Object to the scene.");
+            return;
+        }
+
+        dungeonData.Clear();
+
         int tries = 0;
         while (tries < maxTries)
         {
-            if (CreateRooms())
+            if (CreateRooms(dungeonData))
             {
                 break;
             }
@@ -45,13 +54,13 @@ public class RoomFirstDungeonGenerator : CorridorDungeonGenerator
 
         if (tries >= maxTries)
         {
-            CreateRooms(true);
+            CreateRooms(dungeonData, true);
         }
 
         Debug.Log(string.Format("Tries: {0}", tries));
     }
 
-    private bool CreateRooms(bool ignoreConstraints = false)
+    private bool CreateRooms(Dungeon dungeonData, bool ignoreConstraints = false)
     {
         var roomList = ProceduralGeneration.BinarySpacePartitioning(new BoundsInt((Vector3Int)startPosition, new Vector3Int(dungeonWidth, dungeonHeight, 0)), minRoomWidth, minRoomHeight);
 
@@ -79,7 +88,7 @@ public class RoomFirstDungeonGenerator : CorridorDungeonGenerator
             floor.UnionWith(room.floorPositions);
         }
 
-        FindAndSpawnStartAndGoal(rooms);
+        FindAndSpawnStartAndGoal(dungeonData, rooms);
 
         if (generateCorridors)
         {
@@ -93,18 +102,14 @@ public class RoomFirstDungeonGenerator : CorridorDungeonGenerator
         tilemapVisualizer.PaintFloorTiles(floor);
         WallGenerator.CreateWalls(floor, tilemapVisualizer);
 
-        Dungeon dungeonData = FindFirstObjectByType<Dungeon>();
-        if (dungeonData != null)
-        {
-            dungeonData.rooms = rooms;
-        }
+        dungeonData.rooms = rooms;
 
         propsManager.ProcessRooms();
 
         return true;
     }
 
-    private void FindAndSpawnStartAndGoal(List<Room> rooms)
+    private void FindAndSpawnStartAndGoal(Dungeon dungeonData, List<Room> rooms)
     {
         Vector2Int startRoomCenter = rooms[0].center;
         for (int i = 1; i < rooms.Count; ++i)
@@ -127,7 +132,9 @@ public class RoomFirstDungeonGenerator : CorridorDungeonGenerator
             }
         }
 
-        Instantiate(spawnIndicator, new Vector3Int(startRoomCenter.x, 0, startRoomCenter.y), Quaternion.identity, levelParent);
+        dungeonData.spawnPosition = new Vector3Int(startRoomCenter.x, 0, startRoomCenter.y);
+
+        Instantiate(spawnIndicator, dungeonData.spawnPosition, Quaternion.identity, levelParent);
         Instantiate(goalIndicator, new Vector3Int(goalRoomCenter.x, 0, goalRoomCenter.y), Quaternion.identity, levelParent);
     }
 
