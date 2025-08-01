@@ -7,13 +7,21 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
 
-    private HashSet<string> _unlockedInstrumentNames = new();
+    [SerializeField] private bool finishedTutorial;
+
+    [Header("Instruments")]
+    [SerializeField] private HashSet<string> _unlockedInstrumentNames = new();
     [SerializeField] private List<GameObject> _pedestalInstruments;
 
-    private List<Scene> _scenes;
-    private Scene _currentScene;
+    [Header("Scenes")]
+    [SerializeField] private List<Scene> _scenes;
+    [SerializeField] private Scene _currentScene;
 
-    private GameLevel Level;
+    [Header("Level")]
+    [SerializeField] private List<GameLevel> _unlockedGameLevels;
+
+    [Header("Portals")]
+    [SerializeField] private List<Portal> _portals;
 
     private void Awake()
     {
@@ -28,12 +36,47 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void FinishedTutorial()
+    {
+        finishedTutorial = true;
+        CheckForLevelChange();
+    }
+
     public void AddInstrument(string instrumentName)
     {
         if (_unlockedInstrumentNames.Add(instrumentName))
         {
             ShowUnlockedInstrumentsInHub();
+            CheckForLevelChange();
             Debug.Log("Unlocked: " + instrumentName);
+        }
+    }
+
+    private void CheckForLevelChange()
+    {
+        int count = _unlockedInstrumentNames.Count;
+
+        if (count == 1 && !_unlockedGameLevels.Contains(GameLevel.Tutorial))
+        {
+            _unlockedGameLevels.Add(GameLevel.Tutorial);
+        }
+
+        if (count >= 1 && finishedTutorial && !_unlockedGameLevels.Contains(GameLevel.Forest))
+        {
+            _portals[0].OpenPortal();
+            _unlockedGameLevels.Add(GameLevel.Forest);
+        }
+
+        if (count >= 3 && !_unlockedGameLevels.Contains(GameLevel.Temple))
+        {
+            _portals[1].OpenPortal();
+            _unlockedGameLevels.Add(GameLevel.Temple);
+        }
+
+        if (count >= 6 && !_unlockedGameLevels.Contains(GameLevel.Manor))
+        {
+            _portals[2].OpenPortal();
+            _unlockedGameLevels.Add(GameLevel.Manor);
         }
     }
 
@@ -48,26 +91,9 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void UpdateGameLevel(GameLevel newLevel)
+    public void LoadScene(string sceneName)
     {
-        Level = newLevel;
-        switch (newLevel)
-        {
-            case GameLevel.Tutorial:
-                _currentScene = _scenes[0];
-                break;
-            case GameLevel.Forest:
-                _currentScene = _scenes[1];
-                break;
-            case GameLevel.Temple:
-                _currentScene = _scenes[2];
-                break;
-            case GameLevel.Manor:
-                _currentScene = _scenes[3];
-                break;
-            default:
-                throw new ArgumentOutOfRangeException(nameof(newLevel), newLevel, null);
-        }
+        SceneManager.LoadScene(sceneName);
     }
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
