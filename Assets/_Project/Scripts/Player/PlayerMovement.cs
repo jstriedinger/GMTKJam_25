@@ -5,6 +5,8 @@ using UnityEngine.InputSystem;
 public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] private float speed = 5f;
+    [SerializeField] private Transform character;
+
     private Rigidbody _rigidbody;
     private Vector2 _moveInputValue;
     private Vector3 _finalMovement;
@@ -26,8 +28,27 @@ public class PlayerMovement : MonoBehaviour
     private void FixedUpdate()
     {
         _rigidbody.AddForce(_finalMovement * Time.fixedDeltaTime, ForceMode.VelocityChange);
+
+        FlipCharacterBasedOnSpeed();
     }
 
+    private void FlipCharacterBasedOnSpeed()
+    {
+        if (_rigidbody.linearVelocity.x >= 0)
+        {
+            if (character.localScale.x < 0)
+            {
+                character.localScale = new Vector3(character.localScale.x * -1, character.localScale.y, character.localScale.z);
+            }
+        }
+        else
+        {
+            if (character.localScale.x > 0)
+            {
+                character.localScale = new Vector3(character.localScale.x * -1, character.localScale.y, character.localScale.z);
+            }
+        }
+    }
 
     private void Move()
     {
