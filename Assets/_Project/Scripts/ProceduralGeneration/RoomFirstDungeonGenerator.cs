@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class RoomFirstDungeonGenerator : CorridorDungeonGenerator
 {
+    [SerializeField] PropsManager propsManager;
     [SerializeField] private int minRoomWidth = 4;
     [SerializeField] private int minRoomHeight = 4;
     [SerializeField] private int dungeonWidth = 20;
@@ -91,6 +92,14 @@ public class RoomFirstDungeonGenerator : CorridorDungeonGenerator
 
         tilemapVisualizer.PaintFloorTiles(floor);
         WallGenerator.CreateWalls(floor, tilemapVisualizer);
+
+        Dungeon dungeonData = FindFirstObjectByType<Dungeon>();
+        if (dungeonData != null)
+        {
+            dungeonData.rooms = rooms;
+        }
+
+        propsManager.ProcessRooms();
 
         return true;
     }
