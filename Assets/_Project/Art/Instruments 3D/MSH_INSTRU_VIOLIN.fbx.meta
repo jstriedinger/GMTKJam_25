@@ -3,7 +3,12 @@ guid: 9d67c1374cbf6294eae3bdbd0bb4efb1
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: INSTRU_VIOLIN
+    second: {fileID: 2100000, guid: 0408fed57a84ac14b9100d8af11d2725, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

@@ -3,7 +3,12 @@ guid: 6e4d8441072b6794090cf046f630453c
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: INSTRU_GLOCK
+    second: {fileID: 2100000, guid: f0f406ea245704146a4c218269b758fd, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

@@ -3,7 +3,12 @@ guid: 9c20aa63587c8444d99e202527e283c9
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: INSTRU_CLARINET
+    second: {fileID: 2100000, guid: 30d5ede32e59b0742a9209856d1a9ace, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

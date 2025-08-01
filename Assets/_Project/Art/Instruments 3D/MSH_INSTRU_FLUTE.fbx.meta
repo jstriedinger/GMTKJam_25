@@ -3,7 +3,12 @@ guid: 7fe117ddfe4690249bdf682ca2fff1df
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: INSTRU_FLUTE
+    second: {fileID: 2100000, guid: da256d853477f614c8f326b2d7fa81e0, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

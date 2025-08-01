@@ -3,7 +3,12 @@ guid: 6118736c9e85a964b9dc014a9c42fa9e
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: INSTRU_TUBA
+    second: {fileID: 2100000, guid: e78901d6411f2524e882c2e2e3dd1572, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

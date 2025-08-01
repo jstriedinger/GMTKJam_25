@@ -3,7 +3,12 @@ guid: b7fdcd18111768946967dc54c887acac
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: INSTRU_CELLO
+    second: {fileID: 2100000, guid: 6f5683eef4ce92f42ab4e28e1bc8096b, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

@@ -22,23 +22,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2248301487421970639, guid: db93f470322f2054ebae4b5dd6db6080, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.9063079
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2248301487421970639, guid: db93f470322f2054ebae4b5dd6db6080, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.42261827
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2248301487421970639, guid: db93f470322f2054ebae4b5dd6db6080, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: 0.9063079
       objectReference: {fileID: 0}
     - target: {fileID: 2248301487421970639, guid: db93f470322f2054ebae4b5dd6db6080, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: 0.42261827
       objectReference: {fileID: 0}
     - target: {fileID: 2248301487421970639, guid: db93f470322f2054ebae4b5dd6db6080, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: 50
+      value: -130
       objectReference: {fileID: 0}
     - target: {fileID: 2248301487421970639, guid: db93f470322f2054ebae4b5dd6db6080, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
@@ -46,11 +46,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2248301487421970639, guid: db93f470322f2054ebae4b5dd6db6080, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
+      value: 180
       objectReference: {fileID: 0}
     - target: {fileID: 6050138928377359821, guid: db93f470322f2054ebae4b5dd6db6080, type: 3}
       propertyPath: m_Name
-      value: Instrument
+      value: Violin
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
