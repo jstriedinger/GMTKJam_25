@@ -9,10 +9,12 @@ public class DrawOnScreen : MonoBehaviour
     private LineRenderer line;
     private Vector3 previousPosition;
     private Vector3 currentPosition;
-    private Vector3 mousePosition;
     private Vector3[] linePositions;
     public Camera mainCamera;
+    public GameObject mousePositionObject;
     public static event Action<bool> onDraw;
+    public static event Action<float> drawSpeed;
+    [SerializeField] private float speed;
     [SerializeField] private float raycastAngleY = -50;
     [SerializeField] private float minimumLineDrawingDistance = 0.001f;
 
@@ -29,6 +31,7 @@ public class DrawOnScreen : MonoBehaviour
     void Update()
     {
         currentPosition = mainCamera.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 5f));
+        mousePositionObject.transform.position = currentPosition;
 
         if (Input.GetMouseButton(0))
         {
@@ -54,12 +57,16 @@ public class DrawOnScreen : MonoBehaviour
         {
             line.SetPosition(0, currentPosition);
         }
+        float distance = Vector3.Distance(currentPosition, previousPosition);
 
-        if (Vector3.Distance(currentPosition, previousPosition) > minimumLineDrawingDistance)
+        if (distance > minimumLineDrawingDistance)
         {
             line.positionCount++;
             line.SetPosition(line.positionCount - 1, currentPosition);
             previousPosition = currentPosition;
+
+            speed = distance / Time.deltaTime;
+            drawSpeed?.Invoke(speed);
         }
     }
 
