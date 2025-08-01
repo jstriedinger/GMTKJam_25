@@ -10,12 +10,24 @@ public class RoomFirstDungeonGenerator : CorridorDungeonGenerator
     [SerializeField] private int dungeonHeight = 20;
     [SerializeField][Range(0, 10)] private int offset = 1;
     [SerializeField] private bool randomWalkRooms = false;
+    [SerializeField] private bool fillHoles = true;
+    [SerializeField] private bool generateCorridors = true;
 
     [SerializeField] private Transform levelParent;
     [SerializeField] private GameObject spawnIndicator;
     [SerializeField] private GameObject goalIndicator;
     [SerializeField] [Range(1,10)] private int minRooms = 1;
     [SerializeField] [Range(1, 15)] private int maxTries = 5;
+
+    // Fill holes that are fully surrounded, or surrounded by at least 3 floor tiles
+    private static HashSet<int> shouldFillHole = new HashSet<int>
+    {
+        0b0111,
+        0b1011,
+        0b1101,
+        0b1110,
+        0b1111,
+    };
 
     protected override void RunProceduralGeneration()
     {
@@ -51,27 +63,30 @@ public class RoomFirstDungeonGenerator : CorridorDungeonGenerator
         }
 
         HashSet<Vector2Int> floor = new HashSet<Vector2Int>();
+        List<Room> rooms = new List<Room>();
         if (randomWalkRooms)
         {
-            floor = CreateRoomsRandomly(roomList);
+            rooms = CreateRoomsRandomly(roomList);
         }
         else
         {
-            floor = CreateSimpleRooms(roomList);
+            rooms = CreateSimpleRooms(roomList);
         }
 
-        List<Vector2Int> roomCenters = new List<Vector2Int>();
-        foreach (var room in roomList)
+        foreach(var room in rooms)
         {
-            roomCenters.Add(Vector2Int.RoundToInt(room.center));
+            floor.UnionWith(room.floorPositions);
         }
 
-        FindAndSpawnStartAndGoal(roomCenters);
+        FindAndSpawnStartAndGoal(rooms);
 
-        List<List<Vector2Int>> corridors = ConnectRooms(roomCenters, floor);
-        if (widenCorridors)
+        if (generateCorridors)
         {
-            WidenCorridors(floor, corridors);
+            List<List<Vector2Int>> corridors = ConnectRooms(rooms, floor);
+            if (widenCorridors)
+            {
+                WidenCorridors(floor, corridors);
+            }
         }
 
         tilemapVisualizer.PaintFloorTiles(floor);
@@ -80,26 +95,26 @@ public class RoomFirstDungeonGenerator : CorridorDungeonGenerator
         return true;
     }
 
-    private void FindAndSpawnStartAndGoal(List<Vector2Int> roomCenters)
+    private void FindAndSpawnStartAndGoal(List<Room> rooms)
     {
-        Vector2Int startRoomCenter = roomCenters[0];
-        for (int i = 1; i < roomCenters.Count; ++i)
+        Vector2Int startRoomCenter = rooms[0].center;
+        for (int i = 1; i < rooms.Count; ++i)
         {
-            if (roomCenters[i].x < startRoomCenter.x)
+            if (rooms[i].center.x < startRoomCenter.x)
             {
-                startRoomCenter = roomCenters[i];
+                startRoomCenter = rooms[i].center;
             }
         }
 
         float maxDistance = 0;
         Vector2Int goalRoomCenter = startRoomCenter;
-        for (int i = 0; i < roomCenters.Count; ++i)
+        for (int i = 0; i < rooms.Count; ++i)
         {
-            float distance = Vector2Int.Distance(roomCenters[i], startRoomCenter);
+            float distance = Vector2Int.Distance(rooms[i].center, startRoomCenter);
             if (distance > maxDistance)
             {
                 maxDistance = distance;
-                goalRoomCenter = roomCenters[i];
+                goalRoomCenter = rooms[i].center;
             }
         }
 
@@ -107,11 +122,12 @@ public class RoomFirstDungeonGenerator : CorridorDungeonGenerator
         Instantiate(goalIndicator, new Vector3Int(goalRoomCenter.x, 0, goalRoomCenter.y), Quaternion.identity, levelParent);
     }
 
-    private HashSet<Vector2Int> CreateRoomsRandomly(List<BoundsInt> roomList)
+    private List<Room> CreateRoomsRandomly(List<BoundsInt> roomList)
     {
-        HashSet<Vector2Int> floor = new HashSet<Vector2Int>();
+        List<Room> rooms = new List<Room>();
         for (int i = 0; i < roomList.Count; ++i)
         {
+            HashSet<Vector2Int> floor = new HashSet<Vector2Int>();
             var roomBounds = roomList[i];
             var roomCenter = Vector2Int.RoundToInt(roomBounds.center);
             var roomFloor = RunRandomWalk(randomWalkParams, roomCenter);
@@ -125,17 +141,68 @@ public class RoomFirstDungeonGenerator : CorridorDungeonGenerator
 
                 floor.Add(position);
             }
+
+            if (fillHoles)
+            {
+                int passes = 3;
+                while (passes > 0)
+                {
+                    FillRoomHoles(roomBounds, floor);
+                    --passes;
+                }
+            }
+
+            rooms.Add(new Room(roomBounds, floor));
         }
 
-        return floor;
+        return rooms;
     }
 
-    private List<List<Vector2Int>> ConnectRooms(List<Vector2Int> roomCenters, HashSet<Vector2Int> floorPositions)
+    private void FillRoomHoles(BoundsInt roomBounds, HashSet<Vector2Int> floor)
     {
-        List<List<Vector2Int>> corridors = new List<List<Vector2Int>>();
+        for (int x = roomBounds.min.x + offset; x < roomBounds.max.x - offset; ++x)
+        {
+            for (int y = roomBounds.min.y + offset; y < roomBounds.max.y - offset; ++y)
+            {
+                var floorPos = new Vector2Int(x, y);
+                if (floor.Contains(floorPos))
+                {
+                    // This is not a hole
+                    continue;
+                }
+
+                // This is a hole, should it be filled?
+                var directions = ProceduralGeneration.Direction2D.CardinalDirectionsList;
+                int surroundingsCheck = 0;
+                for (int dir = 0; dir < directions.Count; ++dir)
+                {
+                    if (floor.Contains(floorPos + directions[dir]))
+                    {
+                        surroundingsCheck |= 1 << dir;
+                    }
+                }
+
+                if (shouldFillHole.Contains(surroundingsCheck))
+                {
+                    // Fill hole
+                    floor.Add(floorPos);
+                }
+            }
+        }
+    }
+
+    private List<List<Vector2Int>> ConnectRooms(List<Room> rooms, HashSet<Vector2Int> floorPositions)
+    {
+        List<Vector2Int> roomCenters = new List<Vector2Int>();
+        foreach (var room in rooms)
+        {
+            roomCenters.Add(room.center);
+        }
+
         var currentRoomCenter = roomCenters[UnityEngine.Random.Range(0, roomCenters.Count)];
         roomCenters.Remove(currentRoomCenter);
 
+        List<List<Vector2Int>> corridors = new List<List<Vector2Int>>();
         while (roomCenters.Count > 0)
         {
             Vector2Int closest = FindClosestPointTo(currentRoomCenter, roomCenters);
@@ -200,11 +267,12 @@ public class RoomFirstDungeonGenerator : CorridorDungeonGenerator
         return closestRoomCenter;
     }
 
-    private HashSet<Vector2Int> CreateSimpleRooms(List<BoundsInt> roomList)
+    private List<Room> CreateSimpleRooms(List<BoundsInt> roomList)
     {
-        HashSet<Vector2Int> floor = new HashSet<Vector2Int>();
+        List<Room> rooms = new List<Room>();
         foreach (var room in roomList)
         {
+            HashSet<Vector2Int> floor = new HashSet<Vector2Int>();
             for (int col = offset; col < room.size.x - offset; col++)
             {
                 for (int row = offset; row < room.size.y - offset; row++)
@@ -212,8 +280,10 @@ public class RoomFirstDungeonGenerator : CorridorDungeonGenerator
                     floor.Add((Vector2Int)room.min + new Vector2Int(col, row));
                 }
             }
+
+            rooms.Add(new Room(room, floor));
         }
 
-        return floor;
+        return rooms;
     }
 }
