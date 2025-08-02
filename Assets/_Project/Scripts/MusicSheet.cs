@@ -2,9 +2,13 @@ using UnityEngine;
 using System.Collections.Generic;
 using System;
 using System.Collections;
+using FMODUnity;
 
 public class MusicSheet : MonoBehaviour
 {
+
+    [SerializeField] private StudioEventEmitter studioEventEmitter;
+
     [Header("Set the correct note sequence in the Inspector")]
     [SerializeField] private List<Note> correctSequence;
     [SerializeField] private List<GameObject> notes;
@@ -91,22 +95,26 @@ public class MusicSheet : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.W) && expectedNote == Note.W)
         {
-            AudioManager.instance.On_W_NoteSFX();
+            studioEventEmitter.SetParameter("Note", 0);
+            studioEventEmitter.Play();
             return true;
         }
         if (Input.GetKeyDown(KeyCode.A) && expectedNote == Note.A)
         {
-            AudioManager.instance.On_A_NoteSFX();
+            studioEventEmitter.SetParameter("Note", 1);
+            studioEventEmitter.Play();
             return true;
         }
         if (Input.GetKeyDown(KeyCode.S) && expectedNote == Note.S)
         {
-            AudioManager.instance.On_S_NoteSFX();
+            studioEventEmitter.SetParameter("Note", 2);
+            studioEventEmitter.Play();
             return true;
         }
         if (Input.GetKeyDown(KeyCode.D) && expectedNote == Note.D)
         {
-            AudioManager.instance.On_D_NoteSFX();
+            studioEventEmitter.SetParameter("Note", 3);
+            studioEventEmitter.Play();
             return true;
         }
 
