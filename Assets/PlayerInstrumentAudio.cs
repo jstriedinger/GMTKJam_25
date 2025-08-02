@@ -9,12 +9,19 @@ public class PlayerInstrumentAudio : MonoBehaviour
     public StudioEventEmitter emitter;
 
 
+    private void Awake()
+    {
+        emitter.EventReference = instrumentEvent;        
+    }
+
+
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         instrumentInstance = FMODUnity.RuntimeManager.CreateInstance(instrumentEvent);
         FMODUnity.RuntimeManager.AttachInstanceToGameObject(instrumentInstance, gameObject);
+
     }
 
     // Update is called once per frame
