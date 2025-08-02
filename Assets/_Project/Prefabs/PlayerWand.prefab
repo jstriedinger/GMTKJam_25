@@ -47,11 +47,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   instrumentEvent:
     Guid:
-      Data1: -1532454645
-      Data2: 1341986573
-      Data3: -1748403564
-      Data4: -1187538009
-    Path: event:/Instrument_Violin
+      Data1: 2008844674
+      Data2: 1246107647
+      Data3: 803646382
+      Data4: -2045725759
+    Path: event:/Player/Player_Wand
   emitter: {fileID: 3738185907537942120}
 --- !u!114 &3738185907537942120
 MonoBehaviour:

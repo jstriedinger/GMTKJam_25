@@ -367,11 +367,6 @@ Transform:
   - {fileID: 1883143221}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
---- !u!20 &316509137 stripped
-Camera:
-  m_CorrespondingSourceObject: {fileID: 1085870399586245406, guid: b6dc2a6191322db4dbf0cfc88de74d01, type: 3}
-  m_PrefabInstance: {fileID: 180166918466834054}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &413125679
 GameObject:
   m_ObjectHideFlags: 0
@@ -1207,7 +1202,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentPosition: {x: 0, y: 0, z: 0}
-  mainCamera: {fileID: 316509137}
   mousePositionObject: {fileID: 219149153}
   speed: 0
   lineZSpace: 2.5
@@ -25622,6 +25616,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 6599598425610064297, guid: b939e24b595e4c74abd8f8b7c6dd6d87, type: 3}
+      propertyPath: tiltAngle
+      value: 25
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -25702,7 +25700,6 @@ SceneRoots:
   - {fileID: 109854530}
   - {fileID: 2119881761}
   - {fileID: 180166918466834054}
-  - {fileID: 5723574752261441998}
   - {fileID: 4566372025413374346}
   - {fileID: 1858808352}
   - {fileID: 988145797}
@@ -25715,3 +25712,4 @@ SceneRoots:
   - {fileID: 2094812664}
   - {fileID: 2031548111}
   - {fileID: 447806251}
+  - {fileID: 5723574752261441998}
