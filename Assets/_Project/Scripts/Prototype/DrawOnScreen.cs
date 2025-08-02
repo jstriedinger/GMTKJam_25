@@ -1,4 +1,5 @@
 using System;
+using UnityEditor;
 using UnityEngine;
 
 public class DrawOnScreen : MonoBehaviour
@@ -35,6 +36,10 @@ public class DrawOnScreen : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            EditorApplication.isPaused = true;
+        }
         currentPosition = mainCamera.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, lineZSpace));
         mousePositionObject.transform.position = currentPosition;
 
@@ -52,14 +57,24 @@ public class DrawOnScreen : MonoBehaviour
 
         if (Input.GetMouseButtonUp(0))
         {
+            //put the points on the surface
+            Vector3[] groundPoints3D = new Vector3[line.positionCount];
+            for (int i = 0; i < line.positionCount; i++)
+            {
+                groundPoints3D[i] = ProjectToGround(line.GetPosition(i));
+                //line.SetPosition(i, ProjectToGround(line.GetPosition(i)));
+            }
+            EnemyManager.Instance?.CheckLinedrawHit(groundPoints3D);
+            groundPoints3D = Array.Empty<Vector3>();
             isDrawing = false;
 
-            CalculateDrawnCentroid();
+            //CalculateDrawnCentroid();
 
-            line.positionCount = 0;
+            //line.positionCount = 0;
 
             InvokeDraw();
             previousHasRun = false;
+            
         }
     }
 
@@ -131,5 +146,17 @@ public class DrawOnScreen : MonoBehaviour
 
         Physics.Raycast(centroid, rayDirection, 100f);
         Debug.DrawRay(centroid, rayDirection, Color.red, 5f);
+    }
+    
+    Vector3 ProjectToGround(Vector3 worldPoint)
+    {
+        Ray ray = new Ray(mainCamera.transform.position, (worldPoint - mainCamera.transform.position).normalized);
+        float distance;
+        Plane groundPlane = new Plane(Vector3.up, Vector3.zero); // Y=0 plane
+        if (groundPlane.Raycast(ray, out distance))
+        {
+            return ray.GetPoint(distance); // Point on Y=0
+        }
+        return worldPoint; // Fallback
     }
 }

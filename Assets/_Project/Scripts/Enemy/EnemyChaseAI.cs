@@ -99,4 +99,11 @@ public class EnemyChaseAI : MonoBehaviour
             }
         }
     }
+    
+    public void OnHitByLinedraw()
+    {
+        // Handle hit logic, e.g., play animation, sound, etc.
+        Debug.Log("line hit this enemy, die!");
+        
+    }
 }
