@@ -1,8 +1,11 @@
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class Health : MonoBehaviour
 {
+
+    public static event Action<GameObject> takenDamageEvent;
     [SerializeField] public int totalHealth = 3;
 
     [Header("Heart UI Elements")]
@@ -25,6 +28,7 @@ public class Health : MonoBehaviour
     {
         totalHealth = Mathf.Max(0, totalHealth - damage);
 
+
         // Reset all to full first
         first.sprite = fullheart;
         second.sprite = fullheart;
@@ -41,6 +45,8 @@ public class Health : MonoBehaviour
             // DEATH ANIMATION
             Die();
         }
+
+        takenDamageEvent?.Invoke(gameObject);
     }
 
     private void Die()
