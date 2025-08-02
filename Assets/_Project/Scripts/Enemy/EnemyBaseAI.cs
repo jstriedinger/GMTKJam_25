@@ -13,6 +13,8 @@ public class EnemyBaseAI : MonoBehaviour
     public float attackCooldown = 0;
     public int damage = 1;
     protected float hitCooldown = 0.1f;
+    private Vector3 currentVelocity = Vector3.zero;
+    private Vector3 targetVelocity = Vector3.zero;
 
     // Update is called once per frame
     virtual protected void Update()
@@ -30,13 +32,34 @@ public class EnemyBaseAI : MonoBehaviour
             case EnemyAIBehavior.Attack:
                 AttackBehavior();
                 break;
+            case EnemyAIBehavior.Retreat:
+                RetreatBehavior();
+                break;
         }
+    }
+
+    private void FixedUpdate()
+    {
+        Movement();
     }
 
     protected void UpdateCooldowns()
     {
         attackCooldown -= Time.deltaTime;
         hitCooldown -= Time.deltaTime;
+    }
+
+    private void Movement()
+    {
+        float rateOfChange = 5f;
+        currentVelocity = Vector3.Lerp(currentVelocity, targetVelocity, rateOfChange * Time.deltaTime);
+
+        if (currentVelocity.magnitude != 0)
+        {
+            transform.position += currentVelocity * Time.deltaTime;
+        }
+
+        targetVelocity = Vector3.Lerp(targetVelocity, Vector3.zero, rateOfChange * Time.deltaTime);
     }
 
     virtual protected void SwitchState(EnemyAIBehavior newState)
@@ -61,12 +84,24 @@ public class EnemyBaseAI : MonoBehaviour
         }
 
         Vector3 playerDirection = (player.transform.position - transform.position).normalized;
-        transform.position += new Vector3(playerDirection.x, 0, playerDirection.z) * speed * Time.deltaTime;
+        targetVelocity = new Vector3(playerDirection.x, 0, playerDirection.z) * speed;
 
         if (Vector3.Distance(player.transform.position, transform.position) <= attackDistance)
         {
             SwitchState(EnemyAIBehavior.Attack);
         }
+    }
+
+    protected virtual void RetreatBehavior()
+    {
+        if (player == null)
+        {
+            SwitchState(EnemyAIBehavior.Idle);
+            return;
+        }
+
+        Vector3 playerDirection = (transform.position - player.transform.position).normalized;
+        targetVelocity = new Vector3(playerDirection.x, 0, playerDirection.z) * speed;
     }
 
     protected virtual void AttackBehavior()
@@ -104,7 +139,7 @@ public class EnemyBaseAI : MonoBehaviour
             return;
         }
         // Handle hit logic, e.g., play animation, sound, etc.
-        Health health = player.GetComponent<Health>();
+        Health health = GetComponent<Health>();
         if (health == null)
         {
             return;

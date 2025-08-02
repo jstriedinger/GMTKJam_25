@@ -162,7 +162,7 @@ public class DrawOnScreen : MonoBehaviour
         if (Physics.Raycast(ray, out hit, 50f, LayerMask.GetMask("Enemy")))
         {
             Collider hitCollider = hit.collider;
-            EnemyChaseAI  enemy = hitCollider.GetComponent<EnemyChaseAI>();
+            EnemyBaseAI enemy = hitCollider.GetComponent<EnemyBaseAI>();
             if(enemy != null) 
             {
                 Health health = enemy.GetComponent<Health>();

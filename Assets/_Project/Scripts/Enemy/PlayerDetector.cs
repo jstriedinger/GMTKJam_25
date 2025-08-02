@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class PlayerDetector : MonoBehaviour
 {
-    [SerializeField] private EnemyChaseAI enemyAI;
+    [SerializeField] private EnemyBaseAI enemyAI;
 
     private void OnTriggerEnter(Collider other)
     {
