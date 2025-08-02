@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6a80c5ca8f28944894ef386a13416aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  generationParams: {fileID: 11400000, guid: 9297ad20d69d0f047a38bb540b0ccc57, type: 2}
+  generationParams: {fileID: 11400000, guid: a62bc2d37fb8c414d84bc9eb0aa4c735, type: 2}
   tilemapVisualizer: {fileID: 5825446196734446074}
   startPosition: {x: -40, y: -40}
   propsManager: {fileID: 8996465988535915159}
@@ -163,33 +163,77 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cac00b59801f3ff4d9f8f9009ebf8ed1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dungeonType: 1
+  dungeonType: 0
   levelParent: {fileID: 8998975280569088247}
   dungeonPieces:
   - dungeonType: 0
-    floorTile: {fileID: 7641770155314120702, guid: 79128ce84f5459443b04b5e3da85bc7a, type: 3}
-    fullWallTile: {fileID: 4183029148496454364, guid: 8d2d027785aff7b4db14b42925a8947a, type: 3}
-    northWallTile: {fileID: 1143682571410662907, guid: cd3045ec0df38324ebba0b55ef814ad6, type: 3}
-    northWestCornerWallTile: {fileID: 311993554421559734, guid: b5f4854c946dd384c8ae2ff20a4037df, type: 3}
-    northWestPillarWallTile: {fileID: 6426251766541983667, guid: 4ab427b0434cfeb4e852f693a3cb51f3, type: 3}
+    floorTiles_1x1:
+    - weight: 10
+      tile: {fileID: 4287493765659847313, guid: 8ac79fbec13b91f4a873ea37510fd6ab, type: 3}
+    - weight: 4
+      tile: {fileID: 4639345744182112522, guid: 81dd3f1fe9d50da489ea57d597ec688c, type: 3}
+    - weight: 15
+      tile: {fileID: 5570364863293936428, guid: c4c23cc5e4b13e444bac181b724f3c82, type: 3}
+    - weight: 4
+      tile: {fileID: 4658011710206983226, guid: f57a19f4d3c6fee418e4513d65d18ffa, type: 3}
+    - weight: 10
+      tile: {fileID: 4654485246842510174, guid: 88194f583818fab46aad92f9b40e72fc, type: 3}
+    fullWallTiles:
+    - weight: 1
+      tile: {fileID: 587141893572204350, guid: c0e5313768ccd0c4f83498e95cfcb6e4, type: 3}
+    - weight: 1
+      tile: {fileID: 1248496838308680783, guid: 87dcafeea6e6a9242991019ce75b0ba4, type: 3}
+    - weight: 1
+      tile: {fileID: 2761250186696903562, guid: 9e0cd800b31da5d4e93d29ad4a1cef6a, type: 3}
+    northWallTiles_1x1:
+    - weight: 4
+      tile: {fileID: 778821899319313703, guid: 37320034758c1a64d8b7308794aefea2, type: 3}
+    - weight: 2
+      tile: {fileID: 6499353222535001444, guid: e7760a9c7305a6d49811ee991dfe3bed, type: 3}
+    - weight: 1
+      tile: {fileID: 831191421170730278, guid: 6e2337d9cc79d4846b4fa058b0e5ee19, type: 3}
+    southWallTiles_1x1:
+    - weight: 1
+      tile: {fileID: 8156722361364019319, guid: c72c1b33d36435948bed98c6118fc811, type: 3}
+    - weight: 1
+      tile: {fileID: 1726415109368639958, guid: 7ee81d67eddce5a47b0787b94fd1d87d, type: 3}
+    northWestCornerWallTiles:
+    - weight: 1
+      tile: {fileID: 4837544564566929619, guid: 0fce5eb307983fa47950f770ed07dbae, type: 3}
+    - weight: 1
+      tile: {fileID: 5145849184824074434, guid: 0af76e08b5ab3714c8c658b178f5036f, type: 3}
+    - weight: 1
+      tile: {fileID: 4326854383745195334, guid: 6f1e17a3623551b41a3e8c4c1221b832, type: 3}
+    - weight: 1
+      tile: {fileID: 3678008197280559941, guid: 8b191acfcc070a54e9f749bfa78d1cee, type: 3}
+    - weight: 1
+      tile: {fileID: 2587038574274280758, guid: 92591230309be3e4c9f1c8098941ee99, type: 3}
+    - weight: 1
+      tile: {fileID: 4375216363179550582, guid: 0d03c62cb55725447a5acf68b428deaa, type: 3}
+    northWestPillarWallTiles:
+    - weight: 1
+      tile: {fileID: 1429474984928554407, guid: 3865477c520a9464dae90b211dbed26a, type: 3}
   - dungeonType: 1
-    floorTile: {fileID: 7641770155314120702, guid: 0a99a64e95ea04143a575270e2bf328f, type: 3}
-    fullWallTile: {fileID: 4183029148496454364, guid: 50cb3b10f50406646b282931df5309c1, type: 3}
-    northWallTile: {fileID: 1143682571410662907, guid: 83f5275e3f10d1c4fa87f0ec925259aa, type: 3}
-    northWestCornerWallTile: {fileID: 311993554421559734, guid: 92e9b08f75be6f44e9be7c872ce1aeb6, type: 3}
-    northWestPillarWallTile: {fileID: 6426251766541983667, guid: 150c094dc29539440b74301c45a2e9ca, type: 3}
+    floorTiles_1x1: []
+    fullWallTiles: []
+    northWallTiles_1x1: []
+    southWallTiles_1x1: []
+    northWestCornerWallTiles: []
+    northWestPillarWallTiles: []
   - dungeonType: 2
-    floorTile: {fileID: 7641770155314120702, guid: 25ac0ee16e1ff064aa22ee1db861b719, type: 3}
-    fullWallTile: {fileID: 4183029148496454364, guid: 0c6f99c332d615840bd42ac187e5e1b6, type: 3}
-    northWallTile: {fileID: 1143682571410662907, guid: 852ad392276d99547b33ad6e827f4872, type: 3}
-    northWestCornerWallTile: {fileID: 311993554421559734, guid: 125a98df6d97dbc4391bf4779f8ec5e3, type: 3}
-    northWestPillarWallTile: {fileID: 6426251766541983667, guid: 0b6478b7eadfd3a4e89b2deb29f2fac6, type: 3}
+    floorTiles_1x1: []
+    fullWallTiles: []
+    northWallTiles_1x1: []
+    southWallTiles_1x1: []
+    northWestCornerWallTiles: []
+    northWestPillarWallTiles: []
   - dungeonType: 3
-    floorTile: {fileID: 7641770155314120702, guid: 81bd0c990ebe76048bd26d48416753cb, type: 3}
-    fullWallTile: {fileID: 4183029148496454364, guid: c4ea6a15a2e1edb44b892da39d402de3, type: 3}
-    northWallTile: {fileID: 1143682571410662907, guid: d7c1e33298f729846b07f97cee0e4339, type: 3}
-    northWestCornerWallTile: {fileID: 311993554421559734, guid: 561107b02992669499ae5b1ed4d0bf98, type: 3}
-    northWestPillarWallTile: {fileID: 6426251766541983667, guid: 79aa3c7b2811d6f49954b0791b7b93d7, type: 3}
+    floorTiles_1x1: []
+    fullWallTiles: []
+    northWallTiles_1x1: []
+    southWallTiles_1x1: []
+    northWestCornerWallTiles: []
+    northWestPillarWallTiles: []
   generateSouthWalls: 1
 --- !u!1 &7975768280998045541
 GameObject:

@@ -5,6 +5,8 @@ using UnityEngine.InputSystem;
 public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] private float speed = 5f;
+    [SerializeField] private int tiltAngle = 20;
+    private float _targetYRot = 0;
     [SerializeField] private Transform character;
     [SerializeField] private Animator CharacterAnimator;
     [SerializeField] private Animator FlipAnimator;
@@ -96,7 +98,26 @@ public class PlayerMovement : MonoBehaviour
             _isMoving = true;
         }
 
-        isMovingEvent?.Invoke(_isMoving); 
+        isMovingEvent?.Invoke(_isMoving);
+
+        if (_finalMovement.z > 0f)
+        {
+            _targetYRot = character.localScale.x > 0 ? -tiltAngle : tiltAngle;
+        }
+        else if (_finalMovement.z < 0f) // below zero
+        {
+            _targetYRot = character.localScale.x > 0 ? tiltAngle : -tiltAngle;
+        }
+        else
+        {
+            _targetYRot = 0; // neutral when input.y == 0            
+        }
+
+        // Smoothly interpolate to target rotation
+        Quaternion currentRot = transform.rotation;
+        Quaternion targetRot = Quaternion.Euler(0f, _targetYRot, 0f);
+
+        transform.rotation = Quaternion.Lerp(currentRot, targetRot, Time.deltaTime * 10);
     }
 
     private void CanMoveOnDraw(bool onDraw)
