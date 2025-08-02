@@ -129,18 +129,24 @@ public class PlayerMovement : MonoBehaviour
     {
         _canMove = !isActive;
     }
+    
+    public void ToggleCanMove(bool canMove)
+    {
+        _canMove = canMove;
+        
+    }
 
     private void OnEnable()
     {
         //event for when drawing on screen
-        //DrawOnScreen.onDraw += CanMoveOnDraw;
+        PlayerAttack.OnDrawBegins += CanMoveOnDraw;
         //event for when learning melody on screen
         MusicSheet.onSequenceActive += CanMoveOnSequence;
     }
 
     private void OnDisable()
     {
-        //DrawOnScreen.onDraw -= CanMoveOnDraw;
+        PlayerAttack.OnDrawBegins -= CanMoveOnDraw;
         MusicSheet.onSequenceActive -= CanMoveOnSequence;
     }
 
