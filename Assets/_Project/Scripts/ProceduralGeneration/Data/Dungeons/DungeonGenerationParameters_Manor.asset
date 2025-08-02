@@ -13,15 +13,15 @@ MonoBehaviour:
   m_Name: DungeonGenerationParameters_Manor
   m_EditorClassIdentifier: 
   dungeonType: 3
-  roomParams: {fileID: 11400000, guid: a74d9eec704c60b40935762cabca5240, type: 2}
+  roomParams: {fileID: 11400000, guid: 72a3c13690a7cdc40b6584d534d4e69c, type: 2}
   widenCorridors: 1
-  minRoomWidth: 20
-  minRoomHeight: 20
-  dungeonWidth: 120
-  dungeonHeight: 120
+  minRoomWidth: 25
+  minRoomHeight: 25
+  dungeonWidth: 100
+  dungeonHeight: 100
   offset: 1
   randomWalkRooms: 1
   fillHoles: 1
   generateCorridors: 1
-  minRooms: 10
-  maxTries: 10
+  minRooms: 6
+  maxTries: 40

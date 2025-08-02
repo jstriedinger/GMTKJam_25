@@ -8,7 +8,7 @@ public class RoomFirstDungeonGenerator : CorridorDungeonGenerator
     [SerializeField] private Transform levelParent;
     [SerializeField] public GameObject spawnIndicator;
     [SerializeField] public GameObject goalIndicator;
-
+    [SerializeField] private Dungeon dungeonData;
 
     // Fill holes that are fully surrounded, or surrounded by at least 3 floor tiles
     private static HashSet<int> shouldFillHole = new HashSet<int>
@@ -20,20 +20,8 @@ public class RoomFirstDungeonGenerator : CorridorDungeonGenerator
         0b1111,
     };
 
-    public void StartLevelFromGameManager(GameLevel level)
-    {
-        RunProceduralGeneration();
-    }
-
     protected override void RunProceduralGeneration()
     {
-        Dungeon dungeonData = FindFirstObjectByType<Dungeon>();
-        if (dungeonData == null)
-        {
-            Debug.LogError("Add a Dungeon Object to the scene.");
-            return;
-        }
-
         dungeonData.Clear();
 
         int tries = 0;
@@ -128,6 +116,7 @@ public class RoomFirstDungeonGenerator : CorridorDungeonGenerator
         }
 
         dungeonData.spawnPosition = new Vector3Int(startRoomCenter.x, 0, startRoomCenter.y);
+        dungeonData.instrumentPosition = new Vector3Int(goalRoomCenter.x, 0, goalRoomCenter.y);
 
         Instantiate(spawnIndicator, dungeonData.spawnPosition, Quaternion.identity, levelParent);
         Instantiate(goalIndicator, new Vector3Int(goalRoomCenter.x, 0, goalRoomCenter.y), Quaternion.identity, levelParent);

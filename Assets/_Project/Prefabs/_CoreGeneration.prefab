@@ -51,6 +51,7 @@ MonoBehaviour:
   levelParent: {fileID: 8998975280569088247}
   spawnIndicator: {fileID: 3190416370471595497, guid: 2d03588e23c7aa4428094eca3e7acc80, type: 3}
   goalIndicator: {fileID: 4104011358831222381, guid: 56a72de05318bb648901a7f92795d87d, type: 3}
+  dungeonData: {fileID: 7178165423559169430}
 --- !u!1 &1686950631240425279
 GameObject:
   m_ObjectHideFlags: 0
@@ -112,7 +113,7 @@ Transform:
   m_GameObject: {fileID: 4553540640821479249}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -17.738083, y: 0.52924633, z: 11.440127}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -162,7 +163,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cac00b59801f3ff4d9f8f9009ebf8ed1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dungeonType: 3
+  dungeonType: 1
   levelParent: {fileID: 8998975280569088247}
   dungeonPieces:
   - dungeonType: 0
@@ -238,6 +239,7 @@ MonoBehaviour:
   propsToPlace:
   - {fileID: 11400000, guid: 9517b156256406d4fb896398d35b3009, type: 2}
   - {fileID: 11400000, guid: d39b90e87743f8c46b813bcefd55c296, type: 2}
+  dungeonData: {fileID: 7178165423559169430}
 --- !u!1 &8646161615607377568
 GameObject:
   m_ObjectHideFlags: 0
@@ -282,4 +284,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5971a6c49b3c37848b11ad7227140c30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnPosition: {x: 0, y: 0, z: 0}
+  spawnPosition: {x: -14, y: 0, z: 43}
+  instrumentPosition: {x: -14, y: 0, z: -23}
