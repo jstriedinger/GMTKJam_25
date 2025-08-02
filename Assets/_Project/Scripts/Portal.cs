@@ -3,8 +3,9 @@ using UnityEngine;
 
 public class Portal : MonoBehaviour
 {
+
     [SerializeField] private bool _isUnlocked;
-    [SerializeField] private string SCENENAME;
+    [SerializeField] private int gameLevel;
 
     public void OpenPortal()
     {
@@ -18,8 +19,7 @@ public class Portal : MonoBehaviour
         {
             if (_isUnlocked)
             {
-                GameManager.Instance.LoadScene(SCENENAME);
-                Debug.Log($"Load: {SCENENAME}");
+                GameManager.Instance.StartLevel(gameLevel);
             }
         }
     }

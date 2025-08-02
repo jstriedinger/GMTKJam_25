@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CorridorDungeonGenerator :SimpleWalkDungeonGenerator
+public class CorridorDungeonGenerator : SimpleWalkDungeonGenerator
 {
     protected void WidenCorridors(HashSet<Vector2Int> floorPositions, List<List<Vector2Int>> corridors)
     {
@@ -17,9 +17,9 @@ public class CorridorDungeonGenerator :SimpleWalkDungeonGenerator
         List<Vector2Int> newCorridor = new List<Vector2Int>();
         for (int i = 0; i < corridor.Count; i++)
         {
-            for (int x = -1; x < 2; x++)
+            for (int x = -1; x < 5; x++)
             {
-                for (int y = -1; y < 2; y++)
+                for (int y = -1; y < 5; y++)
                 {
                     newCorridor.Add(corridor[i] + new Vector2Int(x, y));
                 }

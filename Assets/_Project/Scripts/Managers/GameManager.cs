@@ -2,10 +2,16 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UIElements;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
+
+    [SerializeField] private GameObject _hubPosition;
+
+    [SerializeField] private List<GameObject> dungeons;
+    [SerializeField] private GameObject player;
 
     [SerializeField] private bool finishedTutorial;
 
@@ -42,13 +48,24 @@ public class GameManager : MonoBehaviour
         CheckForLevelChange();
     }
 
+    public void StartLevel(int level)
+    {
+        player.transform.position = dungeons[level].transform.position;
+    }
+
+    public void TeleportPlayerToHub()
+    {
+        player.transform.position = _hubPosition.transform.position;
+    }
+
     public void AddInstrument(string instrumentName)
     {
         if (_unlockedInstrumentNames.Add(instrumentName))
         {
-            ShowUnlockedInstrumentsInHub();
-            CheckForLevelChange();
             Debug.Log("Unlocked: " + instrumentName);
+            ShowUnlockedInstrumentsInHub();
+            TeleportPlayerToHub();
+            CheckForLevelChange();
         }
     }
 
