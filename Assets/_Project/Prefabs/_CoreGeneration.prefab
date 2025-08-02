@@ -299,6 +299,7 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 9abe8fae0dbca6f4b97486d425da6db5, type: 2}
     - {fileID: 11400000, guid: eb8658c7bfc3eab439fb96e8d853c08a, type: 2}
     - {fileID: 11400000, guid: 441852d9a688a6c4f9fbeae9366767e2, type: 2}
+    - {fileID: 11400000, guid: 82508d5cc9920d347800ede57dfe0c43, type: 2}
   dungeonData: {fileID: 7178165423559169430}
 --- !u!1 &8646161615607377568
 GameObject:
