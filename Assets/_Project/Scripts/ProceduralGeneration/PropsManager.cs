@@ -2,30 +2,44 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
+[System.Serializable]
+public class DungeonProps
+{
+    public DungeonType dungeonType;
+    public List<Prop> props;
+}
+
 public class PropsManager : MonoBehaviour
 {
     [SerializeField] private Transform levelParent;
-    [SerializeField] private List<Prop> propsToPlace;
+    [SerializeField] private List<DungeonProps> allDungeonProps;
     [SerializeField] private Dungeon dungeonData;
 
-    public void ProcessRooms()
+    public void ProcessRooms(DungeonType dungeonType)
     {
+        DungeonProps dungeonProps = allDungeonProps.Find(x => x.dungeonType == dungeonType);
+        if (dungeonProps == null)
+        {
+            // No props for this dungeon type
+            return;
+        }
+
         foreach (Room room in dungeonData.rooms)
         {
-            List<Prop> innerProps = propsToPlace.OrderByDescending(x => x.PropSize.x * x.PropSize.y).ToList();
+            List<Prop> innerProps = dungeonProps.props.OrderByDescending(x => x.PropSize.x * x.PropSize.y).ToList();
             PlaceProps(room, innerProps, room.innerTiles, PlacementOriginCorner.BottomLeft);
         }
     }
 
     private void PlaceProps(
-    Room room, List<Prop> wallProps, HashSet<Vector2Int> availableTiles, PlacementOriginCorner placement)
+    Room room, List<Prop> propsList, HashSet<Vector2Int> availableTiles, PlacementOriginCorner placement)
     {
         //Remove path positions from the initial nearWallTiles to ensure the clear path to traverse dungeon
         HashSet<Vector2Int> tempPositons = new HashSet<Vector2Int>(availableTiles);
         //tempPositons.ExceptWith(dungeonData.Path);
 
         //We will try to place all the props
-        foreach (Prop propToPlace in wallProps)
+        foreach (Prop propToPlace in propsList)
         {
             //We want to place only certain quantity of each prop
             int quantity = UnityEngine.Random.Range(propToPlace.PlacementQuantityMin, propToPlace.PlacementQuantityMax + 1);
@@ -146,8 +160,9 @@ public class PropsManager : MonoBehaviour
 
     private GameObject PlacePropGameObjectAt(Room room, Vector2Int placementPosition, Prop propToPlace)
     {
-        //Instantiat the prop at this positon
-        GameObject prop = Instantiate(propToPlace.propData, new Vector3Int(placementPosition.x, 0, placementPosition.y), Quaternion.identity, levelParent);
+        //Instantiate the prop at this positon
+        Quaternion rotation = propToPlace.randomizeRotation ? Quaternion.AngleAxis(Random.Range(0, 4) * 90, Vector3.up) : Quaternion.identity;
+        GameObject prop = Instantiate(propToPlace.propData, new Vector3Int(placementPosition.x, 0, placementPosition.y), rotation, levelParent);
 
         //Save the prop in the room data (so in the dunbgeon data)
         room.propPositions.Add(placementPosition);

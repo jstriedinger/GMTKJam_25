@@ -87,7 +87,7 @@ public class RoomFirstDungeonGenerator : CorridorDungeonGenerator
 
         dungeonData.rooms = rooms;
 
-        propsManager.ProcessRooms();
+        propsManager.ProcessRooms(generationParams.dungeonType);
 
         return true;
     }
