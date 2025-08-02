@@ -408,6 +408,7 @@ GameObject:
   - component: {fileID: 7862159537999846264}
   - component: {fileID: 3543913922111683638}
   - component: {fileID: 4951050363593935196}
+  - component: {fileID: 8567552017279574585}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -500,6 +501,7 @@ MonoBehaviour:
   character: {fileID: 8242289053110221721}
   CharacterAnimator: {fileID: 2630756314221142499}
   FlipAnimator: {fileID: 620238984062242239}
+  debugMode: 0
 --- !u!114 &1392410585322851753
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -681,6 +683,25 @@ MonoBehaviour:
   speed: 0
   lineZSpace: 2.5
   raycastAngleY: -50
+--- !u!114 &8567552017279574585
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5442111846151702766}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a61973da754546568a84feabb4438d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  footstepEvent:
+    Guid:
+      Data1: 2101555008
+      Data2: 1319064080
+      Data3: 430176652
+      Data4: 2136363122
+    Path: event:/Player/Player_Footsteps
 --- !u!1001 &8496259792242007154
 PrefabInstance:
   m_ObjectHideFlags: 0
