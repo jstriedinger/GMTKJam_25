@@ -15,5 +15,5 @@ public class DungeonGenerationData : ScriptableObject
     public bool fillHoles = true;
     public bool generateCorridors = true;
     [Range(1, 10)] public int minRooms = 10;
-    [Range(1, 15)] public int maxTries = 10;
+    [Range(1, 50)] public int maxTries = 10;
 }

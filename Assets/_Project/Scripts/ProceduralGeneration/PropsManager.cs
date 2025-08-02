@@ -6,14 +6,10 @@ public class PropsManager : MonoBehaviour
 {
     [SerializeField] private Transform levelParent;
     [SerializeField] private List<Prop> propsToPlace;
-    Dungeon dungeonData;
+    [SerializeField] private Dungeon dungeonData;
 
     public void ProcessRooms()
     {
-        dungeonData = FindFirstObjectByType<Dungeon>();
-        if (dungeonData == null)
-            return;
-
         foreach (Room room in dungeonData.rooms)
         {
             List<Prop> innerProps = propsToPlace.OrderByDescending(x => x.PropSize.x * x.PropSize.y).ToList();
