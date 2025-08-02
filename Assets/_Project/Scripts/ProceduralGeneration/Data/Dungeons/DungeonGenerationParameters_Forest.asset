@@ -15,13 +15,13 @@ MonoBehaviour:
   dungeonType: 1
   roomParams: {fileID: 11400000, guid: a0fd97e6439b35b43bcf6f05661ddbb5, type: 2}
   widenCorridors: 1
-  minRoomWidth: 10
-  minRoomHeight: 10
-  dungeonWidth: 50
-  dungeonHeight: 50
+  minRoomWidth: 20
+  minRoomHeight: 20
+  dungeonWidth: 100
+  dungeonHeight: 100
   offset: 0
-  randomWalkRooms: 0
+  randomWalkRooms: 1
   fillHoles: 1
   generateCorridors: 1
-  minRooms: 1
+  minRooms: 5
   maxTries: 15
