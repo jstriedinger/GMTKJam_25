@@ -6,13 +6,17 @@ public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] private float speed = 5f;
     [SerializeField] private Transform character;
-    [SerializeField] private Animator animator;
+    [SerializeField] private Animator CharacterAnimator;
+    [SerializeField] private Animator FlipAnimator;
 
     private Rigidbody _rigidbody;
     private Vector2 _moveInputValue;
     private Vector3 _finalMovement;
 
     private bool _canMove = true;
+    
+    //flipping stuff
+    private bool _isFlipped = false;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -35,6 +39,19 @@ public class PlayerMovement : MonoBehaviour
 
     private void FlipCharacterBasedOnSpeed()
     {
+        if (!_isFlipped && _finalMovement.x < 0)
+        {
+            _isFlipped = true;
+            FlipAnimator.SetTrigger("Flip");
+            Debug.Log("Flip!");
+        }
+        else if (_isFlipped && _finalMovement.x > 0)
+        {
+            _isFlipped = false;
+            FlipAnimator.SetTrigger("Flip");
+            Debug.Log("Flip!");
+        }
+        
         if (_rigidbody.linearVelocity.x >= 0)
         {
             if (character.localScale.x < 0)
@@ -59,7 +76,7 @@ public class PlayerMovement : MonoBehaviour
             //myAnim.SetFloat("Speed", magnitude);
             _finalMovement = new Vector3(dir.x, 0, dir.y) * speed;
             //_rigidbody.linearVelocity = new Vector3(dir.x * speed * Time.deltaTime,_rigidbody.linearVelocity.y, dir.y * speed * Time.deltaTime);
-            
+           
         }
         else
         {
@@ -69,10 +86,11 @@ public class PlayerMovement : MonoBehaviour
         if (_finalMovement.sqrMagnitude < Mathf.Epsilon)
         {
             //small movement, change anim
-            animator.SetBool("Moving", false);
+            CharacterAnimator.SetBool("Moving", false);
+            
         }
         else
-            animator.SetBool("Moving", true);
+            CharacterAnimator.SetBool("Moving", true);
     }
 
     private void CanMoveOnDraw(bool onDraw)
