@@ -6,8 +6,9 @@ public class RoomFirstDungeonGenerator : CorridorDungeonGenerator
 {
     [SerializeField] PropsManager propsManager;
     [SerializeField] private Transform levelParent;
-    [SerializeField] private GameObject spawnIndicator;
-    [SerializeField] private GameObject goalIndicator;
+    [SerializeField] public GameObject spawnIndicator;
+    [SerializeField] public GameObject goalIndicator;
+
 
     // Fill holes that are fully surrounded, or surrounded by at least 3 floor tiles
     private static HashSet<int> shouldFillHole = new HashSet<int>
@@ -18,6 +19,11 @@ public class RoomFirstDungeonGenerator : CorridorDungeonGenerator
         0b1110,
         0b1111,
     };
+
+    public void StartLevelFromGameManager(GameLevel level)
+    {
+        RunProceduralGeneration();
+    }
 
     protected override void RunProceduralGeneration()
     {
@@ -72,7 +78,7 @@ public class RoomFirstDungeonGenerator : CorridorDungeonGenerator
             rooms = CreateSimpleRooms(roomList);
         }
 
-        foreach(var room in rooms)
+        foreach (var room in rooms)
         {
             floor.UnionWith(room.floorPositions);
         }
