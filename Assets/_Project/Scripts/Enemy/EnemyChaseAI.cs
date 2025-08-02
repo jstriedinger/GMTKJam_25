@@ -105,6 +105,7 @@ public class EnemyChaseAI : MonoBehaviour
     {
         // Handle hit logic, e.g., play animation, sound, etc.
         isDead = true;
+        Destroy(gameObject);
         Debug.Log("line hit this enemy, die!");
         
     }

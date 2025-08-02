@@ -155,8 +155,11 @@ public class DrawOnScreen : MonoBehaviour
         //Debug.Log(rayDirection);
 
         //Physics.Raycast(centroid, rayDirection, 100f);
+        Vector3 screenPoint = mainCamera.WorldToScreenPoint(pos); 
+
+        Ray ray = mainCamera.ScreenPointToRay(screenPoint);
         RaycastHit hit;
-        if (Physics.Raycast(pos, mainCamera.transform.forward, out hit, 50f, LayerMask.GetMask("Enemy")))
+        if (Physics.Raycast(ray, out hit, 50f, LayerMask.GetMask("Enemy")))
         {
             Collider hitCollider = hit.collider;
             EnemyChaseAI  enemy = hitCollider.GetComponent<EnemyChaseAI>();
@@ -165,7 +168,7 @@ public class DrawOnScreen : MonoBehaviour
                 enemy.OnHitByLinedraw();
             }
         }
-        Debug.DrawRay(pos, mainCamera.transform.forward * 50, Color.red, 5f);
+        Debug.DrawRay(pos, ray.direction * 50, Color.red, 5f);
     }
     
     Vector3 ProjectToGround(Vector3 worldPoint)
