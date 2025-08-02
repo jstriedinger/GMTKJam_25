@@ -10,12 +10,15 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private GameObject _hubPosition;
 
-    [SerializeField] private List<GameObject> dungeons;
+    [SerializeField] private List<AbstractDungeonGenerator> generators;
+    [SerializeField] private List<Dungeon> dungeons;
+    [SerializeField] private List<Dungeon> _instrumentPosition;
     [SerializeField] private GameObject player;
 
     [SerializeField] private bool finishedTutorial;
 
     [Header("Instruments")]
+    [SerializeField] private List<Instrument> _instruments;
     [SerializeField] private HashSet<string> _unlockedInstrumentNames = new();
     [SerializeField] private List<GameObject> _pedestalInstruments;
 
@@ -28,6 +31,8 @@ public class GameManager : MonoBehaviour
 
     [Header("Portals")]
     [SerializeField] private List<Portal> _portals;
+
+    private int level;
 
     private void Awake()
     {
@@ -42,6 +47,11 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    private int GetCurrentLevel()
+    {
+        return level;
+    }
+
     public void FinishedTutorial()
     {
         finishedTutorial = true;
@@ -50,7 +60,12 @@ public class GameManager : MonoBehaviour
 
     public void StartLevel(int level)
     {
-        player.transform.position = dungeons[level].transform.position;
+        AbstractDungeonGenerator gen = generators[level];
+        gen.ClearDungeon();
+        gen.GenerateDungeon();
+        Dungeon dungeon = dungeons[level];
+        player.transform.position = dungeon.spawnPosition;
+        _instruments[level].transform.position = dungeon.instrumentPosition;
     }
 
     public void TeleportPlayerToHub()

@@ -115,6 +115,8 @@ public class RoomFirstDungeonGenerator : CorridorDungeonGenerator
             }
         }
 
+        Debug.Log(dungeonData.spawnPosition);
+        Debug.Log(dungeonData.instrumentPosition);
         dungeonData.spawnPosition = new Vector3Int(startRoomCenter.x, 0, startRoomCenter.y);
         dungeonData.instrumentPosition = new Vector3Int(goalRoomCenter.x, 0, goalRoomCenter.y);
 
