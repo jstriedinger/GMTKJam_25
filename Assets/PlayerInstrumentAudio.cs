@@ -53,13 +53,15 @@ public class PlayerInstrumentAudio : MonoBehaviour
 
     private void OnEnable()
     {
-        DrawOnScreen.onDraw += PlayStopSound;
-        DrawOnScreen.drawSpeed += UpdateSpeed;
+        PlayerAttack.OnDrawBegins += PlayStopSound;
+        PlayerAttack.OnDrawEnds += PlayStopSound;
+        PlayerAttack.drawSpeed += UpdateSpeed;
     }
 
     private void OnDisable()
     {
-        DrawOnScreen.onDraw -= PlayStopSound;
-        DrawOnScreen.drawSpeed -= UpdateSpeed;
+        PlayerAttack.OnDrawBegins -= PlayStopSound;
+        PlayerAttack.OnDrawEnds += PlayStopSound;
+        PlayerAttack.drawSpeed -= UpdateSpeed;
     }
 }

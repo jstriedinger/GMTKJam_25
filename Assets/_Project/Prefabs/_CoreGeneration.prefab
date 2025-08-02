@@ -280,9 +280,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levelParent: {fileID: 8998975280569088247}
-  propsToPlace:
-  - {fileID: 11400000, guid: 9517b156256406d4fb896398d35b3009, type: 2}
-  - {fileID: 11400000, guid: d39b90e87743f8c46b813bcefd55c296, type: 2}
+  allDungeonProps:
+  - dungeonType: 0
+    props:
+    - {fileID: 11400000, guid: 7876b5f6a2b47264ebe5c91347172b1c, type: 2}
+    - {fileID: 11400000, guid: 143be0f71dff1cc46a4c95fcf31699f2, type: 2}
+    - {fileID: 11400000, guid: 3cd8c239ef8f4e44a85de62071b2d5d1, type: 2}
+    - {fileID: 11400000, guid: 2b1d9cc668c03bb4fbc89fb90600cdc2, type: 2}
+    - {fileID: 11400000, guid: b1261af1176f5b54499571c0c13a5f85, type: 2}
+    - {fileID: 11400000, guid: 99c14d1321acda649a0d94688967e248, type: 2}
+    - {fileID: 11400000, guid: ce4684513c87c914e80da182e60d6455, type: 2}
+    - {fileID: 11400000, guid: 7a0b79c47cbd3cc48a67284f791a4ab7, type: 2}
+    - {fileID: 11400000, guid: 43dd4d8b3bbcfd543adb8fca9ab23e08, type: 2}
+    - {fileID: 11400000, guid: f0fa247a8299cc64a9741cf5bcd142ba, type: 2}
+    - {fileID: 11400000, guid: b956b45d584b7254aa50d1da30609102, type: 2}
+    - {fileID: 11400000, guid: ad66b3b9d25fb6541a4ef64e18d08e5c, type: 2}
+    - {fileID: 11400000, guid: d221ab96a50e57b41ae9b780e0caeafe, type: 2}
+    - {fileID: 11400000, guid: 9abe8fae0dbca6f4b97486d425da6db5, type: 2}
+    - {fileID: 11400000, guid: eb8658c7bfc3eab439fb96e8d853c08a, type: 2}
+    - {fileID: 11400000, guid: 441852d9a688a6c4f9fbeae9366767e2, type: 2}
+    - {fileID: 11400000, guid: 82508d5cc9920d347800ede57dfe0c43, type: 2}
   dungeonData: {fileID: 7178165423559169430}
 --- !u!1 &8646161615607377568
 GameObject:
@@ -328,5 +345,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5971a6c49b3c37848b11ad7227140c30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnPosition: {x: -14, y: 0, z: 43}
-  instrumentPosition: {x: -14, y: 0, z: -23}
+  spawnPosition: {x: -22, y: 0, z: 4}
+  instrumentPosition: {x: 10, y: 0, z: -14}

@@ -4,18 +4,20 @@ using UnityEditor;
 #endif
 using UnityEngine;
 
-public class DrawOnScreen : MonoBehaviour
+public class PlayerAttack : MonoBehaviour
 {
-    private LineRenderer line;
-    private Vector3 previousPosition;
+    [SerializeField] private Animator charAnimator;
+    private LineRenderer _line;
+    private Vector3 _previousPosition;
     [SerializeField] private Vector3 currentPosition;
-    private Vector3[] linePositions;
-    private bool isDrawing;
-    private bool previousHasRun;
-    private Camera mainCamera;
+    private Vector3[] _linePositions;
+    private bool _isDrawing;
+    private bool _previousHasRun;
+    private Camera _mainCamera;
     public GameObject mousePositionObject;
     // Event when drawing has started and stopped
-    public static event Action<bool> onDraw;
+    public static event Action<bool> OnDrawBegins;
+    public static event Action<bool> OnDrawEnds;
     // Event for the drawing speed (used for audio)
     public static event Action<float> drawSpeed;
     [SerializeField] private float speed;
@@ -30,10 +32,10 @@ public class DrawOnScreen : MonoBehaviour
 
     void Start()
     {
-        mainCamera = Camera.main;
-        line = GetComponent<LineRenderer>();
-        line.positionCount = 1;
-        previousPosition = transform.position;
+        _mainCamera = Camera.main;
+        _line = GetComponent<LineRenderer>();
+        _line.positionCount = 1;
+        _previousPosition = transform.position;
     }
 
     // Update is called once per frame
@@ -45,16 +47,16 @@ public class DrawOnScreen : MonoBehaviour
             EditorApplication.isPaused = true;
         }
 #endif
-        currentPosition = mainCamera.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, lineZSpace));
+        currentPosition = _mainCamera.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, lineZSpace));
         mousePositionObject.transform.position = currentPosition;
 
         if (Input.GetMouseButton(0))
         {
-            isDrawing = true;
+            _isDrawing = true;
 
             Draw();
 
-            if (!previousHasRun)
+            if (!_previousHasRun)
             {
                 InvokeDraw();
             }
@@ -72,46 +74,49 @@ public class DrawOnScreen : MonoBehaviour
              }
              EnemyManager.Instance?.CheckLinedrawHit(groundPoints3D);
              groundPoints3D = Array.Empty<Vector3>();*/
-            isDrawing = false;
+            _isDrawing = false;
 
             //CalculateDrawnCentroid();
 
-            line.positionCount = 0;
+            _line.positionCount = 0;
 
             InvokeDraw();
-            previousHasRun = false;
+            _previousHasRun = false;
         }
     }
 
     // Send out event when drawing. previousHasRun is used so it doesn't repeat in the update loop
     private void InvokeDraw()
     {
-        if (isDrawing == true)
+        if (_isDrawing == true)
         {
-            onDraw?.Invoke(true);
-            previousHasRun = true;
+            OnDrawBegins?.Invoke(true);
+            charAnimator.SetBool("Attacking", true);
+            _previousHasRun = true;
+            
         }
-        if (isDrawing == false)
+        if (_isDrawing == false)
         {
-            onDraw?.Invoke(false);
-            previousHasRun = true;
+            OnDrawEnds?.Invoke(false);
+            charAnimator.SetBool("Attacking", false);
+            _previousHasRun = true;
         }
     }
 
     // Draw the line based on current mouse position
     private void Draw()
     {
-        if (previousPosition == transform.position)
+        if (_previousPosition == transform.position)
         {
-            line.SetPosition(0, currentPosition);
+            _line.SetPosition(0, currentPosition);
         }
-        float distance = Vector3.Distance(currentPosition, previousPosition);
+        float distance = Vector3.Distance(currentPosition, _previousPosition);
 
         if (distance > minimumLineDrawingDistance)
         {
-            line.positionCount++;
-            line.SetPosition(line.positionCount - 1, currentPosition);
-            previousPosition = currentPosition;
+            _line.positionCount++;
+            _line.SetPosition(_line.positionCount - 1, currentPosition);
+            _previousPosition = currentPosition;
         }
 
         speed = distance / Time.deltaTime;
@@ -120,9 +125,9 @@ public class DrawOnScreen : MonoBehaviour
 
     private void RaycastFromLinePoints()
     {
-        linePositions = new Vector3[line.positionCount];
-        line.GetPositions(linePositions);
-        foreach (Vector3 pos in linePositions)
+        _linePositions = new Vector3[_line.positionCount];
+        _line.GetPositions(_linePositions);
+        foreach (Vector3 pos in _linePositions)
         {
             CreateRaycastHit(pos);
         }
@@ -131,17 +136,17 @@ public class DrawOnScreen : MonoBehaviour
     // Find the centre of all the points created by the line renderer
     private void CalculateDrawnCentroid()
     {
-        linePositions = new Vector3[line.positionCount];
-        line.GetPositions(linePositions);
+        _linePositions = new Vector3[_line.positionCount];
+        _line.GetPositions(_linePositions);
 
-        int arrayLength = linePositions.Length;
+        int arrayLength = _linePositions.Length;
 
         Vector3 totalVectorAmount = new Vector3();
         Vector3 centroid;
 
         for (int i = 0; i < arrayLength; i++)
         {
-            Vector3 position = linePositions[i];
+            Vector3 position = _linePositions[i];
 
             totalVectorAmount = totalVectorAmount + position;
         }
@@ -159,9 +164,9 @@ public class DrawOnScreen : MonoBehaviour
         //Debug.Log(rayDirection);
 
         //Physics.Raycast(centroid, rayDirection, 100f);
-        Vector3 screenPoint = mainCamera.WorldToScreenPoint(pos);
+        Vector3 screenPoint = _mainCamera.WorldToScreenPoint(pos);
 
-        Ray ray = mainCamera.ScreenPointToRay(screenPoint);
+        Ray ray = _mainCamera.ScreenPointToRay(screenPoint);
         RaycastHit hit;
         if (Physics.Raycast(ray, out hit, 50f, LayerMask.GetMask("Enemy")))
         {
@@ -181,7 +186,7 @@ public class DrawOnScreen : MonoBehaviour
 
     Vector3 ProjectToGround(Vector3 worldPoint)
     {
-        Ray ray = new Ray(mainCamera.transform.position, (worldPoint - mainCamera.transform.position).normalized);
+        Ray ray = new Ray(_mainCamera.transform.position, (worldPoint - _mainCamera.transform.position).normalized);
         float distance;
         Plane groundPlane = new Plane(Vector3.up, Vector3.zero); // Y=0 plane
         if (groundPlane.Raycast(ray, out distance))
