@@ -161,8 +161,10 @@ public class PropsManager : MonoBehaviour
     private GameObject PlacePropGameObjectAt(Room room, Vector2Int placementPosition, Prop propToPlace)
     {
         //Instantiate the prop at this positon
+        float offsetAmount = 0.25f;
+        Vector3 randomOffset = new Vector3(Random.Range(-1f, 1f) * offsetAmount, 0, Random.Range(-1f, 1f) * offsetAmount);
         Quaternion rotation = propToPlace.randomizeRotation ? Quaternion.AngleAxis(Random.Range(0, 4) * 90, Vector3.up) : Quaternion.identity;
-        GameObject prop = Instantiate(propToPlace.propData, new Vector3Int(placementPosition.x, 0, placementPosition.y), rotation, levelParent);
+        GameObject prop = Instantiate(propToPlace.propData, new Vector3Int(placementPosition.x, 0, placementPosition.y) + randomOffset, rotation, levelParent);
 
         //Save the prop in the room data (so in the dunbgeon data)
         room.propPositions.Add(placementPosition);
