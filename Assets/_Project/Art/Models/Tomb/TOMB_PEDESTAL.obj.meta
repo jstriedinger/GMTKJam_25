@@ -3,7 +3,17 @@ guid: 9a96f4d481edf8947ba14c0f2b624f4d
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: TOMB_BASE
+    second: {fileID: 2100000, guid: 3f73f5c58539bdc4daeaddec94de61bd, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: TOMB_BASE-DARK
+    second: {fileID: 2100000, guid: fca7d1d735ee34d40a5e56d38dec6d99, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
