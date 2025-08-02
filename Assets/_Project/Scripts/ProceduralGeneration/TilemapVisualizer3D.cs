@@ -8,14 +8,74 @@ using UnityEngine.Tilemaps;
 public enum DungeonType { Tomb, Forest, Temple, Manor }
 
 [System.Serializable]
+public class TilePiece
+{
+    public float weight = 1f;
+    public GameObject tile;
+}
+
+[System.Serializable]
 public class DungeonPieces
 {
     public DungeonType dungeonType;
-    public GameObject floorTile;
-    public GameObject fullWallTile;
-    public GameObject northWallTile;
-    public GameObject northWestCornerWallTile;
-    public GameObject northWestPillarWallTile;
+    public List<TilePiece> floorTiles_1x1;
+    public List<TilePiece> fullWallTiles;
+    public List<TilePiece> northWallTiles_1x1;
+    public List<TilePiece> southWallTiles_1x1;
+    public List<TilePiece> northWestCornerWallTiles;
+    public List<TilePiece> northWestPillarWallTiles;
+
+    private GameObject PickRandomTileWithWeight(List<TilePiece> tiles)
+    {
+        List<float> cumulativeWeights = new List<float>();
+        float total = 0f;
+        foreach (TilePiece tile in tiles)
+        {
+            total += tile.weight;
+            cumulativeWeights.Add(total);
+        }
+
+        float randomValue = UnityEngine.Random.Range(0f, total);
+        for (int i = 0; i < cumulativeWeights.Count; i++)
+        {
+            if (randomValue <= cumulativeWeights[i])
+            {
+                return tiles[i].tile;
+            }
+        }
+
+        return null;
+    }
+
+    public GameObject GetFloorTile_1x1()
+    {
+        return PickRandomTileWithWeight(floorTiles_1x1);
+    }
+
+    public GameObject GetNorthWallTile_1x1()
+    {
+        return PickRandomTileWithWeight(northWallTiles_1x1);
+    }
+
+    public GameObject GetSouthWallTile_1x1()
+    {
+        return PickRandomTileWithWeight(southWallTiles_1x1);
+    }
+
+    public GameObject GetNorthWestCornerWallTile()
+    {
+        return PickRandomTileWithWeight(northWestCornerWallTiles);
+    }
+
+    public GameObject GetNorthWestPillarWallTile()
+    {
+        return PickRandomTileWithWeight(northWestPillarWallTiles);
+    }
+
+    public GameObject GetFullWallTiles()
+    {
+        return PickRandomTileWithWeight(fullWallTiles);
+    }
 }
 
 public class TilemapVisualizer3D : AbstractTilemapVisualizer
@@ -38,13 +98,19 @@ public class TilemapVisualizer3D : AbstractTilemapVisualizer
         DungeonPieces dungeonPiecesMatch = dungeonPieces.Find(x => x.dungeonType == dungeonType);
         foreach (var pos in positions)
         {
-            SpawnSinglePiece(dungeonPiecesMatch.floorTile, pos, Quaternion.identity);
+            SpawnSinglePiece(dungeonPiecesMatch.GetFloorTile_1x1(), pos, 0, Quaternion.AngleAxis(UnityEngine.Random.Range(0, 3) * 90, Vector3.up));
         }
     }
 
-    private void SpawnSinglePiece(GameObject piece, Vector2Int pos, Quaternion rotation)
+    private void SpawnSinglePiece(GameObject piece, Vector2Int pos, float clippingOffset, Quaternion rotation)
     {
-        spawnedPieces.Add(Instantiate(piece, new Vector3Int(pos.x, 0, pos.y), rotation, levelParent));
+        spawnedPieces.Add(Instantiate(piece, new Vector3(pos.x + clippingOffset, clippingOffset, pos.y + clippingOffset), rotation, levelParent));
+    }
+
+    // Creates a tiny number to randomly offset the tiles, this prevents clipping during overlap
+    private float ClippingFixOffset()
+    {
+        return UnityEngine.Random.Range(-100f, 100f) / 10000f;
     }
 
     public override void PaintBasicWallTile(Vector2Int pos, int wallType)
@@ -55,40 +121,40 @@ public class TilemapVisualizer3D : AbstractTilemapVisualizer
 
         if (WallByteTypes3D.wallTop.Contains(wallType))
         {
-            piece = dungeonPiecesMatch.northWallTile;
+            piece = dungeonPiecesMatch.GetNorthWallTile_1x1();
         }
         else if (WallByteTypes3D.wallBottom.Contains(wallType))
         {
             if (generateSouthWalls)
             {
-                piece = dungeonPiecesMatch.northWallTile;
+                piece = dungeonPiecesMatch.GetSouthWallTile_1x1();
                 orientation *= Quaternion.AngleAxis(180, Vector3.up);
             }
         }
         else if (WallByteTypes3D.wallSideLeft.Contains(wallType))
         {
-            piece = dungeonPiecesMatch.northWallTile;
+            piece = dungeonPiecesMatch.GetNorthWallTile_1x1();
             orientation *= Quaternion.AngleAxis(270, Vector3.up);
         }
         else if (WallByteTypes3D.wallSideRight.Contains(wallType))
         {
-            piece = dungeonPiecesMatch.northWallTile;
+            piece = dungeonPiecesMatch.GetNorthWallTile_1x1();
             orientation *= Quaternion.AngleAxis(90, Vector3.up);
         }
         else if (WallByteTypes3D.wallNorthWest.Contains(wallType))
         {
-            piece = dungeonPiecesMatch.northWestCornerWallTile;
+            piece = dungeonPiecesMatch.GetNorthWestCornerWallTile();
         }
         else if (WallByteTypes3D.wallNorthEast.Contains(wallType))
         {
-            piece = dungeonPiecesMatch.northWestCornerWallTile;
+            piece = dungeonPiecesMatch.GetNorthWestCornerWallTile();
             orientation *= Quaternion.AngleAxis(90, Vector3.up);
         }
         else if (WallByteTypes3D.wallSouthEast.Contains(wallType))
         {
             if (generateSouthWalls)
             {
-                piece = dungeonPiecesMatch.northWestCornerWallTile;
+                piece = dungeonPiecesMatch.GetNorthWestCornerWallTile();
                 orientation *= Quaternion.AngleAxis(180, Vector3.up);
             }
         }
@@ -96,13 +162,13 @@ public class TilemapVisualizer3D : AbstractTilemapVisualizer
         {
             if (generateSouthWalls)
             {
-                piece = dungeonPiecesMatch.northWestCornerWallTile;
+                piece = dungeonPiecesMatch.GetNorthWestCornerWallTile();
                 orientation *= Quaternion.AngleAxis(270, Vector3.up);
             }
         }
         else if (WallByteTypes3D.wallFull.Contains(wallType))
         {
-            piece = dungeonPiecesMatch.fullWallTile;
+            piece = dungeonPiecesMatch.GetFullWallTiles();
         }
 
         if (!piece)
@@ -110,7 +176,7 @@ public class TilemapVisualizer3D : AbstractTilemapVisualizer
             return;
         }
 
-        SpawnSinglePiece(piece, pos, orientation);
+        SpawnSinglePiece(piece, pos, ClippingFixOffset(), orientation);
     }
 
     public override void PaintCornerWallTile(Vector2Int pos, int wallType)
@@ -121,21 +187,21 @@ public class TilemapVisualizer3D : AbstractTilemapVisualizer
 
         if (WallByteTypes3D.pillarNorthWest.Contains(wallType))
         {
-            piece = dungeonPiecesMatch.northWestPillarWallTile;
+            piece = dungeonPiecesMatch.GetNorthWestPillarWallTile();
         }
         else if (WallByteTypes3D.pillarNorthEast.Contains(wallType))
         {
-            piece = dungeonPiecesMatch.northWestPillarWallTile;
+            piece = dungeonPiecesMatch.GetNorthWestPillarWallTile();
             orientation *= Quaternion.AngleAxis(90, Vector3.up);
         }
         else if (WallByteTypes3D.pillarSouthEast.Contains(wallType))
         {
-            piece = dungeonPiecesMatch.northWestPillarWallTile;
+            piece = dungeonPiecesMatch.GetNorthWestPillarWallTile();
             orientation *= Quaternion.AngleAxis(180, Vector3.up);
         }
         else if (WallByteTypes3D.pillarSouthWest.Contains(wallType))
         {
-            piece = dungeonPiecesMatch.northWestPillarWallTile;
+            piece = dungeonPiecesMatch.GetNorthWestPillarWallTile();
             orientation *= Quaternion.AngleAxis(270, Vector3.up);
         }
 
@@ -144,7 +210,7 @@ public class TilemapVisualizer3D : AbstractTilemapVisualizer
             return;
         }
 
-        SpawnSinglePiece(piece, pos, orientation);
+        SpawnSinglePiece(piece, pos, ClippingFixOffset(), orientation);
     }
 
     public override void Clear()
