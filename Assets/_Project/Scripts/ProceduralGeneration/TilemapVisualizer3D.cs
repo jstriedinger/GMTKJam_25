@@ -218,6 +218,17 @@ public class TilemapVisualizer3D : AbstractTilemapVisualizer
         var children = levelParent.Cast<Transform>().ToList();
         foreach (Transform t in children)
         {
+            Destroy(t.gameObject);
+        }
+
+        spawnedPieces.Clear();
+    }
+
+    public override void ClearEditor()
+    {
+        var children = levelParent.Cast<Transform>().ToList();
+        foreach (Transform t in children)
+        {
             DestroyImmediate(t.gameObject);
         }
 

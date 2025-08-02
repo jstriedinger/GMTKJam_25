@@ -20,4 +20,8 @@ public abstract class AbstractTilemapVisualizer : MonoBehaviour
     public virtual void Clear()
     {
     }
+
+    public virtual void ClearEditor()
+    {
+    }
 }
