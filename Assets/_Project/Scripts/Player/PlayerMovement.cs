@@ -14,7 +14,7 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 _finalMovement;
 
     private bool _canMove = true;
-    
+
     //flipping stuff
     private bool _isFlipped = false;
 
@@ -51,7 +51,7 @@ public class PlayerMovement : MonoBehaviour
             FlipAnimator.SetTrigger("Flip");
             Debug.Log("Flip!");
         }
-        
+
         if (_rigidbody.linearVelocity.x >= 0)
         {
             if (character.localScale.x < 0)
@@ -76,7 +76,7 @@ public class PlayerMovement : MonoBehaviour
             //myAnim.SetFloat("Speed", magnitude);
             _finalMovement = new Vector3(dir.x, 0, dir.y) * speed;
             //_rigidbody.linearVelocity = new Vector3(dir.x * speed * Time.deltaTime,_rigidbody.linearVelocity.y, dir.y * speed * Time.deltaTime);
-           
+
         }
         else
         {
@@ -87,7 +87,7 @@ public class PlayerMovement : MonoBehaviour
         {
             //small movement, change anim
             CharacterAnimator.SetBool("Moving", false);
-            
+
         }
         else
             CharacterAnimator.SetBool("Moving", true);

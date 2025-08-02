@@ -47,7 +47,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 42550c456f49a1c4c8cf396ab58fb7f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _isUnlocked: 0
+  musicSheet: {fileID: 0}
 --- !u!65 &3258245803078086654
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -63,7 +63,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3

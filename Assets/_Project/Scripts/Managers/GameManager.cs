@@ -56,12 +56,12 @@ public class GameManager : MonoBehaviour
     {
         int count = _unlockedInstrumentNames.Count;
 
-        if (count == 1 && !_unlockedGameLevels.Contains(GameLevel.Tutorial))
+        if (count == 0 && !_unlockedGameLevels.Contains(GameLevel.Tutorial))
         {
             _unlockedGameLevels.Add(GameLevel.Tutorial);
         }
 
-        if (count >= 1 && finishedTutorial && !_unlockedGameLevels.Contains(GameLevel.Forest))
+        if (count >= 1 && !_unlockedGameLevels.Contains(GameLevel.Forest))
         {
             _portals[0].OpenPortal();
             _unlockedGameLevels.Add(GameLevel.Forest);

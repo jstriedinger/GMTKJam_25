@@ -384,10 +384,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a126879a120218843ad0d318bb3e3a75, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  generationParams: {fileID: 0}
   tilemapVisualizer: {fileID: 0}
   startPosition: {x: 0, y: 0}
-  randomWalkParams: {fileID: 0}
-  widenCorridors: 1
   corridorLength: 14
   corridorCount: 5
   roomPercent: 0.8
@@ -23245,6 +23244,135 @@ Transform:
   - {fileID: 1023549440}
   m_Father: {fileID: 1545477192}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &755985268
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 755985269}
+  - component: {fileID: 755985270}
+  m_Layer: 0
+  m_Name: NotesAudioSource
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &755985269
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 755985268}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1479246331}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!82 &755985270
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 755985268}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 6223905445383112140, guid: 3b00a50d3aadda04baee4e290f875796, type: 2}
+  m_audioClip: {fileID: 0}
+  m_Resource: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &756541386
 GameObject:
   m_ObjectHideFlags: 0
@@ -30818,24 +30946,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6a80c5ca8f28944894ef386a13416aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  generationParams: {fileID: 0}
   tilemapVisualizer: {fileID: 0}
   startPosition: {x: 0, y: 0}
-  randomWalkParams: {fileID: 0}
-  widenCorridors: 1
   propsManager: {fileID: 0}
-  minRoomWidth: 4
-  minRoomHeight: 4
-  dungeonWidth: 20
-  dungeonHeight: 20
-  offset: 1
-  randomWalkRooms: 0
-  fillHoles: 1
-  generateCorridors: 1
   levelParent: {fileID: 0}
   spawnIndicator: {fileID: 0}
   goalIndicator: {fileID: 0}
-  minRooms: 1
-  maxTries: 5
 --- !u!4 &1033437643
 Transform:
   m_ObjectHideFlags: 0
@@ -31988,6 +32105,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a261378810178054d8b0a37f88ea2c40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dungeonType: 0
   floorTilemap: {fileID: 0}
   wallsTilemap: {fileID: 0}
   floorTile: {fileID: 0}
@@ -35569,6 +35687,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37ceb429701703745b8d79621b71c0c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  generationParams: {fileID: 0}
   tilemapVisualizer: {fileID: 0}
   startPosition: {x: 0, y: 0}
 --- !u!4 &1144832684
@@ -42732,9 +42851,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc85fa44a1d74364788babf5f194b9dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  generationParams: {fileID: 0}
   tilemapVisualizer: {fileID: 0}
   startPosition: {x: 0, y: 0}
-  randomWalkParams: {fileID: 0}
 --- !u!4 &1374189134
 Transform:
   m_ObjectHideFlags: 0
@@ -45458,6 +45577,77 @@ Transform:
   m_Children:
   - {fileID: 1551152451}
   m_Father: {fileID: 1545477192}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1479246329
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1479246331}
+  - component: {fileID: 1479246330}
+  m_Layer: 0
+  m_Name: AudioManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1479246330
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1479246329}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dea43172d6542164fb13d1b369602e0c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioMixer: {fileID: 24100000, guid: 3b00a50d3aadda04baee4e290f875796, type: 2}
+  audioSourceGroupList:
+  - name: notes
+    audioSource: {fileID: 755985270}
+  musicClips: []
+  sfxClips:
+  - name: 0
+    audioClips:
+    - {fileID: 8300000, guid: 3518d9248fcf2234fa1b73761437850d, type: 3}
+  - name: 1
+    audioClips:
+    - {fileID: 8300000, guid: fdbf0a23fbf394c4190e4e99d9118cc5, type: 3}
+  - name: 2
+    audioClips:
+    - {fileID: 8300000, guid: 2eb46df9c3bd82d479b9b055e257d713, type: 3}
+  - name: 3
+    audioClips:
+    - {fileID: 8300000, guid: 5f06fc7882c702c46b69b576b84b2872, type: 3}
+  gameTheme: {fileID: 0}
+  mainMenuTheme: {fileID: 0}
+  tutorialTheme: {fileID: 0}
+  currentScene:
+    m_Handle: 0
+  musicSnapshots: []
+  sfxSnapshots:
+  - {fileID: 0}
+--- !u!4 &1479246331
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1479246329}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 755985269}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1480370440
 GameObject:
@@ -55042,12 +55232,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cac00b59801f3ff4d9f8f9009ebf8ed1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dungeonType: 0
   levelParent: {fileID: 1545477192}
-  floorTile: {fileID: 7641770155314120702, guid: 0a99a64e95ea04143a575270e2bf328f, type: 3}
-  fullWallTile: {fileID: 3228020175341906638, guid: 2e44054a56a668c46bc0ae1b502357f0, type: 3}
-  northWallTile: {fileID: 3058760961899581035, guid: d31fd8300d0cdc74d8876a1c67b18020, type: 3}
-  northWestCornerWallTile: {fileID: 7326204903529877089, guid: 249dfa3142799fb49ae13484a358a9c1, type: 3}
-  northWestPillarWallTile: {fileID: 7247275419958347015, guid: cd070355353349c49a467173d1aa7f1f, type: 3}
+  dungeonPieces: []
   generateSouthWalls: 1
 --- !u!4 &1710724666
 Transform:
@@ -93357,3 +93544,4 @@ SceneRoots:
   - {fileID: 715219835}
   - {fileID: 851448006}
   - {fileID: 817939470}
+  - {fileID: 1479246331}
