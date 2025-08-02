@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 1379171652927335246}
   - component: {fileID: 1882514122841590397}
   m_Layer: 3
-  m_Name: BaseEnemy
+  m_Name: FasterShadowEnemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
