@@ -6,12 +6,17 @@ public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] private float speed = 5f;
     [SerializeField] private Transform character;
+    [SerializeField] private Animator CharacterAnimator;
+    [SerializeField] private Animator FlipAnimator;
 
     private Rigidbody _rigidbody;
     private Vector2 _moveInputValue;
     private Vector3 _finalMovement;
 
     private bool _canMove = true;
+    
+    //flipping stuff
+    private bool _isFlipped = false;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -34,6 +39,19 @@ public class PlayerMovement : MonoBehaviour
 
     private void FlipCharacterBasedOnSpeed()
     {
+        if (!_isFlipped && _finalMovement.x < 0)
+        {
+            _isFlipped = true;
+            FlipAnimator.SetTrigger("Flip");
+            Debug.Log("Flip!");
+        }
+        else if (_isFlipped && _finalMovement.x > 0)
+        {
+            _isFlipped = false;
+            FlipAnimator.SetTrigger("Flip");
+            Debug.Log("Flip!");
+        }
+        
         if (_rigidbody.linearVelocity.x >= 0)
         {
             if (character.localScale.x < 0)
@@ -58,37 +76,47 @@ public class PlayerMovement : MonoBehaviour
             //myAnim.SetFloat("Speed", magnitude);
             _finalMovement = new Vector3(dir.x, 0, dir.y) * speed;
             //_rigidbody.linearVelocity = new Vector3(dir.x * speed * Time.deltaTime,_rigidbody.linearVelocity.y, dir.y * speed * Time.deltaTime);
+           
         }
         else
         {
             _finalMovement = new Vector3(0, 0, 0);
         }
-    }
 
-    private void CanMove(bool onDraw)
-    {
-        if (onDraw == true)
+        if (_finalMovement.sqrMagnitude < Mathf.Epsilon)
         {
-            _canMove = false;
+            //small movement, change anim
+            CharacterAnimator.SetBool("Moving", false);
+            
         }
         else
-        {
-            _canMove = true;
-        }
+            CharacterAnimator.SetBool("Moving", true);
     }
-    
+
+    private void CanMoveOnDraw(bool onDraw)
+    {
+        _canMove = !onDraw;
+    }
+
+    private void CanMoveOnSequence(bool isActive)
+    {
+        _canMove = !isActive;
+    }
+
     private void OnEnable()
     {
         //event for when drawing on screen
-        DrawOnScreen.onDraw += CanMove;
-
+        DrawOnScreen.onDraw += CanMoveOnDraw;
+        //event for when learning melody on screen
+        MusicSheet.onSequenceActive += CanMoveOnSequence;
     }
 
     private void OnDisable()
     {
-        DrawOnScreen.onDraw -= CanMove;
+        DrawOnScreen.onDraw -= CanMoveOnDraw;
+        MusicSheet.onSequenceActive -= CanMoveOnSequence;
     }
-        
+
 
     #region Input
 
@@ -96,7 +124,7 @@ public class PlayerMovement : MonoBehaviour
     {
         _moveInputValue = value.Get<Vector2>();
     }
-    
-    
+
+
     #endregion Input
 }
