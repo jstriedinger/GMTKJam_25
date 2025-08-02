@@ -22,7 +22,9 @@ public class EnemyChaseAI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        switch(state)
+        UpdateCooldowns();
+
+        switch (state)
         {
             case EnemyAIBehavior.Idle:
                 IdleBehavior();
@@ -36,9 +38,13 @@ public class EnemyChaseAI : MonoBehaviour
         }
     }
 
+    private void UpdateCooldowns()
+    {
+        attackCooldown -= Time.deltaTime;
+    }
+
     private void SwitchState(EnemyAIBehavior newState)
     {
-        attackCooldown = 0;
         state = newState;
     }
 
@@ -74,7 +80,6 @@ public class EnemyChaseAI : MonoBehaviour
             SwitchState(EnemyAIBehavior.Idle);
             return;
         }
-
 
         if (Vector3.Distance(player.transform.position, transform.position) > disengageDistance)
         {
