@@ -238,11 +238,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   instrumentEvent:
     Guid:
-      Data1: -1532454645
-      Data2: 1341986573
-      Data3: -1748403564
-      Data4: -1187538009
-    Path: event:/Instrument_Violin
+      Data1: 2008844674
+      Data2: 1246107647
+      Data3: 803646382
+      Data4: -2045725759
+    Path: event:/Player/Player_Wand
   emitter: {fileID: 6375837078199409273}
 --- !u!114 &6375837078199409273
 MonoBehaviour:
@@ -259,11 +259,11 @@ MonoBehaviour:
   CollisionTag: 
   EventReference:
     Guid:
-      Data1: -1532454645
-      Data2: 1341986573
-      Data3: -1748403564
-      Data4: -1187538009
-    Path: event:/Instrument_Violin
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
   Event: 
   EventPlayTrigger: 0
   EventStopTrigger: 0
@@ -543,6 +543,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   totalHealth: 10
+  first: {fileID: 0}
+  second: {fileID: 0}
+  third: {fileID: 0}
+  fullheart: {fileID: 0}
+  noheart: {fileID: 0}
 --- !u!120 &3543913922111683638
 LineRenderer:
   serializedVersion: 2
