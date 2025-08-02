@@ -13,7 +13,7 @@ public class PlayerDetector : MonoBehaviour
 
         if (other.tag == "Player")
         {
-            enemyAI.player = other.gameObject;
+            enemyAI.SetPlayer(other.gameObject);
         }
     }
 
@@ -26,7 +26,7 @@ public class PlayerDetector : MonoBehaviour
 
         if (other.tag == "Player")
         {
-            enemyAI.player = null;
+            enemyAI.SetPlayer(null);
         }
     }
 }
