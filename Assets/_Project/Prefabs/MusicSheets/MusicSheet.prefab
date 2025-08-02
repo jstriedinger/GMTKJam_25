@@ -11,6 +11,9 @@ GameObject:
   - component: {fileID: 7033523670222413706}
   - component: {fileID: 1904796440175075825}
   - component: {fileID: 8015488193348534156}
+  - component: {fileID: 2965523078167706516}
+  - component: {fileID: 588780878537169648}
+  - component: {fileID: 9173695621376320502}
   m_Layer: 5
   m_Name: MusicSheet
   m_TagString: Untagged
@@ -49,7 +52,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5082bf00e564a384690399abc880af7f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  studioEventEmitter: {fileID: 8015488193348534156}
+  instrumentEvent:
+    Guid:
+      Data1: 2131049255
+      Data2: 1199278385
+      Data3: -694364272
+      Data4: -777602434
+    Path: event:/Instrument_Violin_4Notes
+  emitterNote0: {fileID: 8015488193348534156}
+  emitterNote1: {fileID: 2965523078167706516}
+  emitterNote2: {fileID: 588780878537169648}
+  emitterNote3: {fileID: 9173695621376320502}
   correctSequence: 00000000020000000000000002000000
   notes:
   - {fileID: 0}
@@ -58,7 +71,7 @@ MonoBehaviour:
   - {fileID: 0}
   currentIndex: 0
   canvas: {fileID: 0}
-  musicSheetParent: {fileID: 0}
+  musicSheetParent: {fileID: 1371482294709712894}
 --- !u!114 &8015488193348534156
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -89,6 +102,105 @@ MonoBehaviour:
   Params:
   - Name: Note
     Value: 0
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
+--- !u!114 &2965523078167706516
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1371482294709712894}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  Event: 
+  EventPlayTrigger: 0
+  EventStopTrigger: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  NonRigidbodyVelocity: 0
+  Params:
+  - Name: Note
+    Value: 1
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
+--- !u!114 &588780878537169648
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1371482294709712894}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  Event: 
+  EventPlayTrigger: 0
+  EventStopTrigger: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  NonRigidbodyVelocity: 0
+  Params:
+  - Name: Note
+    Value: 2
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
+--- !u!114 &9173695621376320502
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1371482294709712894}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  Event: 
+  EventPlayTrigger: 0
+  EventStopTrigger: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  NonRigidbodyVelocity: 0
+  Params:
+  - Name: Note
+    Value: 3
   OverrideAttenuation: 0
   OverrideMinDistance: 1
   OverrideMaxDistance: 20

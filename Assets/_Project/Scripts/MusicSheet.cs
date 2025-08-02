@@ -7,7 +7,11 @@ using FMODUnity;
 public class MusicSheet : MonoBehaviour
 {
 
-    [SerializeField] private StudioEventEmitter studioEventEmitter;
+    [SerializeField] private FMODUnity.EventReference instrumentEvent;
+    [SerializeField] private StudioEventEmitter emitterNote0;
+    [SerializeField] private StudioEventEmitter emitterNote1;
+    [SerializeField] private StudioEventEmitter emitterNote2;
+    [SerializeField] private StudioEventEmitter emitterNote3;
 
     [Header("Set the correct note sequence in the Inspector")]
     [SerializeField] private List<Note> correctSequence;
@@ -28,6 +32,17 @@ public class MusicSheet : MonoBehaviour
     private Action<bool> _onSequenceFinished;
 
     private bool _isActive = false;
+
+    private void OnEnable()
+    {
+        emitterNote0.EventReference = instrumentEvent;
+        emitterNote1.EventReference = instrumentEvent;
+        emitterNote2.EventReference = instrumentEvent;
+        emitterNote3.EventReference = instrumentEvent;        
+    }
+
+
+
 
     public void StartSequence(Action<bool> callback)
     {
@@ -69,6 +84,7 @@ public class MusicSheet : MonoBehaviour
             StartCoroutine(ShowNote(currentIndex));
 
         }
+
     }
     private IEnumerator ShowNote(int index)
     {
@@ -95,26 +111,22 @@ public class MusicSheet : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.W) && expectedNote == Note.W)
         {
-            studioEventEmitter.SetParameter("Note", 0);
-            studioEventEmitter.Play();
+            emitterNote0.Play();
             return true;
         }
         if (Input.GetKeyDown(KeyCode.A) && expectedNote == Note.A)
         {
-            studioEventEmitter.SetParameter("Note", 1);
-            studioEventEmitter.Play();
+            emitterNote1.Play();
             return true;
         }
         if (Input.GetKeyDown(KeyCode.S) && expectedNote == Note.S)
         {
-            studioEventEmitter.SetParameter("Note", 2);
-            studioEventEmitter.Play();
+            emitterNote2.Play();
             return true;
         }
         if (Input.GetKeyDown(KeyCode.D) && expectedNote == Note.D)
         {
-            studioEventEmitter.SetParameter("Note", 3);
-            studioEventEmitter.Play();
+            emitterNote3.Play();
             return true;
         }
 
