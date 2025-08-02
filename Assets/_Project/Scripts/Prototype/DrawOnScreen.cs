@@ -12,7 +12,7 @@ public class DrawOnScreen : MonoBehaviour
     private Vector3[] linePositions;
     private bool isDrawing;
     private bool previousHasRun;
-    public Camera mainCamera;
+    private Camera mainCamera;
     public GameObject mousePositionObject;
     // Event when drawing has started and stopped
     public static event Action<bool> onDraw;
@@ -30,6 +30,7 @@ public class DrawOnScreen : MonoBehaviour
 
     void Start()
     {
+        mainCamera = Camera.main;
         line = GetComponent<LineRenderer>();
         line.positionCount = 1;
         previousPosition = transform.position;
