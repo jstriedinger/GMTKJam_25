@@ -34,6 +34,7 @@ public class EnemyManager : MonoBehaviour
     {
         foreach (var enemy in enemies)
         {
+            
             Vector3 posInPlane = new Vector3(enemy.transform.position.x, 0, enemy.transform.position.z);
             if (IsEnemyHitByPoints(points, posInPlane))
             {

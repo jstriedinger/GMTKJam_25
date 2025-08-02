@@ -57,20 +57,21 @@ public class DrawOnScreen : MonoBehaviour
 
         if (Input.GetMouseButtonUp(0))
         {
+            RaycastFromLinePoints();
             //put the points on the surface
-            Vector3[] groundPoints3D = new Vector3[line.positionCount];
+           /* Vector3[] groundPoints3D = new Vector3[line.positionCount];
             for (int i = 0; i < line.positionCount; i++)
             {
                 groundPoints3D[i] = ProjectToGround(line.GetPosition(i));
                 //line.SetPosition(i, ProjectToGround(line.GetPosition(i)));
             }
             EnemyManager.Instance?.CheckLinedrawHit(groundPoints3D);
-            groundPoints3D = Array.Empty<Vector3>();
+            groundPoints3D = Array.Empty<Vector3>();*/
             isDrawing = false;
 
             //CalculateDrawnCentroid();
 
-            //line.positionCount = 0;
+            line.positionCount = 0;
 
             InvokeDraw();
             previousHasRun = false;
@@ -113,6 +114,16 @@ public class DrawOnScreen : MonoBehaviour
         drawSpeed?.Invoke(speed);
     }
 
+    private void RaycastFromLinePoints()
+    {
+        linePositions = new Vector3[line.positionCount];
+        line.GetPositions(linePositions);
+        foreach (Vector3 pos in linePositions)
+        {
+            CreateRaycastHit(pos);
+        }
+    }
+
     // Find the centre of all the points created by the line renderer
     private void CalculateDrawnCentroid()
     {
@@ -137,15 +148,24 @@ public class DrawOnScreen : MonoBehaviour
     }
     
     // Create a raycast from centroid. Use this to detect enemies
-    private void CreateRaycastHit(Vector3 centroid)
+    private void CreateRaycastHit(Vector3 pos)
     {
+
+        //Vector3 rayDirection = new Vector3(0, raycastAngleY, 100);
+        //Debug.Log(rayDirection);
+
+        //Physics.Raycast(centroid, rayDirection, 100f);
         RaycastHit hit;
-
-        Vector3 rayDirection = new Vector3(0, raycastAngleY, 100);
-        Debug.Log(rayDirection);
-
-        Physics.Raycast(centroid, rayDirection, 100f);
-        Debug.DrawRay(centroid, rayDirection, Color.red, 5f);
+        if (Physics.Raycast(pos, mainCamera.transform.forward, out hit, 50f, LayerMask.GetMask("Enemy")))
+        {
+            Collider hitCollider = hit.collider;
+            EnemyChaseAI  enemy = hitCollider.GetComponent<EnemyChaseAI>();
+            if(enemy != null && !enemy.isDead) 
+            {
+                enemy.OnHitByLinedraw();
+            }
+        }
+        Debug.DrawRay(pos, mainCamera.transform.forward * 50, Color.red, 5f);
     }
     
     Vector3 ProjectToGround(Vector3 worldPoint)

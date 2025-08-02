@@ -12,6 +12,7 @@ public class EnemyChaseAI : MonoBehaviour
     public float disengageDistance = 1.3f;
     public float attackCooldown = 0;
     public int damage = 1;
+    public bool isDead;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -103,6 +104,7 @@ public class EnemyChaseAI : MonoBehaviour
     public void OnHitByLinedraw()
     {
         // Handle hit logic, e.g., play animation, sound, etc.
+        isDead = true;
         Debug.Log("line hit this enemy, die!");
         
     }
