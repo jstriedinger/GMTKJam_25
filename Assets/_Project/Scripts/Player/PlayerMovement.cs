@@ -65,30 +65,30 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    private void CanMove(bool onDraw)
+    private void CanMoveOnDraw(bool onDraw)
     {
-        if (onDraw == true)
-        {
-            _canMove = false;
-        }
-        else
-        {
-            _canMove = true;
-        }
+        _canMove = !onDraw;
     }
-    
+
+    private void CanMoveOnSequence(bool isActive)
+    {
+        _canMove = !isActive;
+    }
+
     private void OnEnable()
     {
         //event for when drawing on screen
-        DrawOnScreen.onDraw += CanMove;
-
+        DrawOnScreen.onDraw += CanMoveOnDraw;
+        //event for when learning melody on screen
+        MusicSheet.onSequenceActive += CanMoveOnSequence;
     }
 
     private void OnDisable()
     {
-        DrawOnScreen.onDraw -= CanMove;
+        DrawOnScreen.onDraw -= CanMoveOnDraw;
+        MusicSheet.onSequenceActive -= CanMoveOnSequence;
     }
-        
+
 
     #region Input
 
@@ -96,7 +96,7 @@ public class PlayerMovement : MonoBehaviour
     {
         _moveInputValue = value.Get<Vector2>();
     }
-    
-    
+
+
     #endregion Input
 }

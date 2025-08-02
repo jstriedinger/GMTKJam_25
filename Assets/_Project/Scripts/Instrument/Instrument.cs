@@ -2,24 +2,33 @@ using UnityEngine;
 
 public class Instrument : MonoBehaviour
 {
-    public bool _isUnlocked = false;
-
-    public void Unlock()
-    {
-        GameManager.Instance.AddInstrument(this.name);
-        _isUnlocked = true;
-    }
-
+    [SerializeField] private MusicSheet musicSheet;
+    private bool _isUnlocked = false;
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Player") && !_isUnlocked)
         {
-            if (!_isUnlocked)
-            {
-                Unlock();
-                Debug.Log($"{this.name} has unlocked.");
-            }
+            musicSheet.StartSequence(OnMusicSequenceFinished);
         }
+    }
+
+    private void OnMusicSequenceFinished(bool success)
+    {
+        if (success)
+        {
+            Unlock();
+        }
+        else
+        {
+            Debug.Log("Sequence failed. Try again!");
+        }
+    }
+
+    private void Unlock()
+    {
+        _isUnlocked = true;
+        GameManager.Instance.AddInstrument(this.name);
+        Debug.Log($"{this.name} has been unlocked!");
     }
 }
