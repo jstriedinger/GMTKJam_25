@@ -3,6 +3,8 @@ using UnityEngine;
 
 public abstract class AbstractTilemapVisualizer : MonoBehaviour
 {
+    public DungeonType dungeonType = DungeonType.Tomb;
+
     public virtual void PaintFloorTiles(IEnumerable<Vector2Int> floorPositions)
     {
     }

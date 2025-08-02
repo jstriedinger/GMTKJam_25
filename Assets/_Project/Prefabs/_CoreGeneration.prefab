@@ -44,24 +44,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6a80c5ca8f28944894ef386a13416aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  generationParams: {fileID: 11400000, guid: 9297ad20d69d0f047a38bb540b0ccc57, type: 2}
   tilemapVisualizer: {fileID: 5825446196734446074}
   startPosition: {x: -40, y: -40}
-  randomWalkParams: {fileID: 11400000, guid: a74d9eec704c60b40935762cabca5240, type: 2}
-  widenCorridors: 1
   propsManager: {fileID: 8996465988535915159}
-  minRoomWidth: 20
-  minRoomHeight: 20
-  dungeonWidth: 120
-  dungeonHeight: 120
-  offset: 1
-  randomWalkRooms: 1
-  fillHoles: 1
-  generateCorridors: 1
   levelParent: {fileID: 8998975280569088247}
   spawnIndicator: {fileID: 3190416370471595497, guid: 2d03588e23c7aa4428094eca3e7acc80, type: 3}
   goalIndicator: {fileID: 4104011358831222381, guid: 56a72de05318bb648901a7f92795d87d, type: 3}
-  minRooms: 10
-  maxTries: 10
 --- !u!1 &1686950631240425279
 GameObject:
   m_ObjectHideFlags: 0
@@ -173,12 +162,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cac00b59801f3ff4d9f8f9009ebf8ed1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dungeonType: 3
   levelParent: {fileID: 8998975280569088247}
-  floorTile: {fileID: 7641770155314120702, guid: 0a99a64e95ea04143a575270e2bf328f, type: 3}
-  fullWallTile: {fileID: 4183029148496454364, guid: 8d2d027785aff7b4db14b42925a8947a, type: 3}
-  northWallTile: {fileID: 1143682571410662907, guid: cd3045ec0df38324ebba0b55ef814ad6, type: 3}
-  northWestCornerWallTile: {fileID: 311993554421559734, guid: b5f4854c946dd384c8ae2ff20a4037df, type: 3}
-  northWestPillarWallTile: {fileID: 6426251766541983667, guid: 4ab427b0434cfeb4e852f693a3cb51f3, type: 3}
+  dungeonPieces:
+  - dungeonType: 0
+    floorTile: {fileID: 7641770155314120702, guid: 79128ce84f5459443b04b5e3da85bc7a, type: 3}
+    fullWallTile: {fileID: 4183029148496454364, guid: 8d2d027785aff7b4db14b42925a8947a, type: 3}
+    northWallTile: {fileID: 1143682571410662907, guid: cd3045ec0df38324ebba0b55ef814ad6, type: 3}
+    northWestCornerWallTile: {fileID: 311993554421559734, guid: b5f4854c946dd384c8ae2ff20a4037df, type: 3}
+    northWestPillarWallTile: {fileID: 6426251766541983667, guid: 4ab427b0434cfeb4e852f693a3cb51f3, type: 3}
+  - dungeonType: 1
+    floorTile: {fileID: 7641770155314120702, guid: 0a99a64e95ea04143a575270e2bf328f, type: 3}
+    fullWallTile: {fileID: 4183029148496454364, guid: 50cb3b10f50406646b282931df5309c1, type: 3}
+    northWallTile: {fileID: 1143682571410662907, guid: 83f5275e3f10d1c4fa87f0ec925259aa, type: 3}
+    northWestCornerWallTile: {fileID: 311993554421559734, guid: 92e9b08f75be6f44e9be7c872ce1aeb6, type: 3}
+    northWestPillarWallTile: {fileID: 6426251766541983667, guid: 150c094dc29539440b74301c45a2e9ca, type: 3}
+  - dungeonType: 2
+    floorTile: {fileID: 7641770155314120702, guid: 25ac0ee16e1ff064aa22ee1db861b719, type: 3}
+    fullWallTile: {fileID: 4183029148496454364, guid: 0c6f99c332d615840bd42ac187e5e1b6, type: 3}
+    northWallTile: {fileID: 1143682571410662907, guid: 852ad392276d99547b33ad6e827f4872, type: 3}
+    northWestCornerWallTile: {fileID: 311993554421559734, guid: 125a98df6d97dbc4391bf4779f8ec5e3, type: 3}
+    northWestPillarWallTile: {fileID: 6426251766541983667, guid: 0b6478b7eadfd3a4e89b2deb29f2fac6, type: 3}
+  - dungeonType: 3
+    floorTile: {fileID: 7641770155314120702, guid: 81bd0c990ebe76048bd26d48416753cb, type: 3}
+    fullWallTile: {fileID: 4183029148496454364, guid: c4ea6a15a2e1edb44b892da39d402de3, type: 3}
+    northWallTile: {fileID: 1143682571410662907, guid: d7c1e33298f729846b07f97cee0e4339, type: 3}
+    northWestCornerWallTile: {fileID: 311993554421559734, guid: 561107b02992669499ae5b1ed4d0bf98, type: 3}
+    northWestPillarWallTile: {fileID: 6426251766541983667, guid: 79aa3c7b2811d6f49954b0791b7b93d7, type: 3}
   generateSouthWalls: 1
 --- !u!1 &7975768280998045541
 GameObject:

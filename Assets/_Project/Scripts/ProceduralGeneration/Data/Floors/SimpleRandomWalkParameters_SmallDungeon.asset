@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6294644bae6d61e46a443be9eefec0d4, type: 3}
   m_Name: SimpleRandomWalkParameters_SmallDungeon
   m_EditorClassIdentifier: 
-  iterations: 20
+  iterations: 100
   walkLenth: 20
   startRandomlyEachIteration: 1

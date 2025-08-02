@@ -5,20 +5,9 @@ using UnityEngine;
 public class RoomFirstDungeonGenerator : CorridorDungeonGenerator
 {
     [SerializeField] PropsManager propsManager;
-    [SerializeField] private int minRoomWidth = 4;
-    [SerializeField] private int minRoomHeight = 4;
-    [SerializeField] private int dungeonWidth = 20;
-    [SerializeField] private int dungeonHeight = 20;
-    [SerializeField][Range(0, 10)] private int offset = 1;
-    [SerializeField] private bool randomWalkRooms = false;
-    [SerializeField] private bool fillHoles = true;
-    [SerializeField] private bool generateCorridors = true;
-
     [SerializeField] private Transform levelParent;
     [SerializeField] private GameObject spawnIndicator;
     [SerializeField] private GameObject goalIndicator;
-    [SerializeField] [Range(1,10)] private int minRooms = 1;
-    [SerializeField] [Range(1, 15)] private int maxTries = 5;
 
     // Fill holes that are fully surrounded, or surrounded by at least 3 floor tiles
     private static HashSet<int> shouldFillHole = new HashSet<int>
@@ -42,7 +31,7 @@ public class RoomFirstDungeonGenerator : CorridorDungeonGenerator
         dungeonData.Clear();
 
         int tries = 0;
-        while (tries < maxTries)
+        while (tries < generationParams.maxTries)
         {
             if (CreateRooms(dungeonData))
             {
@@ -52,7 +41,7 @@ public class RoomFirstDungeonGenerator : CorridorDungeonGenerator
             ++tries;
         }
 
-        if (tries >= maxTries)
+        if (tries >= generationParams.maxTries)
         {
             CreateRooms(dungeonData, true);
         }
@@ -62,11 +51,11 @@ public class RoomFirstDungeonGenerator : CorridorDungeonGenerator
 
     private bool CreateRooms(Dungeon dungeonData, bool ignoreConstraints = false)
     {
-        var roomList = ProceduralGeneration.BinarySpacePartitioning(new BoundsInt((Vector3Int)startPosition, new Vector3Int(dungeonWidth, dungeonHeight, 0)), minRoomWidth, minRoomHeight);
+        var roomList = ProceduralGeneration.BinarySpacePartitioning(new BoundsInt((Vector3Int)startPosition, new Vector3Int(generationParams.dungeonWidth, generationParams.dungeonHeight, 0)), generationParams.minRoomWidth, generationParams.minRoomHeight);
 
         if (!ignoreConstraints)
         {
-            if (roomList.Count < minRooms)
+            if (roomList.Count < generationParams.minRooms)
             {
                 return false;
             }
@@ -74,7 +63,7 @@ public class RoomFirstDungeonGenerator : CorridorDungeonGenerator
 
         HashSet<Vector2Int> floor = new HashSet<Vector2Int>();
         List<Room> rooms = new List<Room>();
-        if (randomWalkRooms)
+        if (generationParams.randomWalkRooms)
         {
             rooms = CreateRoomsRandomly(roomList);
         }
@@ -90,10 +79,10 @@ public class RoomFirstDungeonGenerator : CorridorDungeonGenerator
 
         FindAndSpawnStartAndGoal(dungeonData, rooms);
 
-        if (generateCorridors)
+        if (generationParams.generateCorridors)
         {
             List<List<Vector2Int>> corridors = ConnectRooms(rooms, floor);
-            if (widenCorridors)
+            if (generationParams.widenCorridors)
             {
                 WidenCorridors(floor, corridors);
             }
@@ -146,11 +135,11 @@ public class RoomFirstDungeonGenerator : CorridorDungeonGenerator
             HashSet<Vector2Int> floor = new HashSet<Vector2Int>();
             var roomBounds = roomList[i];
             var roomCenter = Vector2Int.RoundToInt(roomBounds.center);
-            var roomFloor = RunRandomWalk(randomWalkParams, roomCenter);
+            var roomFloor = RunRandomWalk(generationParams.roomParams, roomCenter);
             foreach (var position in roomFloor)
             {
-                if (position.x < (roomBounds.xMin + offset) || position.x > (roomBounds.xMax - offset) ||
-                    position.y < (roomBounds.yMin + offset) || position.y > (roomBounds.yMax - offset))
+                if (position.x < (roomBounds.xMin + generationParams.offset) || position.x > (roomBounds.xMax - generationParams.offset) ||
+                    position.y < (roomBounds.yMin + generationParams.offset) || position.y > (roomBounds.yMax - generationParams.offset))
                 {
                     continue;
                 }
@@ -158,7 +147,7 @@ public class RoomFirstDungeonGenerator : CorridorDungeonGenerator
                 floor.Add(position);
             }
 
-            if (fillHoles)
+            if (generationParams.fillHoles)
             {
                 int passes = 3;
                 while (passes > 0)
@@ -176,9 +165,9 @@ public class RoomFirstDungeonGenerator : CorridorDungeonGenerator
 
     private void FillRoomHoles(BoundsInt roomBounds, HashSet<Vector2Int> floor)
     {
-        for (int x = roomBounds.min.x + offset; x < roomBounds.max.x - offset; ++x)
+        for (int x = roomBounds.min.x + generationParams.offset; x < roomBounds.max.x - generationParams.offset; ++x)
         {
-            for (int y = roomBounds.min.y + offset; y < roomBounds.max.y - offset; ++y)
+            for (int y = roomBounds.min.y + generationParams.offset; y < roomBounds.max.y - generationParams.offset; ++y)
             {
                 var floorPos = new Vector2Int(x, y);
                 if (floor.Contains(floorPos))
@@ -289,9 +278,9 @@ public class RoomFirstDungeonGenerator : CorridorDungeonGenerator
         foreach (var room in roomList)
         {
             HashSet<Vector2Int> floor = new HashSet<Vector2Int>();
-            for (int col = offset; col < room.size.x - offset; col++)
+            for (int col = generationParams.offset; col < room.size.x - generationParams.offset; col++)
             {
-                for (int row = offset; row < room.size.y - offset; row++)
+                for (int row = generationParams.offset; row < room.size.y - generationParams.offset; row++)
                 {
                     floor.Add((Vector2Int)room.min + new Vector2Int(col, row));
                 }

@@ -3,8 +3,6 @@ using UnityEngine;
 
 public class CorridorDungeonGenerator :SimpleWalkDungeonGenerator
 {
-    [SerializeField] protected bool widenCorridors = true;
-
     protected void WidenCorridors(HashSet<Vector2Int> floorPositions, List<List<Vector2Int>> corridors)
     {
         for (int i = 0; i < corridors.Count; ++i)

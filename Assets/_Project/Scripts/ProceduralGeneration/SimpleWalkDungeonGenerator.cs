@@ -4,11 +4,9 @@ using UnityEngine;
 
 public class SimpleWalkDungeonGenerator : AbstractDungeonGenerator
 {
-    [SerializeField] protected SimpleRandomWalkData randomWalkParams;
-
     protected override void RunProceduralGeneration()
     {
-        var floorPositions = RunRandomWalk(randomWalkParams, startPosition);
+        var floorPositions = RunRandomWalk(generationParams.roomParams, startPosition);
         tilemapVisualizer.PaintFloorTiles(floorPositions);
         WallGenerator.CreateWalls(floorPositions, tilemapVisualizer);
     }

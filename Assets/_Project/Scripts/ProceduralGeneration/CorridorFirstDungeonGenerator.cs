@@ -19,7 +19,7 @@ public class CorridorFirstDungeonGenerator : CorridorDungeonGenerator
 
         var corridors = CreateCorridors(floorPositions, potentialRoomPositions);
         CreateRooms(floorPositions, potentialRoomPositions);
-        if (widenCorridors)
+        if (generationParams.widenCorridors)
         {
             WidenCorridors(floorPositions, corridors);
         }
@@ -34,7 +34,7 @@ public class CorridorFirstDungeonGenerator : CorridorDungeonGenerator
         {
             if (UnityEngine.Random.Range(0.0f, 1.0f) < roomPercent || IsDeadEnd(floorPositions, position))
             {
-                floorPositions.UnionWith(RunRandomWalk(randomWalkParams, position));
+                floorPositions.UnionWith(RunRandomWalk(generationParams.roomParams, position));
             }
         }
     }
