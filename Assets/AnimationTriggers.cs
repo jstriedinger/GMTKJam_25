@@ -8,6 +8,6 @@ public class AnimationTriggers : MonoBehaviour
 
     public void OnWandAttackEnds()
     {
-        //playerMovement.ToggleCanMove(true);
+        playerMovement.ToggleCanMove(true);
     }
 }
