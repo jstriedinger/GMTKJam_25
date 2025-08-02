@@ -38,7 +38,7 @@ public class MusicSheet : MonoBehaviour
         emitterNote0.EventReference = instrumentEvent;
         emitterNote1.EventReference = instrumentEvent;
         emitterNote2.EventReference = instrumentEvent;
-        emitterNote3.EventReference = instrumentEvent;        
+        emitterNote3.EventReference = instrumentEvent;
     }
 
 
@@ -81,7 +81,11 @@ public class MusicSheet : MonoBehaviour
                 Debug.Log("Sequence Correct!");
                 FinishSequence(true);
             }
-            StartCoroutine(ShowNote(currentIndex));
+            else
+            {
+
+                StartCoroutine(ShowNote(currentIndex));
+            }
 
         }
 

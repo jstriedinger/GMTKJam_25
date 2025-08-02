@@ -1,5 +1,7 @@
 using System;
+#if UNITY_EDITOR
 using UnityEditor;
+#endif
 using UnityEngine;
 
 public class DrawOnScreen : MonoBehaviour
@@ -36,10 +38,12 @@ public class DrawOnScreen : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+#if UNITY_EDITOR
         if (Input.GetKeyDown(KeyCode.P))
         {
             EditorApplication.isPaused = true;
         }
+#endif
         currentPosition = mainCamera.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, lineZSpace));
         mousePositionObject.transform.position = currentPosition;
 
@@ -59,14 +63,14 @@ public class DrawOnScreen : MonoBehaviour
         {
             RaycastFromLinePoints();
             //put the points on the surface
-           /* Vector3[] groundPoints3D = new Vector3[line.positionCount];
-            for (int i = 0; i < line.positionCount; i++)
-            {
-                groundPoints3D[i] = ProjectToGround(line.GetPosition(i));
-                //line.SetPosition(i, ProjectToGround(line.GetPosition(i)));
-            }
-            EnemyManager.Instance?.CheckLinedrawHit(groundPoints3D);
-            groundPoints3D = Array.Empty<Vector3>();*/
+            /* Vector3[] groundPoints3D = new Vector3[line.positionCount];
+             for (int i = 0; i < line.positionCount; i++)
+             {
+                 groundPoints3D[i] = ProjectToGround(line.GetPosition(i));
+                 //line.SetPosition(i, ProjectToGround(line.GetPosition(i)));
+             }
+             EnemyManager.Instance?.CheckLinedrawHit(groundPoints3D);
+             groundPoints3D = Array.Empty<Vector3>();*/
             isDrawing = false;
 
             //CalculateDrawnCentroid();
@@ -75,7 +79,6 @@ public class DrawOnScreen : MonoBehaviour
 
             InvokeDraw();
             previousHasRun = false;
-            
         }
     }
 
@@ -146,7 +149,7 @@ public class DrawOnScreen : MonoBehaviour
 
         CreateRaycastHit(centroid);
     }
-    
+
     // Create a raycast from centroid. Use this to detect enemies
     private void CreateRaycastHit(Vector3 pos)
     {
@@ -155,7 +158,7 @@ public class DrawOnScreen : MonoBehaviour
         //Debug.Log(rayDirection);
 
         //Physics.Raycast(centroid, rayDirection, 100f);
-        Vector3 screenPoint = mainCamera.WorldToScreenPoint(pos); 
+        Vector3 screenPoint = mainCamera.WorldToScreenPoint(pos);
 
         Ray ray = mainCamera.ScreenPointToRay(screenPoint);
         RaycastHit hit;
@@ -163,7 +166,7 @@ public class DrawOnScreen : MonoBehaviour
         {
             Collider hitCollider = hit.collider;
             EnemyBaseAI enemy = hitCollider.GetComponent<EnemyBaseAI>();
-            if(enemy != null) 
+            if (enemy != null)
             {
                 Health health = enemy.GetComponent<Health>();
                 if (health != null && !health.IsDeath())
@@ -174,7 +177,7 @@ public class DrawOnScreen : MonoBehaviour
         }
         Debug.DrawRay(pos, ray.direction * 50, Color.red, 5f);
     }
-    
+
     Vector3 ProjectToGround(Vector3 worldPoint)
     {
         Ray ray = new Ray(mainCamera.transform.position, (worldPoint - mainCamera.transform.position).normalized);
