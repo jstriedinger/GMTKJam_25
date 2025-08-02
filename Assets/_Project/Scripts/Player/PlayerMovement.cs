@@ -6,6 +6,7 @@ public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] private float speed = 5f;
     [SerializeField] private Transform character;
+    [SerializeField] private Animator animator;
 
     private Rigidbody _rigidbody;
     private Vector2 _moveInputValue;
@@ -58,11 +59,20 @@ public class PlayerMovement : MonoBehaviour
             //myAnim.SetFloat("Speed", magnitude);
             _finalMovement = new Vector3(dir.x, 0, dir.y) * speed;
             //_rigidbody.linearVelocity = new Vector3(dir.x * speed * Time.deltaTime,_rigidbody.linearVelocity.y, dir.y * speed * Time.deltaTime);
+            
         }
         else
         {
             _finalMovement = new Vector3(0, 0, 0);
         }
+
+        if (_finalMovement.sqrMagnitude < Mathf.Epsilon)
+        {
+            //small movement, change anim
+            animator.SetBool("Moving", false);
+        }
+        else
+            animator.SetBool("Moving", true);
     }
 
     private void CanMoveOnDraw(bool onDraw)
