@@ -133,14 +133,14 @@ public class PlayerMovement : MonoBehaviour
     private void OnEnable()
     {
         //event for when drawing on screen
-        DrawOnScreen.onDraw += CanMoveOnDraw;
+        //DrawOnScreen.onDraw += CanMoveOnDraw;
         //event for when learning melody on screen
         MusicSheet.onSequenceActive += CanMoveOnSequence;
     }
 
     private void OnDisable()
     {
-        DrawOnScreen.onDraw -= CanMoveOnDraw;
+        //DrawOnScreen.onDraw -= CanMoveOnDraw;
         MusicSheet.onSequenceActive -= CanMoveOnSequence;
     }
 
