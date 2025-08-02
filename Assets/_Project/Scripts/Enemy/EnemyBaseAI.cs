@@ -12,6 +12,7 @@ public class EnemyBaseAI : MonoBehaviour
     public float disengageDistance = 1.3f;
     public float attackCooldown = 0;
     public int damage = 1;
+    protected float hitCooldown = 0.1f;
 
     // Update is called once per frame
     virtual protected void Update()
@@ -35,6 +36,7 @@ public class EnemyBaseAI : MonoBehaviour
     protected void UpdateCooldowns()
     {
         attackCooldown -= Time.deltaTime;
+        hitCooldown -= Time.deltaTime;
     }
 
     virtual protected void SwitchState(EnemyAIBehavior newState)
@@ -91,6 +93,30 @@ public class EnemyBaseAI : MonoBehaviour
 
                 attackCooldown = 2f;
             }
+        }
+    }
+
+    public void OnHitByLinedraw()
+    {
+        // Prevents getting hit by multiple rays
+        if (hitCooldown > 0)
+        {
+            return;
+        }
+        // Handle hit logic, e.g., play animation, sound, etc.
+        Health health = player.GetComponent<Health>();
+        if (health == null)
+        {
+            return;
+        }
+
+        hitCooldown = 0.1f;
+        health.TakeDamage(1);
+        Debug.Log("line hit this enemy");
+        if (health.IsDeath())
+        {
+            Destroy(gameObject);
+            Debug.Log("line hit this enemy, die!");
         }
     }
 }

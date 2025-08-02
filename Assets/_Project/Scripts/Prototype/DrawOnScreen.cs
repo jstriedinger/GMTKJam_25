@@ -163,9 +163,13 @@ public class DrawOnScreen : MonoBehaviour
         {
             Collider hitCollider = hit.collider;
             EnemyChaseAI  enemy = hitCollider.GetComponent<EnemyChaseAI>();
-            if(enemy != null && !enemy.isDead) 
+            if(enemy != null) 
             {
-                enemy.OnHitByLinedraw();
+                Health health = enemy.GetComponent<Health>();
+                if (health != null && !health.IsDeath())
+                {
+                    enemy.OnHitByLinedraw();
+                }
             }
         }
         Debug.DrawRay(pos, ray.direction * 50, Color.red, 5f);
