@@ -22,8 +22,6 @@ public class PlayerAttack : MonoBehaviour
     [SerializeField] private float speed;
     // Distance of line from camera
     [SerializeField] private float lineZSpace = 2.5f;
-    // y angle to point the raycast towards
-    [SerializeField] private float raycastAngleY = -50;
     // Minimum distance before adding a Line Renderer position
     private float minimumLineDrawingDistance = 0.001f;
 
@@ -159,10 +157,6 @@ public class PlayerAttack : MonoBehaviour
     private void CreateRaycastHit(Vector3 pos)
     {
 
-        //Vector3 rayDirection = new Vector3(0, raycastAngleY, 100);
-        //Debug.Log(rayDirection);
-
-        //Physics.Raycast(centroid, rayDirection, 100f);
         Vector3 screenPoint = _mainCamera.WorldToScreenPoint(pos);
 
         Ray ray = _mainCamera.ScreenPointToRay(screenPoint);
