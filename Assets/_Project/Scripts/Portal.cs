@@ -7,20 +7,19 @@ public class Portal : MonoBehaviour
     [SerializeField] private bool _isUnlocked;
     [SerializeField] private int gameLevel;
     [SerializeField] private GameObject Spotlight;
+    [SerializeField] private CapsuleCollider capsuleCollider;
     [SerializeField] private GameObject PedestalItem;
 
     public void OpenPortal()
     {
         Spotlight.gameObject.SetActive(true);
-        // Todo have the item on the Portal Pedestal appear.
-        // PedestalItem.gameObject.SetActive(true);
         this.gameObject.SetActive(true);
         _isUnlocked = true;
     }
 
     public void ClosePortal()
     {
-        this.gameObject.SetActive(false);
+        capsuleCollider.enabled = false;
     }
 
     private void OnTriggerEnter(Collider other)

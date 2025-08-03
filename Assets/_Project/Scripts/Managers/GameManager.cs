@@ -183,7 +183,7 @@ public class GameManager : MonoBehaviour
             _unlockedGameLevels.Add(GameLevel.Manor);
         }
 
-        if (count >= 9 && !_unlockedGameLevels.Contains(GameLevel.Manor))
+        if (count >= 9)
         {
             _portals[2].ClosePortal();
             mainMenuManager.EndScene();
