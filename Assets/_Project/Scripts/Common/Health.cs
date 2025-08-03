@@ -51,6 +51,10 @@ public class Health : MonoBehaviour
 
     private void Die()
     {
+        if (true)
+        {
+
+        }
         GameManager.Instance.TeleportPlayerToHub();
     }
 

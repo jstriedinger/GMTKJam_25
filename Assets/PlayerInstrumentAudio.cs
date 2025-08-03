@@ -53,15 +53,13 @@ public class PlayerInstrumentAudio : MonoBehaviour
 
     private void OnEnable()
     {
-        PlayerAttack.OnDrawBegins += PlayStopSound;
-        PlayerAttack.OnDrawEnds += PlayStopSound;
+        PlayerAttack.OnDraw += PlayStopSound;
         PlayerAttack.drawSpeed += UpdateSpeed;
     }
 
     private void OnDisable()
     {
-        PlayerAttack.OnDrawBegins -= PlayStopSound;
-        PlayerAttack.OnDrawEnds += PlayStopSound;
+        PlayerAttack.OnDraw -= PlayStopSound;
         PlayerAttack.drawSpeed -= UpdateSpeed;
     }
 }

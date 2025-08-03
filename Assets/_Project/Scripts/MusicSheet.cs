@@ -113,22 +113,22 @@ public class MusicSheet : MonoBehaviour
 
     private bool CheckInput(Note expectedNote)
     {
-        if (Input.GetKeyDown(KeyCode.W) && expectedNote == Note.W)
+        if (Input.GetKeyDown(KeyCode.UpArrow) && expectedNote == Note.W)
         {
             emitterNote0.Play();
             return true;
         }
-        if (Input.GetKeyDown(KeyCode.A) && expectedNote == Note.A)
+        if (Input.GetKeyDown(KeyCode.LeftArrow) && expectedNote == Note.A)
         {
             emitterNote1.Play();
             return true;
         }
-        if (Input.GetKeyDown(KeyCode.S) && expectedNote == Note.S)
+        if (Input.GetKeyDown(KeyCode.DownArrow) && expectedNote == Note.S)
         {
             emitterNote2.Play();
             return true;
         }
-        if (Input.GetKeyDown(KeyCode.D) && expectedNote == Note.D)
+        if (Input.GetKeyDown(KeyCode.RightArrow) && expectedNote == Note.D)
         {
             emitterNote3.Play();
             return true;
