@@ -125,6 +125,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   totalHealth: 3
+  hearts: []
+  fullheart: {fileID: 0}
+  noheart: {fileID: 0}
 --- !u!114 &1368682386595622630
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -146,7 +149,7 @@ MonoBehaviour:
       Data4: 1149453407
     Path: event:/Music/Music_EnemyHit
   Event: 
-  EventPlayTrigger: 2
+  EventPlayTrigger: 0
   EventStopTrigger: 0
   AllowFadeout: 1
   TriggerOnce: 0

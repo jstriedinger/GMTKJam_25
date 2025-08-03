@@ -1,4 +1,5 @@
 using System;
+using FMODUnity;
 using UnityEngine;
 
 public class EnemyBaseAI : MonoBehaviour
@@ -24,9 +25,27 @@ public class EnemyBaseAI : MonoBehaviour
     private Vector3 currentVelocity = Vector3.zero;
     private Vector3 targetVelocity = Vector3.zero;
 
+    [SerializeField] private Animator animator;
+    private bool isDeath = false;
+    private float deathCountdown = 2.5f;
+
+    // Audio
+    [SerializeField] private StudioEventEmitter hitAudioEmitter;
+
     // Update is called once per frame
     virtual protected void Update()
     {
+        if (isDeath)
+        {
+            deathCountdown -= Time.deltaTime;
+            if (deathCountdown <= 0)
+            {
+                Destroy(gameObject);
+            }
+
+            return;
+        }
+
         UpdateCooldowns();
 
         switch (state)
@@ -51,6 +70,11 @@ public class EnemyBaseAI : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (isDeath)
+        {
+            return;
+        }
+
         Movement();
     }
 
@@ -68,10 +92,37 @@ public class EnemyBaseAI : MonoBehaviour
 
         if (currentVelocity.magnitude != 0)
         {
+            TryFlip(currentVelocity.x);
+
+            animator.SetBool("Moving", true);
             transform.position += currentVelocity * Time.deltaTime;
+        }
+        else
+        {
+            animator.SetBool("Moving", false);
         }
 
         targetVelocity = Vector3.Lerp(targetVelocity, Vector3.zero, rateOfChange * Time.deltaTime);
+    }
+
+    private void TryFlip(float xSpeed)
+    {
+        if (xSpeed >= 0)
+        {
+            if (animator.transform.localScale.x < 0)
+            {
+                Vector3 scale = animator.transform.localScale;
+                animator.transform.localScale = new Vector3(scale.x * -1, scale.y, scale.z);
+            }
+        }
+        else
+        {
+            if (animator.transform.localScale.x > 0)
+            {
+                Vector3 scale = animator.transform.localScale;
+                animator.transform.localScale = new Vector3(scale.x * -1, scale.y, scale.z);
+            }
+        }
     }
 
     virtual protected void SwitchState(EnemyAIBehavior newState)
@@ -132,6 +183,7 @@ public class EnemyBaseAI : MonoBehaviour
         {
             if (attackCooldown <= 0)
             {
+                animator.SetTrigger("Attack");
                 HealthPlayer health = player.GetComponent<HealthPlayer>();
                 if (health != null)
                 {
@@ -196,11 +248,16 @@ public class EnemyBaseAI : MonoBehaviour
             return;
         }
 
+        animator.SetTrigger("Hurt");
+
         hitCooldown = 0.1f;
         health.TakeDamage(1);
         Debug.Log("line hit this enemy");
         if (health.IsDeath())
         {
+            animator.SetBool("Dead", true);
+            isDeath = true;
+            hitAudioEmitter.Play();
             Destroy(gameObject);
             Debug.Log("line hit this enemy, die!");
         }

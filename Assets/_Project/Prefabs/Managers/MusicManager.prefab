@@ -46,13 +46,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   debugMode: 1
   playerDamageIntensity: 0.5
-  enemyDamageIntensity: -1
+  enemyDamageIntensity: -0.5
   lowerIntensityRepeatRate: 15
   lowerIntensityAmount: -1
-  gameMusicEvent:
+  levelMusicEvent:
     Guid:
       Data1: 214404628
       Data2: 1281120586
       Data3: -59870333
       Data4: 1692438127
     Path: event:/Music/Music_Level
+  hubMusicEvent:
+    Guid:
+      Data1: 1249319879
+      Data2: 1312891001
+      Data3: 2137078205
+      Data4: 1187725073
+    Path: event:/Music/Music_Hub

@@ -36,6 +36,8 @@ public class GameManager : MonoBehaviour
     [Header("Portals")]
     [SerializeField] private List<Portal> _portals;
 
+    public static event Action<int> levelChangedEvent;
+
     public bool unlockAllPortals = false;
     public int levelOverride = 0;
 
@@ -86,19 +88,27 @@ public class GameManager : MonoBehaviour
         if (GetCurrentLevel() == 0)
         {
             PrepareDungeonAndSpawn(generators[0], dungeons[0]);
+            levelChangedEvent?.Invoke(1);
         }
         else if (GetCurrentLevel() == 1 || GetCurrentLevel() == 2)
         {
             PrepareDungeonAndSpawn(generators[1], dungeons[1]);
+            levelChangedEvent?.Invoke(1);
         }
         else if (GetCurrentLevel() == 3 || GetCurrentLevel() == 4 || GetCurrentLevel() == 5)
         {
             PrepareDungeonAndSpawn(generators[2], dungeons[2]);
+            levelChangedEvent?.Invoke(2);
         }
         else if (GetCurrentLevel() == 6 || GetCurrentLevel() == 7 || GetCurrentLevel() == 8)
         {
             PrepareDungeonAndSpawn(generators[3], dungeons[3]);
+            levelChangedEvent?.Invoke(3);
         }
+
+        //levelChangedEvent?.Invoke(GetCurrentLevel());
+
+
     }
 
     private void PrepareDungeonAndSpawn(AbstractDungeonGenerator gen, Dungeon dungeon)
@@ -127,6 +137,8 @@ public class GameManager : MonoBehaviour
             lastGenerator.ClearDungeon();
             lastGenerator = null;
         }
+
+        levelChangedEvent?.Invoke(0);
     }
 
     public void AddInstrument(string instrumentName)
@@ -176,6 +188,8 @@ public class GameManager : MonoBehaviour
             _portals[2].ClosePortal();
             mainMenuManager.EndScene();
         }
+
+        //levelChangedEvent?.Invoke(GetCurrentLevel());
     }
 
     public void ShowUnlockedInstrumentsInHub()

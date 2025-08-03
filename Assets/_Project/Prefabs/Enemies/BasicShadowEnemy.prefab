@@ -134,6 +134,8 @@ MonoBehaviour:
   shootCooldown: 2
   projectile: {fileID: 898967331126844404, guid: c883e5c8e315b5a43b08c251649e6aba, type: 3}
   projectileForce: 100
+  animator: {fileID: 8960400766854906326}
+  hitAudioEmitter: {fileID: 8621319637728559254}
 --- !u!114 &1882514122841590397
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -173,7 +175,7 @@ MonoBehaviour:
       Data4: 1149453407
     Path: event:/Music/Music_EnemyHit
   Event: 
-  EventPlayTrigger: 2
+  EventPlayTrigger: 0
   EventStopTrigger: 0
   AllowFadeout: 1
   TriggerOnce: 0
@@ -446,5 +448,10 @@ PrefabInstance:
 --- !u!4 &3078652149081283500 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 934208290529017882, guid: 4cf456c23e9f8b94da466591954c82db, type: 3}
+  m_PrefabInstance: {fileID: 2760540188367035318}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &8960400766854906326 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 6491610835034102368, guid: 4cf456c23e9f8b94da466591954c82db, type: 3}
   m_PrefabInstance: {fileID: 2760540188367035318}
   m_PrefabAsset: {fileID: 0}
