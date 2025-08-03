@@ -152,6 +152,7 @@ MonoBehaviour:
   projectile: {fileID: 898967331126844404, guid: c883e5c8e315b5a43b08c251649e6aba, type: 3}
   projectileForce: 5
   animator: {fileID: 8155632189585152250}
+  hitAudioEmitter: {fileID: 3694584490626013547}
 --- !u!114 &3694584490626013547
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -173,7 +174,7 @@ MonoBehaviour:
       Data4: 1149453407
     Path: event:/Music/Music_EnemyHit
   Event: 
-  EventPlayTrigger: 2
+  EventPlayTrigger: 0
   EventStopTrigger: 0
   AllowFadeout: 1
   TriggerOnce: 0

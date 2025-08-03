@@ -1,4 +1,5 @@
 using System;
+using FMODUnity;
 using UnityEngine;
 
 public class EnemyBaseAI : MonoBehaviour
@@ -27,6 +28,9 @@ public class EnemyBaseAI : MonoBehaviour
     [SerializeField] private Animator animator;
     private bool isDeath = false;
     private float deathCountdown = 2.5f;
+
+    // Audio
+    [SerializeField] private StudioEventEmitter hitAudioEmitter;
 
     // Update is called once per frame
     virtual protected void Update()
@@ -253,6 +257,8 @@ public class EnemyBaseAI : MonoBehaviour
         {
             animator.SetBool("Dead", true);
             isDeath = true;
+            hitAudioEmitter.Play();
+            Destroy(gameObject);
             Debug.Log("line hit this enemy, die!");
         }
     }
