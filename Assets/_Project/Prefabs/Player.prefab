@@ -277,7 +277,6 @@ GameObject:
   - component: {fileID: 4951050363593935196}
   - component: {fileID: 8567552017279574585}
   - component: {fileID: 418469052201816202}
-  - component: {fileID: 7862159537999846264}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -565,29 +564,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d331f7cb8bfd2864aa19b9c4f7592284, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  totalHealth: 3
-  hearts:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  fullheart: {fileID: 21300000, guid: fd89d1c78dfa9014996095ffa74a5699, type: 3}
-  noheart: {fileID: 21300000, guid: 2520d5e351147df43bf143cd220a0d1e, type: 3}
---- !u!114 &7862159537999846264
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5442111846151702766}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 09e58cafaef0b1e4ba28a4e04f5ea76d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  charAnimator: {fileID: 2630756314221142499}
   totalHealth: 10
   hearts: []
-  fullheart: {fileID: 0}
-  noheart: {fileID: 0}
+  fullheart: {fileID: 21300000, guid: fd89d1c78dfa9014996095ffa74a5699, type: 3}
+  noheart: {fileID: 21300000, guid: 2520d5e351147df43bf143cd220a0d1e, type: 3}
 --- !u!1001 &8496259792242007154
 PrefabInstance:
   m_ObjectHideFlags: 0

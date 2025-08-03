@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -159,6 +160,14 @@ public class PlayerMovement : MonoBehaviour
         MusicSheet.onSequenceActive -= CanMoveOnSequence;
     }
 
+    public IEnumerator OnTakingDamage()
+    {
+        CharacterAnimator.SetTrigger("Hurt");
+        _canMove = false;
+        yield return new WaitForSeconds(1f);
+        _canMove = true;
+
+    }
 
     #region Input
 

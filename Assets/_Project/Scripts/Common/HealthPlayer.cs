@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -6,8 +7,12 @@ using UnityEngine.UI;
 public class HealthPlayer : MonoBehaviour
 {
 
+    [SerializeField] private Animator charAnimator;
     public static event Action<GameObject> takenDamageEvent;
     [SerializeField] public int totalHealth = 3;
+    int _initialHealth;
+    private bool _canTakeDamage = true;
+    
 
     [Header("Heart UI Elements")]
     [SerializeField] private List<Image> hearts;
@@ -15,20 +20,35 @@ public class HealthPlayer : MonoBehaviour
     [Header("Heart Sprites")]
     [SerializeField] private Sprite fullheart;
     [SerializeField] private Sprite noheart;
+    
+    PlayerMovement _playerMovement;
+
+    private void Start()
+    {
+        _playerMovement = GetComponent<PlayerMovement>();
+        _initialHealth = totalHealth;
+    }
 
     public void RegainHealth()
     {
+        totalHealth = _initialHealth;
         foreach (var heart in hearts)
         {
             heart.sprite = fullheart;
         }
+
+        _canTakeDamage = true;
     }
 
     public void TakeDamage(int damage)
     {
+        if (!_canTakeDamage)
+            return;
+        
         totalHealth = Mathf.Max(0, totalHealth - damage);
 
         // Reset all to full first
+        
         foreach (var heart in hearts)
         {
             heart.sprite = fullheart;
@@ -39,19 +59,29 @@ public class HealthPlayer : MonoBehaviour
             if (totalHealth <= 0)
             {
                 heart.sprite = noheart;
-                Debug.Log(" Died");
-                Die();
             }
         }
 
         takenDamageEvent?.Invoke(gameObject);
-    }
-    private void Die()
-    {
-        if (true)
+        if (totalHealth > 0)
+            StartCoroutine(_playerMovement.OnTakingDamage());
+        else
         {
-            GameManager.Instance.TeleportPlayerToHub();
+            StartCoroutine(Die());
         }
+        
+
+    }
+    IEnumerator Die()
+    {
+        _playerMovement.ToggleCanMove(false);
+        charAnimator.SetTrigger("Dead");
+        _canTakeDamage = false;
+        yield return new WaitForSeconds(3);
+        GameManager.Instance?.TeleportPlayerToHub();
+        charAnimator.SetTrigger("Spawn");
+        RegainHealth();
+        _playerMovement.ToggleCanMove(true);
     }
 
     public bool IsDeath()
