@@ -92,7 +92,7 @@ public class PlayerAttack : MonoBehaviour
             OnDraw?.Invoke(true);
             charAnimator.SetBool("Attacking", true);
             _previousHasRun = true;
-            
+
         }
         if (_isDrawing == false)
         {

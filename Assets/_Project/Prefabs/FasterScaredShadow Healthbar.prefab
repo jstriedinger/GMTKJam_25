@@ -88,7 +88,7 @@ GameObject:
   - component: {fileID: 2247842740589761151}
   - component: {fileID: 3329270607248074482}
   m_Layer: 5
-  m_Name: Enemy HealthBar
+  m_Name: FasterScaredShadow Healthbar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
