@@ -2,9 +2,11 @@ using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Serialization;
 
 public class PlayerMovement : MonoBehaviour
 {
+    private PlayerInput _playerInput;
     [SerializeField] private float speed = 5f;
     [SerializeField] private int tiltAngle = 20;
     private float _targetYRot = 0;
@@ -19,15 +21,21 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 _finalMovement;
     private bool _isMoving;
 
-    private bool _canMove = true;
+    public bool canMove = true;
 
     //flipping stuff
     private bool _isFlipped = false;
+
+    private void Awake()
+    {
+        _playerInput = GetComponent<PlayerInput>();
+    }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         _rigidbody = GetComponent<Rigidbody>();
+       
     }
 
     // Update is called once per frame
@@ -84,7 +92,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Move()
     {
-        if (_canMove == true)
+        if (canMove == true)
         {
             Vector2 dir = _moveInputValue.normalized;
             //myAnim.SetFloat("Speed", magnitude);
@@ -132,17 +140,18 @@ public class PlayerMovement : MonoBehaviour
 
     private void CanMoveOnDraw(bool onDraw)
     {
-        _canMove = !onDraw;
+        canMove = !onDraw;
+        Debug.Log("Can move on draw: " + canMove);
     }
 
     private void CanMoveOnSequence(bool isActive)
     {
-        _canMove = !isActive;
+        canMove = !isActive;
     }
     
     public void ToggleCanMove(bool canMove)
     {
-        _canMove = canMove;
+        this.canMove = canMove;
         
     }
 
@@ -163,10 +172,16 @@ public class PlayerMovement : MonoBehaviour
     public IEnumerator OnTakingDamage()
     {
         CharacterAnimator.SetTrigger("Hurt");
-        _canMove = false;
+        canMove = false;
         yield return new WaitForSeconds(1f);
-        _canMove = true;
+        canMove = true;
 
+    }
+    
+    public void TogglePlayerInput(bool toggle)
+    {
+        _playerInput.enabled = toggle;
+        
     }
 
     #region Input

@@ -81,13 +81,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1769197628873307479}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: 0.50634843, z: -0.86232907, w: 0}
-  m_LocalPosition: {x: -0.14, y: 3.31, z: -1.36}
+  m_LocalRotation: {x: -0, y: 0.55474573, z: -0.8320199, w: 0}
+  m_LocalPosition: {x: 0.055, y: 2.942, z: -0.691}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2935746634306085163}
-  m_LocalEulerAnglesHint: {x: 60.842, y: 0, z: -180}
+  m_LocalEulerAnglesHint: {x: 67.386, y: 0, z: -180}
 --- !u!108 &212279735896877071
 Light:
   m_ObjectHideFlags: 0
@@ -98,11 +98,11 @@ Light:
   m_Enabled: 1
   serializedVersion: 11
   m_Type: 0
-  m_Color: {r: 0.6698113, g: 0.46551335, b: 0.072668225, a: 1}
-  m_Intensity: 15
-  m_Range: 7.68
-  m_SpotAngle: 42.092506
-  m_InnerSpotAngle: 16.071087
+  m_Color: {r: 0.8679245, g: 0.7568981, b: 0.5444998, a: 1}
+  m_Intensity: 8.24
+  m_Range: 2.93
+  m_SpotAngle: 55.36159
+  m_InnerSpotAngle: 0
   m_CookieSize: 10
   m_Shadows:
     m_Type: 2
@@ -365,11 +365,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 20
-  tiltAngle: 25
+  tiltAngle: 15
   character: {fileID: 8242289053110221721}
   CharacterAnimator: {fileID: 2630756314221142499}
   FlipAnimator: {fileID: 620238984062242239}
   debugMode: 0
+  canMove: 1
 --- !u!114 &1392410585322851753
 MonoBehaviour:
   m_ObjectHideFlags: 0
