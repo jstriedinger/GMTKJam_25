@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 1882514122841590397}
   - component: {fileID: 8230650163053718144}
   - component: {fileID: 3694584490626013547}
+  - component: {fileID: 1114787407764354676}
   m_Layer: 3
   m_Name: DefensiveRangedShadowEnemy
   m_TagString: Enemy
@@ -153,6 +154,7 @@ MonoBehaviour:
   projectileForce: 5
   animator: {fileID: 8155632189585152250}
   hitAudioEmitter: {fileID: 3694584490626013547}
+  deathAudioEmitter: {fileID: 1114787407764354676}
 --- !u!114 &3694584490626013547
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -173,6 +175,37 @@ MonoBehaviour:
       Data3: 1664951205
       Data4: 1149453407
     Path: event:/Music/Music_EnemyHit
+  Event: 
+  EventPlayTrigger: 0
+  EventStopTrigger: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  NonRigidbodyVelocity: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
+--- !u!114 &1114787407764354676
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 638938620329745775}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: 1912462860
+      Data2: 1094072596
+      Data3: 1969487541
+      Data4: -1303109585
+    Path: event:/Music/Music_EnemyDeath
   Event: 
   EventPlayTrigger: 0
   EventStopTrigger: 0
