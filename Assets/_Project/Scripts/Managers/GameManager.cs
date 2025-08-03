@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
@@ -14,6 +15,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private List<Dungeon> dungeons;
     [SerializeField] private List<Dungeon> _instrumentPosition;
     [SerializeField] private GameObject player;
+    [SerializeField] private CinemachineCamera cinemachine;
     [SerializeField] private HealthPlayer health;
 
     [SerializeField] private bool finishedTutorial;
@@ -104,14 +106,21 @@ public class GameManager : MonoBehaviour
         gen.GenerateDungeon();
         lastGenerator = gen;
 
-        player.transform.position = dungeon.spawnPosition;
+        WarpPlayerToPosition(dungeon.spawnPosition);
         _instruments[GetCurrentLevel()].transform.position = dungeon.instrumentPosition;
+    }
+
+    private void WarpPlayerToPosition(Vector3 newPosition)
+    {
+        Vector3 posDelta = newPosition - player.transform.position;
+        player.transform.position = newPosition;
+        cinemachine.OnTargetObjectWarped(player.transform, posDelta);
     }
 
     public void TeleportPlayerToHub()
     {
         health.RegainHealth();
-        player.transform.position = _hubPosition.transform.position;
+        WarpPlayerToPosition(_hubPosition.transform.position);
 
         if (lastGenerator != null)
         {
