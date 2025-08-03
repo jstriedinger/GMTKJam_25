@@ -132,13 +132,13 @@ public class EnemyBaseAI : MonoBehaviour
         {
             if (attackCooldown <= 0)
             {
-                Health health = player.GetComponent<Health>();
+                HealthPlayer health = player.GetComponent<HealthPlayer>();
                 if (health != null)
                 {
                     health.TakeDamage(damage);
                 }
 
-                attackCooldown = 2f;
+                attackCooldown = 2.5f;
             }
         }
     }
