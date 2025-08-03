@@ -14,7 +14,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private List<Dungeon> dungeons;
     [SerializeField] private List<Dungeon> _instrumentPosition;
     [SerializeField] private GameObject player;
-    [SerializeField] private Health health;
+    [SerializeField] private HealthPlayer health;
 
     [SerializeField] private bool finishedTutorial;
 
