@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private List<Dungeon> dungeons;
     [SerializeField] private List<Dungeon> _instrumentPosition;
     [SerializeField] private GameObject player;
+    [SerializeField] private Health health;
 
     [SerializeField] private bool finishedTutorial;
 
@@ -70,6 +71,7 @@ public class GameManager : MonoBehaviour
 
     public void TeleportPlayerToHub()
     {
+        health.RegainHealth();
         player.transform.position = _hubPosition.transform.position;
     }
 

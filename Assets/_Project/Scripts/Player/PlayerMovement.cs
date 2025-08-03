@@ -10,6 +10,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private Transform character;
     [SerializeField] private Animator CharacterAnimator;
     [SerializeField] private Animator FlipAnimator;
+    public bool debugMode = false;
     public static event Action<bool> isMovingEvent;
 
     private Rigidbody _rigidbody;
@@ -47,13 +48,21 @@ public class PlayerMovement : MonoBehaviour
         {
             _isFlipped = true;
             FlipAnimator.SetTrigger("Flip");
-            Debug.Log("Flip!");
+
+            if (debugMode == true)
+            {
+                Debug.Log("Flip!");
+            }
         }
         else if (_isFlipped && _finalMovement.x > 0)
         {
             _isFlipped = false;
             FlipAnimator.SetTrigger("Flip");
-            Debug.Log("Flip!");
+            
+            if (debugMode == true)
+            {
+                Debug.Log("Flip!");
+            }
         }
 
         if (_rigidbody.linearVelocity.x >= 0)
