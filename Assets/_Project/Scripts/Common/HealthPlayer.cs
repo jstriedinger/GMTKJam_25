@@ -75,10 +75,12 @@ public class HealthPlayer : MonoBehaviour
     IEnumerator Die()
     {
         _playerMovement.ToggleCanMove(false);
-        charAnimator.SetTrigger("Dead");
+        charAnimator.SetBool("Dead", true);
         _canTakeDamage = false;
+        charAnimator.ResetTrigger("Hurt");
         yield return new WaitForSeconds(3);
         GameManager.Instance?.TeleportPlayerToHub();
+        charAnimator.SetBool("Dead", false);
         charAnimator.SetTrigger("Spawn");
         RegainHealth();
         _playerMovement.ToggleCanMove(true);
