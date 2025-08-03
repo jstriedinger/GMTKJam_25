@@ -16,6 +16,7 @@ public class MusicManager : MonoBehaviour
     // Damage intensity amount
     [SerializeField] private float playerDamageIntensity;
     [SerializeField] private float enemyDamageIntensity;
+    [SerializeField] private float enemyDeathIntensity;
 
 
     public float lowerIntensityRepeatRate;
@@ -27,6 +28,11 @@ public class MusicManager : MonoBehaviour
 
     //Music instance
     private EventInstance musicInstance;
+
+    // Music Sting
+    [SerializeField] private EventReference minigameSucceedEvent;
+    [SerializeField] private EventReference minigameFailedEvent;
+    private EventInstance musicStingInstance;
 
 
     private void Awake()
@@ -63,13 +69,6 @@ public class MusicManager : MonoBehaviour
             Debug.Log("PeriodiclyLowerIntesity has happened: " + currentIntensity);
         }
     }
-
-
-
-
-
-
-
 
     private void StartMusic(EventReference musicEvent)
     {
@@ -123,7 +122,7 @@ public class MusicManager : MonoBehaviour
         if (intensityToSet < minIntensity)
         {
             intensityToSet = minIntensity;
-        }   
+        }
 
         currentIntensity = intensityToSet;
 
@@ -148,12 +147,11 @@ public class MusicManager : MonoBehaviour
     private void EnemyTakenDamage()
     {
         ChangeIntensity(enemyDamageIntensity);
-
     }
 
     private void EnemyDied()
     {
-        ChangeIntensity(enemyDamageIntensity);        
+        ChangeIntensity(enemyDeathIntensity);
     }
 
     private void StartedMusicSheet()
@@ -162,9 +160,40 @@ public class MusicManager : MonoBehaviour
 
     }
 
-    private void FinishedMusicSheet()
+    private void SucceedMusicSheet()
     {
-        //StartMusic();
+        if (musicInstance.isValid() == false)
+        {
+            musicStingInstance = RuntimeManager.CreateInstance(minigameSucceedEvent);
+            SetGlobalIntensityParameter(0);
+            musicStingInstance.start();
+        }
+        else
+        {
+            musicStingInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+            musicStingInstance.release();
+            musicStingInstance = RuntimeManager.CreateInstance(minigameSucceedEvent);
+            musicStingInstance.start();
+        }
+    }
+
+    private void FailedMusicSheet()
+    {
+        if (musicInstance.isValid() == false)
+        {
+            musicStingInstance = RuntimeManager.CreateInstance(minigameFailedEvent);
+            SetGlobalIntensityParameter(0);
+            musicStingInstance.start();
+        }
+        else
+        {
+            musicStingInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+            musicStingInstance.release();
+            musicStingInstance = RuntimeManager.CreateInstance(minigameFailedEvent);
+            musicStingInstance.start();
+        }
+
+        
     }
 
     private void ChangeLevelMusic(int level)
@@ -203,7 +232,8 @@ public class MusicManager : MonoBehaviour
         HealthPlayer.playerDamageEvent += PlayerTakenDamage;
         HealthPlayer.playerDiedEvent += PlayerDied;
         Instrument.startedMusicSheetEvent += StartedMusicSheet;
-        Instrument.finishedMusicSheetEvent += FinishedMusicSheet;
+        Instrument.succeedMusicSheetEvent += SucceedMusicSheet;
+        Instrument.failedMusicSheetEvent += FailedMusicSheet;
         GameManager.levelChangedEvent += ChangeLevelMusic;
     }
 
@@ -214,7 +244,8 @@ public class MusicManager : MonoBehaviour
         HealthPlayer.playerDamageEvent -= PlayerTakenDamage;
         HealthPlayer.playerDiedEvent -= PlayerDied;
         Instrument.startedMusicSheetEvent -= StartedMusicSheet;
-        Instrument.finishedMusicSheetEvent -= FinishedMusicSheet;
+        Instrument.succeedMusicSheetEvent -= SucceedMusicSheet;
+        Instrument.failedMusicSheetEvent -= FailedMusicSheet;
         GameManager.levelChangedEvent -= ChangeLevelMusic;
     }
 

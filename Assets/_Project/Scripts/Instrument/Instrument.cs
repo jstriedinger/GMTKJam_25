@@ -7,7 +7,8 @@ public class Instrument : MonoBehaviour
     private bool _isUnlocked = false;
 
     public static event Action startedMusicSheetEvent;
-    public static event Action finishedMusicSheetEvent;
+    public static event Action succeedMusicSheetEvent;
+    public static event Action failedMusicSheetEvent;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -23,13 +24,14 @@ public class Instrument : MonoBehaviour
         if (success)
         {
             Unlock();
+            succeedMusicSheetEvent?.Invoke();
         }
         else
         {
             Debug.Log("Sequence failed. Try again!");
+            failedMusicSheetEvent?.Invoke();
         }
 
-        finishedMusicSheetEvent?.Invoke();
     }
 
     private void Unlock()
