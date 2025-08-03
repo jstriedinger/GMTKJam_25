@@ -59,14 +59,50 @@ public class GameManager : MonoBehaviour
         CheckForLevelChange();
     }
 
-    public void StartLevel(int level)
+    public void StartLevel()
     {
-        AbstractDungeonGenerator gen = generators[level];
-        gen.ClearDungeon();
-        gen.GenerateDungeon();
-        Dungeon dungeon = dungeons[level];
-        player.transform.position = dungeon.spawnPosition;
-        _instruments[level].transform.position = dungeon.instrumentPosition;
+        GetCurrentLevel();
+        if (GetCurrentLevel() == 0)
+        {
+            AbstractDungeonGenerator gen = generators[GetCurrentLevel()];
+            gen.ClearDungeon();
+            gen.GenerateDungeon();
+
+            Dungeon dungeon = dungeons[0];
+            player.transform.position = dungeon.spawnPosition;
+            _instruments[GetCurrentLevel()].transform.position = dungeon.instrumentPosition;
+
+        }
+        else if (GetCurrentLevel() == 1 || GetCurrentLevel() == 2)
+        {
+            AbstractDungeonGenerator gen = generators[1];
+            gen.ClearDungeon();
+            gen.GenerateDungeon();
+
+            Dungeon dungeon = dungeons[1];
+            player.transform.position = dungeon.spawnPosition;
+            _instruments[GetCurrentLevel()].transform.position = dungeon.instrumentPosition;
+        }
+        else if (GetCurrentLevel() == 3 || GetCurrentLevel() == 4 || GetCurrentLevel() == 5)
+        {
+            AbstractDungeonGenerator gen = generators[2];
+            gen.ClearDungeon();
+            gen.GenerateDungeon();
+
+            Dungeon dungeon = dungeons[2];
+            player.transform.position = dungeon.spawnPosition;
+            _instruments[GetCurrentLevel()].transform.position = dungeon.instrumentPosition;
+        }
+        else if (GetCurrentLevel() == 6 || GetCurrentLevel() == 7 || GetCurrentLevel() == 8)
+        {
+            AbstractDungeonGenerator gen = generators[3];
+            gen.ClearDungeon();
+            gen.GenerateDungeon();
+
+            Dungeon dungeon = dungeons[3];
+            player.transform.position = dungeon.spawnPosition;
+            _instruments[GetCurrentLevel()].transform.position = dungeon.instrumentPosition;
+        }
     }
 
     public void TeleportPlayerToHub()
@@ -79,6 +115,7 @@ public class GameManager : MonoBehaviour
     {
         if (_unlockedInstrumentNames.Add(instrumentName))
         {
+            level = _unlockedInstrumentNames.Count;
             Debug.Log("Unlocked: " + instrumentName);
             ShowUnlockedInstrumentsInHub();
             TeleportPlayerToHub();
@@ -97,19 +134,28 @@ public class GameManager : MonoBehaviour
 
         if (count >= 1 && !_unlockedGameLevels.Contains(GameLevel.Forest))
         {
+            _portals[3].ClosePortal();
             _portals[0].OpenPortal();
             _unlockedGameLevels.Add(GameLevel.Forest);
         }
 
         if (count >= 3 && !_unlockedGameLevels.Contains(GameLevel.Temple))
         {
+            _portals[0].ClosePortal();
             _portals[1].OpenPortal();
             _unlockedGameLevels.Add(GameLevel.Temple);
         }
 
         if (count >= 6 && !_unlockedGameLevels.Contains(GameLevel.Manor))
         {
+            _portals[1].ClosePortal();
             _portals[2].OpenPortal();
+            _unlockedGameLevels.Add(GameLevel.Manor);
+        }
+
+        if (count >= 9 && !_unlockedGameLevels.Contains(GameLevel.Manor))
+        {
+            _portals[2].ClosePortal();
             _unlockedGameLevels.Add(GameLevel.Manor);
         }
     }
@@ -123,21 +169,6 @@ public class GameManager : MonoBehaviour
                 _pedestalInstruments[i].SetActive(true);
             }
         }
-    }
-
-    public void LoadScene(string sceneName)
-    {
-        SceneManager.LoadScene(sceneName);
-    }
-
-    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
-    {
-        if (scene.name == "HUB")
-        {
-            ShowUnlockedInstrumentsInHub();
-        }
-
-        Debug.Log("Scene Loaded: " + scene.name);
     }
 }
 
