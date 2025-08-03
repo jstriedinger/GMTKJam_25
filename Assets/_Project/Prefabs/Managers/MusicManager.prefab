@@ -46,7 +46,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   debugMode: 1
   playerDamageIntensity: 0.5
-  enemyDamageIntensity: -0.5
+  enemyDamageIntensity: 0.25
+  enemyDeathIntensity: -0.5
   lowerIntensityRepeatRate: 15
   lowerIntensityAmount: -1
   levelMusicEvent:
@@ -63,3 +64,17 @@ MonoBehaviour:
       Data3: 2137078205
       Data4: 1187725073
     Path: event:/Music/Music_Hub
+  minigameSucceedEvent:
+    Guid:
+      Data1: -1208683766
+      Data2: 1157191951
+      Data3: 1714717319
+      Data4: -1886742207
+    Path: event:/Music/Music_MiniGame_Succeed
+  minigameFailedEvent:
+    Guid:
+      Data1: 355729597
+      Data2: 1222689402
+      Data3: -317108069
+      Data4: -351269999
+    Path: event:/Music/Music_MiniGame_Failed
