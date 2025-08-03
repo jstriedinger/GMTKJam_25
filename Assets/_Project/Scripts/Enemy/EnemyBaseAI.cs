@@ -31,6 +31,7 @@ public class EnemyBaseAI : MonoBehaviour
 
     // Audio
     [SerializeField] private StudioEventEmitter hitAudioEmitter;
+    [SerializeField] private StudioEventEmitter deathAudioEmitter;
 
     // Update is called once per frame
     virtual protected void Update()
@@ -255,11 +256,15 @@ public class EnemyBaseAI : MonoBehaviour
         Debug.Log("line hit this enemy");
         if (health.IsDeath())
         {
+            deathAudioEmitter.Play();
             animator.SetBool("Dead", true);
             isDeath = true;
-            hitAudioEmitter.Play();
             Destroy(gameObject);
             Debug.Log("line hit this enemy, die!");
+        }
+        else
+        {
+            hitAudioEmitter.Play();
         }
     }
 
