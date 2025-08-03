@@ -36,6 +36,9 @@ public class GameManager : MonoBehaviour
     [Header("Portals")]
     [SerializeField] private List<Portal> _portals;
 
+    public Camera mainCamera;
+    public CameraColorBg cameraColorBg;
+
     public static event Action<int> levelChangedEvent;
 
     public bool unlockAllPortals = false;
@@ -60,6 +63,7 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        mainCamera.backgroundColor = cameraColorBg.harmonyColor;
         // For testing purposes
         if (unlockAllPortals)
         {
@@ -87,21 +91,25 @@ public class GameManager : MonoBehaviour
         GetCurrentLevel();
         if (GetCurrentLevel() == 0)
         {
+            mainCamera.backgroundColor = cameraColorBg.harmonyColor;
             PrepareDungeonAndSpawn(generators[0], dungeons[0]);
             levelChangedEvent?.Invoke(1);
         }
         else if (GetCurrentLevel() == 1 || GetCurrentLevel() == 2)
         {
+            mainCamera.backgroundColor = cameraColorBg.forestColor;
             PrepareDungeonAndSpawn(generators[1], dungeons[1]);
             levelChangedEvent?.Invoke(1);
         }
         else if (GetCurrentLevel() == 3 || GetCurrentLevel() == 4 || GetCurrentLevel() == 5)
         {
+            mainCamera.backgroundColor = cameraColorBg.templeColor;
             PrepareDungeonAndSpawn(generators[2], dungeons[2]);
             levelChangedEvent?.Invoke(2);
         }
         else if (GetCurrentLevel() == 6 || GetCurrentLevel() == 7 || GetCurrentLevel() == 8)
         {
+            mainCamera.backgroundColor = cameraColorBg.manorColor;
             PrepareDungeonAndSpawn(generators[3], dungeons[3]);
             levelChangedEvent?.Invoke(3);
         }
@@ -131,6 +139,7 @@ public class GameManager : MonoBehaviour
     {
         health.RegainHealth();
         WarpPlayerToPosition(_hubPosition.transform.position);
+        mainCamera.backgroundColor = cameraColorBg.harmonyColor;
 
         if (lastGenerator != null)
         {

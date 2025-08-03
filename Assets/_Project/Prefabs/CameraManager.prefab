@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2003852219214084920}
+  - component: {fileID: 4058365978958778369}
   m_Layer: 0
   m_Name: CameraManager
   m_TagString: Untagged
@@ -34,6 +35,22 @@ Transform:
   - {fileID: 1322650190361173840}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4058365978958778369
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1526201381926204867}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22301bfb53a6ca2449609fa8c5ed6357, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  harmonyColor: {r: 0.08627451, g: 0.15294118, b: 0.16862746, a: 1}
+  forestColor: {r: 0.13333334, g: 0.18039216, b: 0.14901961, a: 1}
+  templeColor: {r: 0.16352195, g: 0.08484627, b: 0.11261415, a: 1}
+  manorColor: {r: 0.07847783, g: 0.067738555, b: 0.15723258, a: 1}
 --- !u!1 &1740907365150742829
 GameObject:
   m_ObjectHideFlags: 0
