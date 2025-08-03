@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class TestGenerator : AbstractDungeonGenerator
 {
-    protected override void RunProceduralGeneration()
+    protected override void RunProceduralGeneration(bool ranFromEditor)
     {
         HashSet<Vector2Int> positions = new HashSet<Vector2Int>();
         for(int x = -50; x < 50; ++x)

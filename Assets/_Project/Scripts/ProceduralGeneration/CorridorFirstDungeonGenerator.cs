@@ -7,7 +7,7 @@ public class CorridorFirstDungeonGenerator : CorridorDungeonGenerator
     [SerializeField] private int corridorLength = 14, corridorCount = 5;
     [SerializeField][Range(0.1f, 1)] private float roomPercent = 0.8f;
 
-    protected override void RunProceduralGeneration()
+    protected override void RunProceduralGeneration(bool ranFromEditor)
     {
         CorridorFirstGeneration();
     }

@@ -11,7 +11,7 @@ public class EnemyBaseAI : MonoBehaviour
     [SerializeField] protected float speed = 5;
     [SerializeField] protected float attackDistance = 1;
     [SerializeField] protected float disengageDistance = 1.3f;
-    [SerializeField] protected int damage = 1;
+    [SerializeField] public int damage = 1;
     [SerializeField] protected float shootRange = 3;
     [SerializeField] protected float shootCooldown = 2f;
     [SerializeField] protected GameObject projectile;

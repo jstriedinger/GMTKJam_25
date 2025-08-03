@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SimpleWalkDungeonGenerator : AbstractDungeonGenerator
 {
-    protected override void RunProceduralGeneration()
+    protected override void RunProceduralGeneration(bool ranFromEditor)
     {
         var floorPositions = RunRandomWalk(generationParams.roomParams, startPosition);
         tilemapVisualizer.PaintFloorTiles(floorPositions);
