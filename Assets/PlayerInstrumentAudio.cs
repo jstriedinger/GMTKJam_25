@@ -3,15 +3,18 @@ using UnityEngine;
 
 public class PlayerInstrumentAudio : MonoBehaviour
 {
-    public FMODUnity.EventReference instrumentEvent;
+    public FMODUnity.EventReference wandMovementEvent;
+    public FMODUnity.EventReference wandLetGoEvent;
     private FMOD.Studio.EventInstance instrumentInstance;
     private FMOD.Studio.PARAMETER_ID speedParameterId;
-    public StudioEventEmitter emitter;
+    public StudioEventEmitter wandMovementEmitter;
+    public StudioEventEmitter wandLetGoEmitter;
 
 
     private void Awake()
     {
-        emitter.EventReference = instrumentEvent;        
+        wandMovementEmitter.EventReference = wandMovementEvent;
+        wandLetGoEmitter.EventReference = wandLetGoEvent;
     }
 
 
@@ -19,7 +22,7 @@ public class PlayerInstrumentAudio : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        instrumentInstance = FMODUnity.RuntimeManager.CreateInstance(instrumentEvent);
+        instrumentInstance = FMODUnity.RuntimeManager.CreateInstance(wandMovementEvent);
         FMODUnity.RuntimeManager.AttachInstanceToGameObject(instrumentInstance, gameObject);
 
     }
@@ -33,7 +36,7 @@ public class PlayerInstrumentAudio : MonoBehaviour
     private void UpdateSpeed(float speed)
     {
         instrumentInstance.setParameterByName("Speed", speed);
-        emitter.SetParameter("Speed", speed);
+        wandMovementEmitter.SetParameter("Speed", speed);
     }
 
     private void PlayStopSound(bool isDrawing)
@@ -41,12 +44,13 @@ public class PlayerInstrumentAudio : MonoBehaviour
         if (isDrawing == true)
         {
             //instrumentInstance.start();
-            emitter.Play();
+            wandMovementEmitter.Play();
         }
         else
         {
             instrumentInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
-            emitter.Stop();
+            wandMovementEmitter.Stop();
+            wandLetGoEmitter.Play();
         }
 
     }

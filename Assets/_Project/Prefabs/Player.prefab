@@ -187,6 +187,7 @@ GameObject:
   - component: {fileID: 8408419323465092144}
   - component: {fileID: 6313155390953273798}
   - component: {fileID: 6375837078199409273}
+  - component: {fileID: 2431128014491678307}
   m_Layer: 0
   m_Name: MousePosition
   m_TagString: Untagged
@@ -221,14 +222,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08cba50c99ee14826916e8ecc0063b31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  instrumentEvent:
+  wandMovementEvent:
     Guid:
       Data1: 2008844674
       Data2: 1246107647
       Data3: 803646382
       Data4: -2045725759
     Path: event:/Player/Player_Wand
-  emitter: {fileID: 6375837078199409273}
+  wandLetGoEvent:
+    Guid:
+      Data1: -15699028
+      Data2: 1086267828
+      Data3: -1715930473
+      Data4: 1229676917
+    Path: event:/Player/Player_Wand_LetGo
+  wandMovementEmitter: {fileID: 6375837078199409273}
+  wandLetGoEmitter: {fileID: 2431128014491678307}
 --- !u!114 &6375837078199409273
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -260,6 +269,37 @@ MonoBehaviour:
   OverrideAttenuation: 0
   OverrideMinDistance: 1
   OverrideMaxDistance: 20
+--- !u!114 &2431128014491678307
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3380258471415674956}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  Event: 
+  EventPlayTrigger: 0
+  EventStopTrigger: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  NonRigidbodyVelocity: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: -1
+  OverrideMaxDistance: -1
 --- !u!1 &5442111846151702766
 GameObject:
   m_ObjectHideFlags: 0
