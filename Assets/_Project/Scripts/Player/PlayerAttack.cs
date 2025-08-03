@@ -16,8 +16,7 @@ public class PlayerAttack : MonoBehaviour
     private Camera _mainCamera;
     public GameObject mousePositionObject;
     // Event when drawing has started and stopped
-    public static event Action<bool> OnDrawBegins;
-    public static event Action<bool> OnDrawEnds;
+    public static event Action<bool> OnDraw;
     // Event for the drawing speed (used for audio)
     public static event Action<float> drawSpeed;
     [SerializeField] private float speed;
@@ -90,14 +89,14 @@ public class PlayerAttack : MonoBehaviour
     {
         if (_isDrawing == true)
         {
-            OnDrawBegins?.Invoke(true);
+            OnDraw?.Invoke(true);
             charAnimator.SetBool("Attacking", true);
             _previousHasRun = true;
             
         }
         if (_isDrawing == false)
         {
-            OnDrawEnds?.Invoke(false);
+            OnDraw?.Invoke(false);
             charAnimator.SetBool("Attacking", false);
             _previousHasRun = true;
         }
