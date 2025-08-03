@@ -15,7 +15,6 @@ public class GameManager : MonoBehaviour
     [SerializeField] private List<Dungeon> dungeons;
     [SerializeField] private List<Dungeon> _instrumentPosition;
     [SerializeField] private GameObject player;
-    [SerializeField] private CinemachineCamera cinemachine;
     [SerializeField] private HealthPlayer health;
 
     [SerializeField] private bool finishedTutorial;
@@ -114,7 +113,6 @@ public class GameManager : MonoBehaviour
     {
         Vector3 posDelta = newPosition - player.transform.position;
         player.transform.position = newPosition;
-        cinemachine.OnTargetObjectWarped(player.transform, posDelta);
     }
 
     public void TeleportPlayerToHub()
