@@ -259,7 +259,6 @@ public class EnemyBaseAI : MonoBehaviour
             deathAudioEmitter.Play();
             animator.SetBool("Dead", true);
             isDeath = true;
-            Destroy(gameObject);
             Debug.Log("line hit this enemy, die!");
         }
         else
