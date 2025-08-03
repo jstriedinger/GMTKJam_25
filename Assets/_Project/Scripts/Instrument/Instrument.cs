@@ -36,6 +36,7 @@ public class Instrument : MonoBehaviour
     {
         _isUnlocked = true;
         GameManager.Instance.AddInstrument(this.name);
+        this.gameObject.SetActive(false);
         Debug.Log($"{this.name} has been unlocked!");
     }
 }

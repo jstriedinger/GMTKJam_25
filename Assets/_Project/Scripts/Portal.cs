@@ -18,7 +18,7 @@ public class Portal : MonoBehaviour
         {
             if (_isUnlocked)
             {
-                GameManager.Instance.StartLevel(gameLevel);
+                GameManager.Instance.StartLevel();
             }
         }
     }
