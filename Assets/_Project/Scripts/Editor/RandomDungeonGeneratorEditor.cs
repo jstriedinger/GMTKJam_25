@@ -17,7 +17,7 @@ public class RandomDungeonGeneratorEditor : Editor
         if (GUILayout.Button("Create Dungeon"))
         {
             generator.ClearDungeonEditor();
-            generator.GenerateDungeon();
+            generator.GenerateDungeon(true);
         }
 
         if (GUILayout.Button("Clear Dungeon"))

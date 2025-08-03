@@ -8,6 +8,7 @@ public class Room
     public HashSet<Vector2Int> floorPositions;
     public HashSet<Vector2Int> innerTiles;
     public HashSet<Vector2Int> propPositions = new HashSet<Vector2Int>();
+    public HashSet<Vector2Int> enemyPositions = new HashSet<Vector2Int>();
     public List<GameObject> propObjectReferences = new List<GameObject>();
 
     public Room(BoundsInt bounds, HashSet<Vector2Int> floorPositions)
