@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
@@ -6,11 +7,14 @@ using UnityEngine;
 
 public class PlayerAttack : MonoBehaviour
 {
+    [SerializeField] private int maxLinePoints = 50;
+    private float _minPointDistance = 0.0001f;
+    private List<Vector3> _linePositions;
+    
     [SerializeField] private Animator charAnimator;
     private LineRenderer _line;
     private Vector3 _previousPosition;
     [SerializeField] private Vector3 currentPosition;
-    private Vector3[] _linePositions;
     private bool _isDrawing;
     private bool _previousHasRun;
     private Camera _mainCamera;
@@ -23,7 +27,6 @@ public class PlayerAttack : MonoBehaviour
     // Distance of line from camera
     [SerializeField] private float lineZSpace = 2.5f;
     // Minimum distance before adding a Line Renderer position
-    private float minimumLineDrawingDistance = 0.001f;
 
 
 
@@ -31,7 +34,8 @@ public class PlayerAttack : MonoBehaviour
     {
         _mainCamera = Camera.main;
         _line = GetComponent<LineRenderer>();
-        _line.positionCount = 1;
+        _line.positionCount = 0;
+        _linePositions = new  List<Vector3>();
         _previousPosition = transform.position;
     }
 
@@ -62,20 +66,13 @@ public class PlayerAttack : MonoBehaviour
         if (Input.GetMouseButtonUp(0))
         {
             RaycastFromLinePoints();
-            //put the points on the surface
-            /* Vector3[] groundPoints3D = new Vector3[line.positionCount];
-             for (int i = 0; i < line.positionCount; i++)
-             {
-                 groundPoints3D[i] = ProjectToGround(line.GetPosition(i));
-                 //line.SetPosition(i, ProjectToGround(line.GetPosition(i)));
-             }
-             EnemyManager.Instance?.CheckLinedrawHit(groundPoints3D);
-             groundPoints3D = Array.Empty<Vector3>();*/
+            
             _isDrawing = false;
 
             //CalculateDrawnCentroid();
 
             _line.positionCount = 0;
+            _linePositions = new List<Vector3>();
 
             InvokeDraw();
             _previousHasRun = false;
@@ -103,55 +100,53 @@ public class PlayerAttack : MonoBehaviour
     // Draw the line based on current mouse position
     private void Draw()
     {
-        if (_previousPosition == transform.position)
+        float distance = 0;
+        // Only add if moved enough
+        if (_linePositions.Count == 0)
         {
-            _line.SetPosition(0, currentPosition);
+            AddPoint(currentPosition);
+            
         }
-        float distance = Vector3.Distance(currentPosition, _previousPosition);
-
-        if (distance > minimumLineDrawingDistance)
+        else
         {
-            _line.positionCount++;
-            _line.SetPosition(_line.positionCount - 1, currentPosition);
-            _previousPosition = currentPosition;
+            distance = Vector3.Distance(currentPosition, _linePositions[_linePositions.Count - 1]);
+            if (distance > _minPointDistance)
+            {
+                AddPoint(currentPosition);
+            }
         }
 
+        // Update the LineRenderer
+        _line.positionCount = _linePositions.Count;
+        _line.SetPositions(_linePositions.ToArray());
+      
         speed = distance / Time.deltaTime;
         drawSpeed?.Invoke(speed);
+    }
+    
+    void AddPoint(Vector3 point)
+    {
+        // Add new point
+        _linePositions.Add(point);
+
+        // If we exceed max points, remove the oldest
+        if (_linePositions.Count > maxLinePoints)
+        {
+            _linePositions.RemoveAt(0); // Removes first element
+        }
     }
 
     private void RaycastFromLinePoints()
     {
-        _linePositions = new Vector3[_line.positionCount];
-        _line.GetPositions(_linePositions);
+        //_linePositions = new Vector3[_line.positionCount];
+        //_line.GetPositions(_linePositions);
         foreach (Vector3 pos in _linePositions)
         {
             CreateRaycastHit(pos);
         }
     }
 
-    // Find the centre of all the points created by the line renderer
-    private void CalculateDrawnCentroid()
-    {
-        _linePositions = new Vector3[_line.positionCount];
-        _line.GetPositions(_linePositions);
-
-        int arrayLength = _linePositions.Length;
-
-        Vector3 totalVectorAmount = new Vector3();
-        Vector3 centroid;
-
-        for (int i = 0; i < arrayLength; i++)
-        {
-            Vector3 position = _linePositions[i];
-
-            totalVectorAmount = totalVectorAmount + position;
-        }
-
-        centroid = totalVectorAmount / arrayLength;
-
-        CreateRaycastHit(centroid);
-    }
+   
 
     // Create a raycast from centroid. Use this to detect enemies
     private void CreateRaycastHit(Vector3 pos)
