@@ -53700,6 +53700,32 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1545477192}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &963476186 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8164078558771037576, guid: 92845db38f4810044a4a00c62c2a8c8f, type: 3}
+  m_PrefabInstance: {fileID: 966844169}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &963476188
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 963476186}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.9652643, y: 0.9, z: 0.8054942}
+  m_Center: {x: 0.028706074, y: 0.45, z: -0.017252862}
 --- !u!1001 &963567062
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -53988,7 +54014,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8164078558771037576, guid: 92845db38f4810044a4a00c62c2a8c8f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 963476188}
   m_SourcePrefab: {fileID: 100100000, guid: 92845db38f4810044a4a00c62c2a8c8f, type: 3}
 --- !u!1 &967265809
 GameObject:
@@ -141549,6 +141578,10 @@ PrefabInstance:
       propertyPath: 'hearts.Array.data[4]'
       value: 
       objectReference: {fileID: 1680940283}
+    - target: {fileID: 1769197628873307479, guid: b939e24b595e4c74abd8f8b7c6dd6d87, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2935746634306085163, guid: b939e24b595e4c74abd8f8b7c6dd6d87, type: 3}
       propertyPath: m_LocalPosition.x
       value: -12.22
