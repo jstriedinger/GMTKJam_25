@@ -53,7 +53,7 @@ MonoBehaviour:
   spawnIndicator: {fileID: 3190416370471595497, guid: 2d03588e23c7aa4428094eca3e7acc80, type: 3}
   goalIndicator: {fileID: 4104011358831222381, guid: 56a72de05318bb648901a7f92795d87d, type: 3}
   dungeonData: {fileID: 7178165423559169430}
-  spawnEnemies: 0
+  spawnEnemies: 1
   spawnIndicators: 0
 --- !u!1 &1686950631240425279
 GameObject:
@@ -592,6 +592,22 @@ MonoBehaviour:
     - {fileID: 11400000, guid: c53f4ce7db98e0c41a6d74fcba3fb9dd, type: 2}
     - {fileID: 11400000, guid: ab21310b2bfc4d74b9dfbf212fb8f044, type: 2}
     - {fileID: 11400000, guid: f8350dfcb9c1d2447bb917e8e26020ba, type: 2}
+  - dungeonType: 3
+    props:
+    - {fileID: 11400000, guid: 93d378d655fdf10489a1e28352b0b0f1, type: 2}
+    - {fileID: 11400000, guid: de964a40fe1ac78459510aa1fad19143, type: 2}
+    - {fileID: 11400000, guid: 89b8196a549e532458eedf06be0d011f, type: 2}
+    - {fileID: 11400000, guid: 990c78ba6686abf42890cff7ab9f4b65, type: 2}
+    - {fileID: 11400000, guid: bef87ec5f40625e468b1cc98f8477b66, type: 2}
+    - {fileID: 11400000, guid: 68aba96bb3808b7458b3313257c67408, type: 2}
+    - {fileID: 11400000, guid: fa19ec3f4cf6df544a416be11b6ebf71, type: 2}
+    - {fileID: 11400000, guid: 6eec6d5fc72d2a14c9c218e2cd51fad5, type: 2}
+    - {fileID: 11400000, guid: 65efb3a2d3a77a2448ac69c319de5528, type: 2}
+    - {fileID: 11400000, guid: 5087e54d607c35a4f94b4cf53e351d9f, type: 2}
+    - {fileID: 11400000, guid: 0aa8d1c7bf0f2fc4f8df429740293a50, type: 2}
+    - {fileID: 11400000, guid: 2f621362a69dd2949878b1ace7c4e762, type: 2}
+    - {fileID: 11400000, guid: 365dfc4674d8b164e889e0982f86b7e0, type: 2}
+    - {fileID: 11400000, guid: 075a988c0f39cd749b90ad9fcd9e0d3c, type: 2}
   dungeonData: {fileID: 7178165423559169430}
 --- !u!1 &8646161615607377568
 GameObject:
