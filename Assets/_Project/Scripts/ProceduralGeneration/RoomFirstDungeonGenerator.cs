@@ -11,6 +11,7 @@ public class RoomFirstDungeonGenerator : CorridorDungeonGenerator
     [SerializeField] public GameObject goalIndicator;
     [SerializeField] private Dungeon dungeonData;
     [SerializeField] protected bool spawnEnemies = true;
+    [SerializeField] protected bool spawnIndicators = false;
 
     // Fill holes that are fully surrounded, or surrounded by at least 3 floor tiles
     private static HashSet<int> shouldFillHole = new HashSet<int>
@@ -123,8 +124,11 @@ public class RoomFirstDungeonGenerator : CorridorDungeonGenerator
         dungeonData.spawnPosition = new Vector3Int(startRoomCenter.x, 0, startRoomCenter.y);
         dungeonData.instrumentPosition = new Vector3Int(goalRoomCenter.x, 0, goalRoomCenter.y);
 
-        Instantiate(spawnIndicator, dungeonData.spawnPosition, Quaternion.identity, levelParent);
-        Instantiate(goalIndicator, new Vector3Int(goalRoomCenter.x, 0, goalRoomCenter.y), Quaternion.identity, levelParent);
+        if (spawnIndicators)
+        {
+            Instantiate(spawnIndicator, dungeonData.spawnPosition, Quaternion.identity, levelParent);
+            Instantiate(goalIndicator, new Vector3Int(goalRoomCenter.x, 0, goalRoomCenter.y), Quaternion.identity, levelParent);
+        }
     }
 
     private List<Room> CreateRoomsRandomly(List<BoundsInt> roomList)

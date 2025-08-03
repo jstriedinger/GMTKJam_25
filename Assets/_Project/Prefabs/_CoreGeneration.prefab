@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6a80c5ca8f28944894ef386a13416aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  generationParams: {fileID: 11400000, guid: a62bc2d37fb8c414d84bc9eb0aa4c735, type: 2}
+  generationParams: {fileID: 11400000, guid: 9297ad20d69d0f047a38bb540b0ccc57, type: 2}
   tilemapVisualizer: {fileID: 5825446196734446074}
   startPosition: {x: -40, y: -40}
   propsManager: {fileID: 8996465988535915159}
@@ -53,7 +53,7 @@ MonoBehaviour:
   spawnIndicator: {fileID: 3190416370471595497, guid: 2d03588e23c7aa4428094eca3e7acc80, type: 3}
   goalIndicator: {fileID: 4104011358831222381, guid: 56a72de05318bb648901a7f92795d87d, type: 3}
   dungeonData: {fileID: 7178165423559169430}
-  spawnEnemies: 1
+  spawnEnemies: 0
 --- !u!1 &1686950631240425279
 GameObject:
   m_ObjectHideFlags: 0
@@ -166,7 +166,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cac00b59801f3ff4d9f8f9009ebf8ed1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dungeonType: 0
+  dungeonType: 1
   levelParent: {fileID: 8998975280569088247}
   dungeonPieces:
   - dungeonType: 0
@@ -218,23 +218,43 @@ MonoBehaviour:
       tile: {fileID: 1429474984928554407, guid: 3865477c520a9464dae90b211dbed26a, type: 3}
   - dungeonType: 1
     floorTiles_1x1:
+    - weight: 3
+      tile: {fileID: 2518787066814607748, guid: 97ccbfebdd73ebb4e82b53088023e115, type: 3}
     - weight: 1
-      tile: {fileID: 7641770155314120702, guid: 0a99a64e95ea04143a575270e2bf328f, type: 3}
+      tile: {fileID: 7965966307812606033, guid: 52871f5dcc261f74f99836a096b13a3c, type: 3}
+    - weight: 5
+      tile: {fileID: 235012632420822668, guid: ff84484aa8481f84292dc82b54eac4ab, type: 3}
+    - weight: 1
+      tile: {fileID: 8537734915948281083, guid: b8d8d2d605ab2ae498fa8362d1f4066f, type: 3}
+    - weight: 1
+      tile: {fileID: 6658380205160490733, guid: 390d36d8e56c6d64dbb52bca3c238d21, type: 3}
+    - weight: 3
+      tile: {fileID: 2811269851439628044, guid: b3598049dfab7584ab138ac7c4c49a51, type: 3}
     fullWallTiles:
     - weight: 1
-      tile: {fileID: 4183029148496454364, guid: 50cb3b10f50406646b282931df5309c1, type: 3}
+      tile: {fileID: 239781871628059, guid: 4c90f5cb15d0a374aace806b5fd9619d, type: 3}
     northWallTiles_1x1:
     - weight: 1
-      tile: {fileID: 1143682571410662907, guid: 83f5275e3f10d1c4fa87f0ec925259aa, type: 3}
+      tile: {fileID: 4944646337698845007, guid: fa9ee42a80f909343a9d0e10fa28217e, type: 3}
+    - weight: 1
+      tile: {fileID: 1136553099392518405, guid: 7cb7fe48f79e3984ea3fce318d133a95, type: 3}
+    - weight: 1
+      tile: {fileID: 2358267437480169899, guid: d2ffc30975f6b2b4fafa0fb8e29b799e, type: 3}
+    - weight: 1
+      tile: {fileID: 5115601703115649674, guid: e32d61885ead92648a2854e2fc9b47a6, type: 3}
     southWallTiles_1x1:
     - weight: 1
-      tile: {fileID: 1143682571410662907, guid: 83f5275e3f10d1c4fa87f0ec925259aa, type: 3}
+      tile: {fileID: 1136553099392518405, guid: 7cb7fe48f79e3984ea3fce318d133a95, type: 3}
+    - weight: 1
+      tile: {fileID: 2358267437480169899, guid: d2ffc30975f6b2b4fafa0fb8e29b799e, type: 3}
     northWestCornerWallTiles:
     - weight: 1
-      tile: {fileID: 311993554421559734, guid: 92e9b08f75be6f44e9be7c872ce1aeb6, type: 3}
+      tile: {fileID: 4307948755714456888, guid: 50712f7eea97baa49bb87fa99fa7f5c1, type: 3}
     northWestPillarWallTiles:
     - weight: 1
-      tile: {fileID: 6426251766541983667, guid: 150c094dc29539440b74301c45a2e9ca, type: 3}
+      tile: {fileID: 8013640996670368020, guid: 746120399d334fa49a8a33e2ed79fd0a, type: 3}
+    - weight: 1
+      tile: {fileID: 1081310972710630295, guid: 7476986bd35cbd94a95eba33ed866b4c, type: 3}
   - dungeonType: 2
     floorTiles_1x1:
     - weight: 1
@@ -452,6 +472,28 @@ MonoBehaviour:
     - {fileID: 11400000, guid: eb8658c7bfc3eab439fb96e8d853c08a, type: 2}
     - {fileID: 11400000, guid: 441852d9a688a6c4f9fbeae9366767e2, type: 2}
     - {fileID: 11400000, guid: 82508d5cc9920d347800ede57dfe0c43, type: 2}
+  - dungeonType: 1
+    props:
+    - {fileID: 11400000, guid: a97244e0edde8e44f8d0aab755e6d8b3, type: 2}
+    - {fileID: 11400000, guid: a6a91e44f667cb641946c38b84031a03, type: 2}
+    - {fileID: 11400000, guid: 4d478110c28b6c34d9cdd590d6243123, type: 2}
+    - {fileID: 11400000, guid: d6344230ad6849d4ca0c6926a58d91ac, type: 2}
+    - {fileID: 11400000, guid: 5b8559a6655dc5047a20d49e5f9f72dd, type: 2}
+    - {fileID: 11400000, guid: 9e3a7d0352f4ae24fa7e45f886660826, type: 2}
+    - {fileID: 11400000, guid: c02f8a7cbe78b434f9d6d6c4d6d1920a, type: 2}
+    - {fileID: 11400000, guid: 7a8ef86bee9aa7643a9df52d525fe0ce, type: 2}
+    - {fileID: 11400000, guid: e267f515173b67941bdc7dae17116b57, type: 2}
+    - {fileID: 11400000, guid: 66fcf9da43a21e1489b9f95f19c97143, type: 2}
+    - {fileID: 11400000, guid: 33a1616a9e5a87245ba272e15bb46584, type: 2}
+    - {fileID: 11400000, guid: 485b9f8af1909004ead32b6e8f33d5a0, type: 2}
+    - {fileID: 11400000, guid: c2b08996686e6194c8fdbe518a470e56, type: 2}
+    - {fileID: 11400000, guid: 12431bf2fc85ee942874008b0d7168fc, type: 2}
+    - {fileID: 11400000, guid: 19ae5fe9cd8f82341bf760db024e1f99, type: 2}
+    - {fileID: 11400000, guid: 157d94a55bf9a0e418419c9d9ca0f7a9, type: 2}
+    - {fileID: 11400000, guid: cf79b733a2be72645b1db7a8238f2a91, type: 2}
+    - {fileID: 11400000, guid: e12fa34eef7abc84e9253a3ba8814648, type: 2}
+    - {fileID: 11400000, guid: c3df85141aca3254584b2174d7f71e55, type: 2}
+    - {fileID: 11400000, guid: 27a64d9bc852b6f41ae5c7abaa5bea71, type: 2}
   dungeonData: {fileID: 7178165423559169430}
 --- !u!1 &8646161615607377568
 GameObject:
@@ -497,5 +539,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5971a6c49b3c37848b11ad7227140c30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnPosition: {x: -22, y: 0, z: 4}
-  instrumentPosition: {x: 10, y: 0, z: -14}
+  spawnPosition: {x: -30, y: 0, z: -26}
+  instrumentPosition: {x: 48, y: 0, z: 42}

@@ -42,7 +42,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4323846079314253699}
   m_Layer: 0
-  m_Name: Forest-NorthWestPillarWall-var1
+  m_Name: Forest-Decor-1x1-var19
   m_TagString: Untagged
   m_Icon: {fileID: 2488908585195742037, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -75,7 +75,7 @@ GameObject:
   - component: {fileID: 740991952517968597}
   - component: {fileID: 2494896463266679711}
   - component: {fileID: 1421480777849286411}
-  - component: {fileID: 4852258841620858591}
+  - component: {fileID: 7544937840822084484}
   m_Layer: 0
   m_Name: default
   m_TagString: Untagged
@@ -92,7 +92,7 @@ Transform:
   m_GameObject: {fileID: 8430359443029336558}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0, y: 0, z: 0}
+  m_LocalPosition: {x: 0.326, y: 0, z: -0.289}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -152,7 +152,7 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &4852258841620858591
+--- !u!65 &7544937840822084484
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -171,5 +171,5 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 3.790068, z: 1}
+  m_Size: {x: 0.5, y: 3.790068, z: 0.5}
   m_Center: {x: -0.30000055, y: 1.895034, z: 0.3}
