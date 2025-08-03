@@ -5,10 +5,12 @@ using UnityEngine;
 public class RoomFirstDungeonGenerator : CorridorDungeonGenerator
 {
     [SerializeField] PropsManager propsManager;
+    [SerializeField] EnemySpawnManager enemySpawnManager;
     [SerializeField] private Transform levelParent;
     [SerializeField] public GameObject spawnIndicator;
     [SerializeField] public GameObject goalIndicator;
     [SerializeField] private Dungeon dungeonData;
+    [SerializeField] protected bool spawnEnemies = true;
 
     // Fill holes that are fully surrounded, or surrounded by at least 3 floor tiles
     private static HashSet<int> shouldFillHole = new HashSet<int>
@@ -20,7 +22,7 @@ public class RoomFirstDungeonGenerator : CorridorDungeonGenerator
         0b1111,
     };
 
-    protected override void RunProceduralGeneration()
+    protected override void RunProceduralGeneration(bool ranFromEditor)
     {
         dungeonData.Clear();
 
@@ -40,7 +42,10 @@ public class RoomFirstDungeonGenerator : CorridorDungeonGenerator
             CreateRooms(dungeonData, true);
         }
 
-        Debug.Log(string.Format("Tries: {0}", tries));
+        if (spawnEnemies && !ranFromEditor)
+        {
+            enemySpawnManager.ProcessRooms(generationParams.dungeonType);
+        }
     }
 
     private bool CreateRooms(Dungeon dungeonData, bool ignoreConstraints = false)

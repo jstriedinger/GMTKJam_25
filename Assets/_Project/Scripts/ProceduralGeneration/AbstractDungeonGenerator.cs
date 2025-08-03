@@ -6,11 +6,11 @@ public abstract class AbstractDungeonGenerator : MonoBehaviour
     [SerializeField] protected AbstractTilemapVisualizer tilemapVisualizer = null;
     [SerializeField] protected Vector2Int startPosition = Vector2Int.zero;
 
-    public void GenerateDungeon()
+    public void GenerateDungeon(bool ranFromEditor = false)
     {
         tilemapVisualizer.dungeonType = generationParams.dungeonType;
         tilemapVisualizer.Clear();
-        RunProceduralGeneration();
+        RunProceduralGeneration(ranFromEditor);
     }
 
     public void ClearDungeon()
@@ -23,5 +23,5 @@ public abstract class AbstractDungeonGenerator : MonoBehaviour
         tilemapVisualizer.ClearEditor();
     }
 
-    protected abstract void RunProceduralGeneration();
+    protected abstract void RunProceduralGeneration(bool ranFromEditor);
 }

@@ -48,10 +48,12 @@ MonoBehaviour:
   tilemapVisualizer: {fileID: 5825446196734446074}
   startPosition: {x: -40, y: -40}
   propsManager: {fileID: 8996465988535915159}
+  enemySpawnManager: {fileID: 7760749265823210680}
   levelParent: {fileID: 8998975280569088247}
   spawnIndicator: {fileID: 3190416370471595497, guid: 2d03588e23c7aa4428094eca3e7acc80, type: 3}
   goalIndicator: {fileID: 4104011358831222381, guid: 56a72de05318bb648901a7f92795d87d, type: 3}
   dungeonData: {fileID: 7178165423559169430}
+  spawnEnemies: 1
 --- !u!1 &1686950631240425279
 GameObject:
   m_ObjectHideFlags: 0
@@ -84,6 +86,7 @@ Transform:
   - {fileID: 5200113767948879642}
   - {fileID: 255694024040801715}
   - {fileID: 7988593388063810916}
+  - {fileID: 1388589935760619265}
   - {fileID: 8998975280569088247}
   - {fileID: 3963182781760832186}
   m_Father: {fileID: 0}
@@ -235,6 +238,77 @@ MonoBehaviour:
     northWestCornerWallTiles: []
     northWestPillarWallTiles: []
   generateSouthWalls: 1
+--- !u!1 &5351496628272099681
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1388589935760619265}
+  - component: {fileID: 7760749265823210680}
+  m_Layer: 0
+  m_Name: EnemySpawnManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1388589935760619265
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5351496628272099681}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -16.930227, y: 1.2949535, z: 11.4135475}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1789754728052579095}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7760749265823210680
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5351496628272099681}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d74f4dafa43d73341873aa2babd9d76e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  basicShadow: {fileID: 638938620329745775, guid: 78f7985fa0920064bad50aaba727bfd8, type: 3}
+  fasterShadow: {fileID: 638938620329745775, guid: be9e88360eaad144189a0d5cd86ed9d8, type: 3}
+  helplessScaredShadow: {fileID: 638938620329745775, guid: 06fae01b84b380e4f919fa279e64c56c, type: 3}
+  defensiveRangedShadow: {fileID: 638938620329745775, guid: a7c3685eee1efbe46abc346f90f39b02, type: 3}
+  dungeonData: {fileID: 7178165423559169430}
+  levelParent: {fileID: 8998975280569088247}
+  allDungeonEnemySettings:
+  - dungeonType: 0
+    roomSpawnRules:
+    - spawnRules: []
+    - spawnRules:
+      - enemyType: 0
+        minEnemiesInRoom: 1
+        maxEnemiesInRoom: 2
+        damage: 1
+        health: 1
+      - enemyType: 1
+        minEnemiesInRoom: 0
+        maxEnemiesInRoom: 1
+        damage: 1
+        health: 1
+    - spawnRules:
+      - enemyType: 3
+        minEnemiesInRoom: 3
+        maxEnemiesInRoom: 6
+        damage: 1
+        health: 1
 --- !u!1 &7975768280998045541
 GameObject:
   m_ObjectHideFlags: 0
