@@ -33,6 +33,9 @@ public class GameManager : MonoBehaviour
     [Header("Portals")]
     [SerializeField] private List<Portal> _portals;
 
+    public bool unlockAllPortals = false;
+    public int levelOverride = 0;
+
     private int level;
 
     private AbstractDungeonGenerator lastGenerator = null;
@@ -47,6 +50,19 @@ public class GameManager : MonoBehaviour
         else
         {
             Destroy(gameObject);
+        }
+    }
+
+    private void Start()
+    {
+        // For testing purposes
+        if (unlockAllPortals)
+        {
+            level = levelOverride;
+            foreach (var portal in _portals)
+            {
+                portal.OpenPortal();
+            }
         }
     }
 

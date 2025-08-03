@@ -23,7 +23,7 @@ public class EnemyProjectile : MonoBehaviour
     {
         if (other.tag == "Player")
         {
-            Health health = other.GetComponent<Health>();
+            HealthPlayer health = other.GetComponent<HealthPlayer>();
             if (health != null)
             {
                 health.TakeDamage(1);

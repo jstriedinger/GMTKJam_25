@@ -6,6 +6,7 @@ public class DungeonGenerationData : ScriptableObject
     public DungeonType dungeonType;
     public SimpleRandomWalkData roomParams;
     public bool widenCorridors = true;
+    [Range(3, 6)] public int widenCorridorSize = 5;
     public int minRoomWidth = 20;
     public int minRoomHeight = 20;
     public int dungeonWidth = 120;

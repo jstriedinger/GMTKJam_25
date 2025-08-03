@@ -84,7 +84,7 @@ public class RoomFirstDungeonGenerator : CorridorDungeonGenerator
             List<List<Vector2Int>> corridors = ConnectRooms(rooms, floor);
             if (generationParams.widenCorridors)
             {
-                WidenCorridors(floor, corridors);
+                WidenCorridors(floor, corridors, generationParams.widenCorridorSize);
             }
         }
 
@@ -101,24 +101,38 @@ public class RoomFirstDungeonGenerator : CorridorDungeonGenerator
     private void FindAndSpawnStartAndGoal(Dungeon dungeonData, List<Room> rooms)
     {
         Vector2Int startRoomCenter = rooms[0].center;
+        Room startRoom = null;
         for (int i = 1; i < rooms.Count; ++i)
         {
             if (rooms[i].center.x < startRoomCenter.x)
             {
+                startRoom = rooms[i];
                 startRoomCenter = rooms[i].center;
             }
         }
 
+        if (startRoom != null )
+        {
+            startRoom.isSpawn = true;
+        }
+
         float maxDistance = 0;
         Vector2Int goalRoomCenter = startRoomCenter;
+        Room goalRoom = null;
         for (int i = 0; i < rooms.Count; ++i)
         {
             float distance = Vector2Int.Distance(rooms[i].center, startRoomCenter);
             if (distance > maxDistance)
             {
                 maxDistance = distance;
+                goalRoom = rooms[i];
                 goalRoomCenter = rooms[i].center;
             }
+        }
+
+        if (goalRoom != null)
+        {
+            goalRoom.isGoal = true;
         }
 
         dungeonData.spawnPosition = new Vector3Int(startRoomCenter.x, 0, startRoomCenter.y);

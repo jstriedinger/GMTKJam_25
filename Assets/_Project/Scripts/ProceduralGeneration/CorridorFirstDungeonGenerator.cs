@@ -21,7 +21,7 @@ public class CorridorFirstDungeonGenerator : CorridorDungeonGenerator
         CreateRooms(floorPositions, potentialRoomPositions);
         if (generationParams.widenCorridors)
         {
-            WidenCorridors(floorPositions, corridors);
+            WidenCorridors(floorPositions, corridors, generationParams.widenCorridorSize);
         }
 
         tilemapVisualizer.PaintFloorTiles(floorPositions);

@@ -48,6 +48,12 @@ public class EnemySpawnManager : MonoBehaviour
 
         foreach (Room room in dungeonData.rooms)
         {
+            // Don't spawn enemies in spawn room
+            if (room.isSpawn)
+            {
+                continue;
+            }
+
             PlaceEnemies(room, dungeonSettings.roomSpawnRules, room.innerTiles);
         }
     }

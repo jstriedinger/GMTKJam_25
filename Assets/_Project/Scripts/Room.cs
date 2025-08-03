@@ -10,6 +10,8 @@ public class Room
     public HashSet<Vector2Int> propPositions = new HashSet<Vector2Int>();
     public HashSet<Vector2Int> enemyPositions = new HashSet<Vector2Int>();
     public List<GameObject> propObjectReferences = new List<GameObject>();
+    public bool isSpawn = false;
+    public bool isGoal = false;
 
     public Room(BoundsInt bounds, HashSet<Vector2Int> floorPositions)
     {

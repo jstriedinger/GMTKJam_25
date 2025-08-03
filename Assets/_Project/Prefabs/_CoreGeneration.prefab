@@ -430,11 +430,16 @@ MonoBehaviour:
   allDungeonEnemySettings:
   - dungeonType: 0
     roomSpawnRules:
-    - spawnRules: []
+    - spawnRules:
+      - enemyType: 2
+        minEnemiesInRoom: 2
+        maxEnemiesInRoom: 4
+        damage: 1
+        health: 1
     - spawnRules:
       - enemyType: 0
-        minEnemiesInRoom: 1
-        maxEnemiesInRoom: 2
+        minEnemiesInRoom: 2
+        maxEnemiesInRoom: 3
         damage: 1
         health: 1
       - enemyType: 2
@@ -442,54 +447,114 @@ MonoBehaviour:
         maxEnemiesInRoom: 1
         damage: 1
         health: 1
+  - dungeonType: 1
+    roomSpawnRules:
     - spawnRules:
       - enemyType: 3
+        minEnemiesInRoom: 1
+        maxEnemiesInRoom: 1
+        damage: 1
+        health: 2
+    - spawnRules:
+      - enemyType: 0
+        minEnemiesInRoom: 2
+        maxEnemiesInRoom: 2
+        damage: 1
+        health: 2
+      - enemyType: 1
+        minEnemiesInRoom: 1
+        maxEnemiesInRoom: 2
+        damage: 1
+        health: 2
+    - spawnRules:
+      - enemyType: 0
+        minEnemiesInRoom: 4
+        maxEnemiesInRoom: 4
+        damage: 1
+        health: 2
+    - spawnRules:
+      - enemyType: 1
+        minEnemiesInRoom: 2
+        maxEnemiesInRoom: 3
+        damage: 1
+        health: 2
+      - enemyType: 3
+        minEnemiesInRoom: 1
+        maxEnemiesInRoom: 1
+        damage: 1
+        health: 2
+  - dungeonType: 2
+    roomSpawnRules:
+    - spawnRules:
+      - enemyType: 1
         minEnemiesInRoom: 3
         maxEnemiesInRoom: 6
         damage: 1
-        health: 1
-  - dungeonType: 1
-    roomSpawnRules:
-    - spawnRules: []
+        health: 2
     - spawnRules:
       - enemyType: 0
-        minEnemiesInRoom: 1
-        maxEnemiesInRoom: 2
+        minEnemiesInRoom: 3
+        maxEnemiesInRoom: 4
         damage: 1
-        health: 1
-      - enemyType: 1
-        minEnemiesInRoom: 0
-        maxEnemiesInRoom: 1
-        damage: 1
-        health: 1
-  - dungeonType: 2
-    roomSpawnRules:
-    - spawnRules: []
-    - spawnRules:
-      - enemyType: 0
-        minEnemiesInRoom: 1
-        maxEnemiesInRoom: 2
-        damage: 1
-        health: 1
+        health: 3
       - enemyType: 3
-        minEnemiesInRoom: 0
-        maxEnemiesInRoom: 1
+        minEnemiesInRoom: 2
+        maxEnemiesInRoom: 2
         damage: 1
-        health: 1
+        health: 2
+    - spawnRules:
+      - enemyType: 3
+        minEnemiesInRoom: 3
+        maxEnemiesInRoom: 5
+        damage: 1
+        health: 2
+    - spawnRules:
+      - enemyType: 3
+        minEnemiesInRoom: 2
+        maxEnemiesInRoom: 3
+        damage: 1
+        health: 2
+      - enemyType: 1
+        minEnemiesInRoom: 2
+        maxEnemiesInRoom: 3
+        damage: 1
+        health: 2
   - dungeonType: 3
     roomSpawnRules:
-    - spawnRules: []
+    - spawnRules:
+      - enemyType: 1
+        minEnemiesInRoom: 4
+        maxEnemiesInRoom: 6
+        damage: 1
+        health: 3
+    - spawnRules:
+      - enemyType: 0
+        minEnemiesInRoom: 4
+        maxEnemiesInRoom: 6
+        damage: 1
+        health: 3
+      - enemyType: 3
+        minEnemiesInRoom: 2
+        maxEnemiesInRoom: 3
+        damage: 1
+        health: 2
     - spawnRules:
       - enemyType: 3
-        minEnemiesInRoom: 1
-        maxEnemiesInRoom: 2
+        minEnemiesInRoom: 4
+        maxEnemiesInRoom: 5
         damage: 1
-        health: 1
+        health: 3
+    - spawnRules:
+      - enemyType: 3
+        minEnemiesInRoom: 3
+        maxEnemiesInRoom: 4
+        damage: 1
+        health: 3
       - enemyType: 1
-        minEnemiesInRoom: 0
-        maxEnemiesInRoom: 1
+        minEnemiesInRoom: 3
+        maxEnemiesInRoom: 4
         damage: 1
-        health: 1
+        health: 3
 --- !u!1 &7975768280998045541
 GameObject:
   m_ObjectHideFlags: 0
