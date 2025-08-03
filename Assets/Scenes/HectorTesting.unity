@@ -234,12 +234,144 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2213675190196229274, guid: 63beffc12ed1c314683fbf1dad5db03c, type: 3}
       propertyPath: spawnEnemies
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2213675190196229274, guid: 63beffc12ed1c314683fbf1dad5db03c, type: 3}
       propertyPath: generationParams
       value: 
-      objectReference: {fileID: 11400000, guid: a62bc2d37fb8c414d84bc9eb0aa4c735, type: 2}
+      objectReference: {fileID: 11400000, guid: 9297ad20d69d0f047a38bb540b0ccc57, type: 2}
+    - target: {fileID: 5825446196734446074, guid: 63beffc12ed1c314683fbf1dad5db03c, type: 3}
+      propertyPath: dungeonType
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5825446196734446074, guid: 63beffc12ed1c314683fbf1dad5db03c, type: 3}
+      propertyPath: dungeonPieces.Array.data[1].floorTiles_1x1.Array.size
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5825446196734446074, guid: 63beffc12ed1c314683fbf1dad5db03c, type: 3}
+      propertyPath: dungeonPieces.Array.data[1].northWallTiles_1x1.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5825446196734446074, guid: 63beffc12ed1c314683fbf1dad5db03c, type: 3}
+      propertyPath: dungeonPieces.Array.data[1].southWallTiles_1x1.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5825446196734446074, guid: 63beffc12ed1c314683fbf1dad5db03c, type: 3}
+      propertyPath: dungeonPieces.Array.data[1].fullWallTiles.Array.data[0].tile
+      value: 
+      objectReference: {fileID: 239781871628059, guid: 4c90f5cb15d0a374aace806b5fd9619d, type: 3}
+    - target: {fileID: 5825446196734446074, guid: 63beffc12ed1c314683fbf1dad5db03c, type: 3}
+      propertyPath: dungeonPieces.Array.data[1].floorTiles_1x1.Array.data[0].tile
+      value: 
+      objectReference: {fileID: 2518787066814607748, guid: 97ccbfebdd73ebb4e82b53088023e115, type: 3}
+    - target: {fileID: 5825446196734446074, guid: 63beffc12ed1c314683fbf1dad5db03c, type: 3}
+      propertyPath: dungeonPieces.Array.data[1].floorTiles_1x1.Array.data[1].tile
+      value: 
+      objectReference: {fileID: 7965966307812606033, guid: 52871f5dcc261f74f99836a096b13a3c, type: 3}
+    - target: {fileID: 5825446196734446074, guid: 63beffc12ed1c314683fbf1dad5db03c, type: 3}
+      propertyPath: dungeonPieces.Array.data[1].floorTiles_1x1.Array.data[2].tile
+      value: 
+      objectReference: {fileID: 235012632420822668, guid: ff84484aa8481f84292dc82b54eac4ab, type: 3}
+    - target: {fileID: 5825446196734446074, guid: 63beffc12ed1c314683fbf1dad5db03c, type: 3}
+      propertyPath: dungeonPieces.Array.data[1].floorTiles_1x1.Array.data[3].tile
+      value: 
+      objectReference: {fileID: 8537734915948281083, guid: b8d8d2d605ab2ae498fa8362d1f4066f, type: 3}
+    - target: {fileID: 5825446196734446074, guid: 63beffc12ed1c314683fbf1dad5db03c, type: 3}
+      propertyPath: dungeonPieces.Array.data[1].floorTiles_1x1.Array.data[4].tile
+      value: 
+      objectReference: {fileID: 6658380205160490733, guid: 390d36d8e56c6d64dbb52bca3c238d21, type: 3}
+    - target: {fileID: 5825446196734446074, guid: 63beffc12ed1c314683fbf1dad5db03c, type: 3}
+      propertyPath: dungeonPieces.Array.data[1].floorTiles_1x1.Array.data[5].tile
+      value: 
+      objectReference: {fileID: 2811269851439628044, guid: b3598049dfab7584ab138ac7c4c49a51, type: 3}
+    - target: {fileID: 5825446196734446074, guid: 63beffc12ed1c314683fbf1dad5db03c, type: 3}
+      propertyPath: dungeonPieces.Array.data[1].floorTiles_1x1.Array.data[0].weight
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5825446196734446074, guid: 63beffc12ed1c314683fbf1dad5db03c, type: 3}
+      propertyPath: dungeonPieces.Array.data[1].floorTiles_1x1.Array.data[1].weight
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5825446196734446074, guid: 63beffc12ed1c314683fbf1dad5db03c, type: 3}
+      propertyPath: dungeonPieces.Array.data[1].floorTiles_1x1.Array.data[2].weight
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5825446196734446074, guid: 63beffc12ed1c314683fbf1dad5db03c, type: 3}
+      propertyPath: dungeonPieces.Array.data[1].floorTiles_1x1.Array.data[3].weight
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5825446196734446074, guid: 63beffc12ed1c314683fbf1dad5db03c, type: 3}
+      propertyPath: dungeonPieces.Array.data[1].floorTiles_1x1.Array.data[4].weight
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5825446196734446074, guid: 63beffc12ed1c314683fbf1dad5db03c, type: 3}
+      propertyPath: dungeonPieces.Array.data[1].floorTiles_1x1.Array.data[5].weight
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5825446196734446074, guid: 63beffc12ed1c314683fbf1dad5db03c, type: 3}
+      propertyPath: dungeonPieces.Array.data[1].northWestPillarWallTiles.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5825446196734446074, guid: 63beffc12ed1c314683fbf1dad5db03c, type: 3}
+      propertyPath: dungeonPieces.Array.data[1].northWallTiles_1x1.Array.data[0].tile
+      value: 
+      objectReference: {fileID: 4944646337698845007, guid: fa9ee42a80f909343a9d0e10fa28217e, type: 3}
+    - target: {fileID: 5825446196734446074, guid: 63beffc12ed1c314683fbf1dad5db03c, type: 3}
+      propertyPath: dungeonPieces.Array.data[1].northWallTiles_1x1.Array.data[1].tile
+      value: 
+      objectReference: {fileID: 1136553099392518405, guid: 7cb7fe48f79e3984ea3fce318d133a95, type: 3}
+    - target: {fileID: 5825446196734446074, guid: 63beffc12ed1c314683fbf1dad5db03c, type: 3}
+      propertyPath: dungeonPieces.Array.data[1].northWallTiles_1x1.Array.data[2].tile
+      value: 
+      objectReference: {fileID: 2358267437480169899, guid: d2ffc30975f6b2b4fafa0fb8e29b799e, type: 3}
+    - target: {fileID: 5825446196734446074, guid: 63beffc12ed1c314683fbf1dad5db03c, type: 3}
+      propertyPath: dungeonPieces.Array.data[1].northWallTiles_1x1.Array.data[3].tile
+      value: 
+      objectReference: {fileID: 5115601703115649674, guid: e32d61885ead92648a2854e2fc9b47a6, type: 3}
+    - target: {fileID: 5825446196734446074, guid: 63beffc12ed1c314683fbf1dad5db03c, type: 3}
+      propertyPath: dungeonPieces.Array.data[1].southWallTiles_1x1.Array.data[0].tile
+      value: 
+      objectReference: {fileID: 1136553099392518405, guid: 7cb7fe48f79e3984ea3fce318d133a95, type: 3}
+    - target: {fileID: 5825446196734446074, guid: 63beffc12ed1c314683fbf1dad5db03c, type: 3}
+      propertyPath: dungeonPieces.Array.data[1].southWallTiles_1x1.Array.data[1].tile
+      value: 
+      objectReference: {fileID: 2358267437480169899, guid: d2ffc30975f6b2b4fafa0fb8e29b799e, type: 3}
+    - target: {fileID: 5825446196734446074, guid: 63beffc12ed1c314683fbf1dad5db03c, type: 3}
+      propertyPath: dungeonPieces.Array.data[1].northWallTiles_1x1.Array.data[1].weight
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5825446196734446074, guid: 63beffc12ed1c314683fbf1dad5db03c, type: 3}
+      propertyPath: dungeonPieces.Array.data[1].northWallTiles_1x1.Array.data[2].weight
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5825446196734446074, guid: 63beffc12ed1c314683fbf1dad5db03c, type: 3}
+      propertyPath: dungeonPieces.Array.data[1].northWallTiles_1x1.Array.data[3].weight
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5825446196734446074, guid: 63beffc12ed1c314683fbf1dad5db03c, type: 3}
+      propertyPath: dungeonPieces.Array.data[1].southWallTiles_1x1.Array.data[1].weight
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5825446196734446074, guid: 63beffc12ed1c314683fbf1dad5db03c, type: 3}
+      propertyPath: dungeonPieces.Array.data[1].northWestCornerWallTiles.Array.data[0].tile
+      value: 
+      objectReference: {fileID: 4307948755714456888, guid: 50712f7eea97baa49bb87fa99fa7f5c1, type: 3}
+    - target: {fileID: 5825446196734446074, guid: 63beffc12ed1c314683fbf1dad5db03c, type: 3}
+      propertyPath: dungeonPieces.Array.data[1].northWestPillarWallTiles.Array.data[0].tile
+      value: 
+      objectReference: {fileID: 8013640996670368020, guid: 746120399d334fa49a8a33e2ed79fd0a, type: 3}
+    - target: {fileID: 5825446196734446074, guid: 63beffc12ed1c314683fbf1dad5db03c, type: 3}
+      propertyPath: dungeonPieces.Array.data[1].northWestPillarWallTiles.Array.data[1].tile
+      value: 
+      objectReference: {fileID: 1081310972710630295, guid: 7476986bd35cbd94a95eba33ed866b4c, type: 3}
+    - target: {fileID: 5825446196734446074, guid: 63beffc12ed1c314683fbf1dad5db03c, type: 3}
+      propertyPath: dungeonPieces.Array.data[1].northWestPillarWallTiles.Array.data[0].weight
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5825446196734446074, guid: 63beffc12ed1c314683fbf1dad5db03c, type: 3}
+      propertyPath: dungeonPieces.Array.data[1].northWestPillarWallTiles.Array.data[1].weight
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
