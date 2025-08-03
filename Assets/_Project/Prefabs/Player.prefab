@@ -553,6 +553,13 @@ MonoBehaviour:
       Data3: 430176652
       Data4: 2136363122
     Path: event:/Player/Player_Footsteps
+  hitEvent:
+    Guid:
+      Data1: 782624970
+      Data2: 1172870294
+      Data3: 1351904190
+      Data4: -158951173
+    Path: event:/Player/Player_Hit
 --- !u!114 &418469052201816202
 MonoBehaviour:
   m_ObjectHideFlags: 0

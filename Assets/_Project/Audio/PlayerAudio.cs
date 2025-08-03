@@ -5,7 +5,9 @@ using FMOD.Studio;
 public class PlayerAudio : MonoBehaviour
 {
     [SerializeField] EventReference footstepEvent;
+    [SerializeField] EventReference hitEvent;
     private EventInstance footstepInstance;
+    private EventInstance hitInstance;
     private bool isMovingChanged;
 
 
@@ -31,18 +33,29 @@ public class PlayerAudio : MonoBehaviour
         }
 
         isMovingChanged = isMoving;
+    }
 
 
+    private void PlayerTakenDamage()
+    {
+        if (!hitInstance.isValid())
+        {
+            hitInstance = RuntimeManager.CreateInstance(hitEvent);
+        }
+
+        hitInstance.start();
 
     }
 
     private void OnEnable()
     {
         PlayerMovement.isMovingEvent += PlayerFootsteps;
+        HealthPlayer.playerDamageEvent += PlayerTakenDamage;
     }
 
     private void OnDisable()
     {
         PlayerMovement.isMovingEvent -= PlayerFootsteps;
+        HealthPlayer.playerDamageEvent -= PlayerTakenDamage;
     }
 }
