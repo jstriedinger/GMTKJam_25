@@ -39,6 +39,7 @@ public class HealthPlayer : MonoBehaviour
             if (totalHealth <= 0)
             {
                 heart.sprite = noheart;
+                Debug.Log(" Died");
                 Die();
             }
         }

@@ -146,12 +146,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09e58cafaef0b1e4ba28a4e04f5ea76d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  totalHealth: 3
-  first: {fileID: 0}
-  second: {fileID: 0}
-  third: {fileID: 0}
-  fullheart: {fileID: 0}
-  noheart: {fileID: 0}
+  totalHealth: 2
+  hearts:
+  - {fileID: 647835390547018348}
+  - {fileID: 4009242466536712293}
+  fullheart: {fileID: 21300000, guid: fd89d1c78dfa9014996095ffa74a5699, type: 3}
+  noheart: {fileID: 21300000, guid: 2520d5e351147df43bf143cd220a0d1e, type: 3}
 --- !u!114 &8621319637728559254
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -258,14 +258,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 581717630505654563}
     m_Modifications:
-    - target: {fileID: 2247842740589761151, guid: b456963f9e87d6240b31428a8c23c7f2, type: 3}
-      propertyPath: m_PresetInfoIsWorld
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3297621555821037256, guid: b456963f9e87d6240b31428a8c23c7f2, type: 3}
-      propertyPath: m_RenderMode
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 4294262590350276661, guid: b456963f9e87d6240b31428a8c23c7f2, type: 3}
       propertyPath: m_Name
       value: Enemy HealthBar
@@ -303,18 +295,6 @@ PrefabInstance:
       value: 608
       objectReference: {fileID: 0}
     - target: {fileID: 6801559390893281795, guid: b456963f9e87d6240b31428a8c23c7f2, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6801559390893281795, guid: b456963f9e87d6240b31428a8c23c7f2, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6801559390893281795, guid: b456963f9e87d6240b31428a8c23c7f2, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6801559390893281795, guid: b456963f9e87d6240b31428a8c23c7f2, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
@@ -324,7 +304,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6801559390893281795, guid: b456963f9e87d6240b31428a8c23c7f2, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -8.47197
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6801559390893281795, guid: b456963f9e87d6240b31428a8c23c7f2, type: 3}
       propertyPath: m_LocalRotation.w
@@ -344,11 +324,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6801559390893281795, guid: b456963f9e87d6240b31428a8c23c7f2, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 524.5866
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6801559390893281795, guid: b456963f9e87d6240b31428a8c23c7f2, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 303.25
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6801559390893281795, guid: b456963f9e87d6240b31428a8c23c7f2, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -367,6 +347,28 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b456963f9e87d6240b31428a8c23c7f2, type: 3}
+--- !u!114 &647835390547018348 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 81210079781853639, guid: b456963f9e87d6240b31428a8c23c7f2, type: 3}
+  m_PrefabInstance: {fileID: 710749578452753323}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &4009242466536712293 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4503219410554303438, guid: b456963f9e87d6240b31428a8c23c7f2, type: 3}
+  m_PrefabInstance: {fileID: 710749578452753323}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &6322746851208841640 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 6801559390893281795, guid: b456963f9e87d6240b31428a8c23c7f2, type: 3}

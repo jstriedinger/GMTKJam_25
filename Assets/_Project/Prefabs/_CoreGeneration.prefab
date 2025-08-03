@@ -217,26 +217,62 @@ MonoBehaviour:
     - weight: 1
       tile: {fileID: 1429474984928554407, guid: 3865477c520a9464dae90b211dbed26a, type: 3}
   - dungeonType: 1
-    floorTiles_1x1: []
-    fullWallTiles: []
-    northWallTiles_1x1: []
-    southWallTiles_1x1: []
-    northWestCornerWallTiles: []
-    northWestPillarWallTiles: []
+    floorTiles_1x1:
+    - weight: 1
+      tile: {fileID: 7641770155314120702, guid: 0a99a64e95ea04143a575270e2bf328f, type: 3}
+    fullWallTiles:
+    - weight: 1
+      tile: {fileID: 4183029148496454364, guid: 50cb3b10f50406646b282931df5309c1, type: 3}
+    northWallTiles_1x1:
+    - weight: 1
+      tile: {fileID: 1143682571410662907, guid: 83f5275e3f10d1c4fa87f0ec925259aa, type: 3}
+    southWallTiles_1x1:
+    - weight: 1
+      tile: {fileID: 1143682571410662907, guid: 83f5275e3f10d1c4fa87f0ec925259aa, type: 3}
+    northWestCornerWallTiles:
+    - weight: 1
+      tile: {fileID: 311993554421559734, guid: 92e9b08f75be6f44e9be7c872ce1aeb6, type: 3}
+    northWestPillarWallTiles:
+    - weight: 1
+      tile: {fileID: 6426251766541983667, guid: 150c094dc29539440b74301c45a2e9ca, type: 3}
   - dungeonType: 2
-    floorTiles_1x1: []
-    fullWallTiles: []
-    northWallTiles_1x1: []
-    southWallTiles_1x1: []
-    northWestCornerWallTiles: []
-    northWestPillarWallTiles: []
+    floorTiles_1x1:
+    - weight: 1
+      tile: {fileID: 7641770155314120702, guid: 25ac0ee16e1ff064aa22ee1db861b719, type: 3}
+    fullWallTiles:
+    - weight: 1
+      tile: {fileID: 4183029148496454364, guid: 0c6f99c332d615840bd42ac187e5e1b6, type: 3}
+    northWallTiles_1x1:
+    - weight: 1
+      tile: {fileID: 1143682571410662907, guid: 852ad392276d99547b33ad6e827f4872, type: 3}
+    southWallTiles_1x1:
+    - weight: 1
+      tile: {fileID: 1143682571410662907, guid: 852ad392276d99547b33ad6e827f4872, type: 3}
+    northWestCornerWallTiles:
+    - weight: 1
+      tile: {fileID: 311993554421559734, guid: 125a98df6d97dbc4391bf4779f8ec5e3, type: 3}
+    northWestPillarWallTiles:
+    - weight: 1
+      tile: {fileID: 6426251766541983667, guid: 0b6478b7eadfd3a4e89b2deb29f2fac6, type: 3}
   - dungeonType: 3
-    floorTiles_1x1: []
-    fullWallTiles: []
-    northWallTiles_1x1: []
-    southWallTiles_1x1: []
-    northWestCornerWallTiles: []
-    northWestPillarWallTiles: []
+    floorTiles_1x1:
+    - weight: 1
+      tile: {fileID: 7641770155314120702, guid: 81bd0c990ebe76048bd26d48416753cb, type: 3}
+    fullWallTiles:
+    - weight: 1
+      tile: {fileID: 4183029148496454364, guid: c4ea6a15a2e1edb44b892da39d402de3, type: 3}
+    northWallTiles_1x1:
+    - weight: 1
+      tile: {fileID: 1143682571410662907, guid: d7c1e33298f729846b07f97cee0e4339, type: 3}
+    southWallTiles_1x1:
+    - weight: 1
+      tile: {fileID: 1143682571410662907, guid: d7c1e33298f729846b07f97cee0e4339, type: 3}
+    northWestCornerWallTiles:
+    - weight: 1
+      tile: {fileID: 311993554421559734, guid: 561107b02992669499ae5b1ed4d0bf98, type: 3}
+    northWestPillarWallTiles:
+    - weight: 1
+      tile: {fileID: 6426251766541983667, guid: 79aa3c7b2811d6f49954b0791b7b93d7, type: 3}
   generateSouthWalls: 1
 --- !u!1 &5351496628272099681
 GameObject:
@@ -298,7 +334,7 @@ MonoBehaviour:
         maxEnemiesInRoom: 2
         damage: 1
         health: 1
-      - enemyType: 1
+      - enemyType: 2
         minEnemiesInRoom: 0
         maxEnemiesInRoom: 1
         damage: 1
@@ -307,6 +343,48 @@ MonoBehaviour:
       - enemyType: 3
         minEnemiesInRoom: 3
         maxEnemiesInRoom: 6
+        damage: 1
+        health: 1
+  - dungeonType: 1
+    roomSpawnRules:
+    - spawnRules: []
+    - spawnRules:
+      - enemyType: 0
+        minEnemiesInRoom: 1
+        maxEnemiesInRoom: 2
+        damage: 1
+        health: 1
+      - enemyType: 1
+        minEnemiesInRoom: 0
+        maxEnemiesInRoom: 1
+        damage: 1
+        health: 1
+  - dungeonType: 2
+    roomSpawnRules:
+    - spawnRules: []
+    - spawnRules:
+      - enemyType: 0
+        minEnemiesInRoom: 1
+        maxEnemiesInRoom: 2
+        damage: 1
+        health: 1
+      - enemyType: 3
+        minEnemiesInRoom: 0
+        maxEnemiesInRoom: 1
+        damage: 1
+        health: 1
+  - dungeonType: 3
+    roomSpawnRules:
+    - spawnRules: []
+    - spawnRules:
+      - enemyType: 3
+        minEnemiesInRoom: 1
+        maxEnemiesInRoom: 2
+        damage: 1
+        health: 1
+      - enemyType: 1
+        minEnemiesInRoom: 0
+        maxEnemiesInRoom: 1
         damage: 1
         health: 1
 --- !u!1 &7975768280998045541
