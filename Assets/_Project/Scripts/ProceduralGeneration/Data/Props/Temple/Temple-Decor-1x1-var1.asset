@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4c9eaf7c483f52488df00a3a12ad465, type: 3}
+  m_Name: Temple-Decor-1x1-var1
+  m_EditorClassIdentifier: 
+  propData: {fileID: 8882683131028612046, guid: f42b32e95207109468d4d696cd6719eb, type: 3}
+  PropSize: {x: 1, y: 1}
+  PlacementQuantityMin: 0
+  PlacementQuantityMax: 2
+  PlaceAsGroup: 0
+  GroupMinCount: 2
+  GroupMaxCount: 4
+  randomizeRotation: 1
