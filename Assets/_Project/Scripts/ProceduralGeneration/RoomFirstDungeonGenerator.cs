@@ -10,7 +10,7 @@ public class RoomFirstDungeonGenerator : CorridorDungeonGenerator
     [SerializeField] public GameObject spawnIndicator;
     [SerializeField] public GameObject goalIndicator;
     [SerializeField] private Dungeon dungeonData;
-    [SerializeField] protected bool spawnEnemies = false;
+    [SerializeField] protected bool spawnEnemies = true;
 
     // Fill holes that are fully surrounded, or surrounded by at least 3 floor tiles
     private static HashSet<int> shouldFillHole = new HashSet<int>
