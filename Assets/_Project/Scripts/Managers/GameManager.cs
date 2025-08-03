@@ -35,6 +35,8 @@ public class GameManager : MonoBehaviour
 
     private int level;
 
+    private AbstractDungeonGenerator lastGenerator = null;
+
     private void Awake()
     {
         if (Instance == null)
@@ -64,51 +66,42 @@ public class GameManager : MonoBehaviour
         GetCurrentLevel();
         if (GetCurrentLevel() == 0)
         {
-            AbstractDungeonGenerator gen = generators[GetCurrentLevel()];
-            gen.ClearDungeon();
-            gen.GenerateDungeon();
-
-            Dungeon dungeon = dungeons[0];
-            player.transform.position = dungeon.spawnPosition;
-            _instruments[GetCurrentLevel()].transform.position = dungeon.instrumentPosition;
-
+            PrepareDungeonAndSpawn(generators[0], dungeons[0]);
         }
         else if (GetCurrentLevel() == 1 || GetCurrentLevel() == 2)
         {
-            AbstractDungeonGenerator gen = generators[1];
-            gen.ClearDungeon();
-            gen.GenerateDungeon();
-
-            Dungeon dungeon = dungeons[1];
-            player.transform.position = dungeon.spawnPosition;
-            _instruments[GetCurrentLevel()].transform.position = dungeon.instrumentPosition;
+            PrepareDungeonAndSpawn(generators[1], dungeons[1]);
         }
         else if (GetCurrentLevel() == 3 || GetCurrentLevel() == 4 || GetCurrentLevel() == 5)
         {
-            AbstractDungeonGenerator gen = generators[2];
-            gen.ClearDungeon();
-            gen.GenerateDungeon();
-
-            Dungeon dungeon = dungeons[2];
-            player.transform.position = dungeon.spawnPosition;
-            _instruments[GetCurrentLevel()].transform.position = dungeon.instrumentPosition;
+            PrepareDungeonAndSpawn(generators[2], dungeons[2]);
         }
         else if (GetCurrentLevel() == 6 || GetCurrentLevel() == 7 || GetCurrentLevel() == 8)
         {
-            AbstractDungeonGenerator gen = generators[3];
-            gen.ClearDungeon();
-            gen.GenerateDungeon();
-
-            Dungeon dungeon = dungeons[3];
-            player.transform.position = dungeon.spawnPosition;
-            _instruments[GetCurrentLevel()].transform.position = dungeon.instrumentPosition;
+            PrepareDungeonAndSpawn(generators[3], dungeons[3]);
         }
+    }
+
+    private void PrepareDungeonAndSpawn(AbstractDungeonGenerator gen, Dungeon dungeon)
+    {
+        gen.ClearDungeon();
+        gen.GenerateDungeon();
+        lastGenerator = gen;
+
+        player.transform.position = dungeon.spawnPosition;
+        _instruments[GetCurrentLevel()].transform.position = dungeon.instrumentPosition;
     }
 
     public void TeleportPlayerToHub()
     {
         health.RegainHealth();
         player.transform.position = _hubPosition.transform.position;
+
+        if (lastGenerator != null)
+        {
+            lastGenerator.ClearDungeon();
+            lastGenerator = null;
+        }
     }
 
     public void AddInstrument(string instrumentName)
