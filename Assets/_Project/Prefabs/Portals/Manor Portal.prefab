@@ -58,6 +58,206 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 2515629281371955110, guid: d3d726c8f9cdf0b4e9ee956274f7473a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3382177043307336534}
+    - targetCorrespondingSourceObject: {fileID: 2515629281371955110, guid: d3d726c8f9cdf0b4e9ee956274f7473a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2867268347104718068}
+    - targetCorrespondingSourceObject: {fileID: 2515629281371955110, guid: d3d726c8f9cdf0b4e9ee956274f7473a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3656847841455814445}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d3d726c8f9cdf0b4e9ee956274f7473a, type: 3}
+--- !u!4 &3265115342423858891 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2515629281371955110, guid: d3d726c8f9cdf0b4e9ee956274f7473a, type: 3}
+  m_PrefabInstance: {fileID: 1133018806569206125}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &2323905939617909535
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 3265115342423858891}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: 6c4e621c70b54444f9a4747435f62869, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.11472511
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 6c4e621c70b54444f9a4747435f62869, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.050000012
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 6c4e621c70b54444f9a4747435f62869, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.1265297
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 6c4e621c70b54444f9a4747435f62869, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 6c4e621c70b54444f9a4747435f62869, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 6c4e621c70b54444f9a4747435f62869, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 6c4e621c70b54444f9a4747435f62869, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 6c4e621c70b54444f9a4747435f62869, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 6c4e621c70b54444f9a4747435f62869, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 6c4e621c70b54444f9a4747435f62869, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 6c4e621c70b54444f9a4747435f62869, type: 3}
+      propertyPath: m_Name
+      value: MANOR_DECOR_FOLIAGE_003
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 6c4e621c70b54444f9a4747435f62869, type: 3}
+--- !u!4 &2867268347104718068 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 6c4e621c70b54444f9a4747435f62869, type: 3}
+  m_PrefabInstance: {fileID: 2323905939617909535}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &2982879820547749053
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 3265115342423858891}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: 1a7b7d243f4a7fe4584322bb20f33776, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.059
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 1a7b7d243f4a7fe4584322bb20f33776, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.050000012
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 1a7b7d243f4a7fe4584322bb20f33776, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.228
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 1a7b7d243f4a7fe4584322bb20f33776, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 1a7b7d243f4a7fe4584322bb20f33776, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 1a7b7d243f4a7fe4584322bb20f33776, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 1a7b7d243f4a7fe4584322bb20f33776, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 1a7b7d243f4a7fe4584322bb20f33776, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 1a7b7d243f4a7fe4584322bb20f33776, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 1a7b7d243f4a7fe4584322bb20f33776, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 1a7b7d243f4a7fe4584322bb20f33776, type: 3}
+      propertyPath: m_Name
+      value: MANOR_DECOR_FOLIAGE_004
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 1a7b7d243f4a7fe4584322bb20f33776, type: 3}
+--- !u!4 &3382177043307336534 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 1a7b7d243f4a7fe4584322bb20f33776, type: 3}
+  m_PrefabInstance: {fileID: 2982879820547749053}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &3833973689303290054
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 3265115342423858891}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: 8b1262eb4e927b449b4d17743907ac3b, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.07751465
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 8b1262eb4e927b449b4d17743907ac3b, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.05000007
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 8b1262eb4e927b449b4d17743907ac3b, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.0013771057
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 8b1262eb4e927b449b4d17743907ac3b, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 8b1262eb4e927b449b4d17743907ac3b, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 8b1262eb4e927b449b4d17743907ac3b, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 8b1262eb4e927b449b4d17743907ac3b, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 8b1262eb4e927b449b4d17743907ac3b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 8b1262eb4e927b449b4d17743907ac3b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 8b1262eb4e927b449b4d17743907ac3b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 8b1262eb4e927b449b4d17743907ac3b, type: 3}
+      propertyPath: m_Name
+      value: MANOR_DECOR_FOLIAGE_006
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 8b1262eb4e927b449b4d17743907ac3b, type: 3}
+--- !u!4 &3656847841455814445 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 8b1262eb4e927b449b4d17743907ac3b, type: 3}
+  m_PrefabInstance: {fileID: 3833973689303290054}
+  m_PrefabAsset: {fileID: 0}

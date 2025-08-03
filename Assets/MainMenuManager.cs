@@ -8,6 +8,7 @@ public class MainMenuManager : MonoBehaviour
     [SerializeField] private bool startWithMenu = true;
     [SerializeField] private CanvasGroup mainMenuCanvasGroup;
     [SerializeField] public CanvasGroup endingTitleCanvasGroup;
+    [SerializeField] public CanvasGroup controlsCanvasGroup;
     [SerializeField] private Transform cameraPivot;
     [SerializeField] private PlayerMovement player;
     [SerializeField] private CinemachineTargetGroup targetGroup;
@@ -63,9 +64,6 @@ public class MainMenuManager : MonoBehaviour
         {
             endingTitleCanvasGroup.gameObject.SetActive(false);
         });
-
-        // Optional: return to main menu
-        // s.AppendCallback(() => InitMainMenu());
     }
 
 
@@ -75,7 +73,14 @@ public class MainMenuManager : MonoBehaviour
         targetGroup.Targets[0].Object = cameraPivot;
         player.TogglePlayerInput(false);
         Sequence s = DOTween.Sequence();
-        s.AppendInterval(1.5f);
+        s.AppendInterval(12f);
+        s.Append(
+            controlsCanvasGroup.DOFade(0, 2f).OnComplete(() =>
+            {
+                controlsCanvasGroup.gameObject.SetActive(false);
+            })
+        );
+        s.AppendInterval(0.5f);
         s.Append(
             fader.DOFade(0, 2f).OnComplete(() =>
             {
