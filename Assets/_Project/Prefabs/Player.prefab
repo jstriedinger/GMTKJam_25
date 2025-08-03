@@ -560,6 +560,13 @@ MonoBehaviour:
       Data3: 1351904190
       Data4: -158951173
     Path: event:/Player/Player_Hit
+  diedEvent:
+    Guid:
+      Data1: 553796652
+      Data2: 1320356872
+      Data3: -313612141
+      Data4: 1938823934
+    Path: event:/Player/Player_Died
 --- !u!114 &418469052201816202
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -573,8 +580,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   charAnimator: {fileID: 2630756314221142499}
-  totalHealth: 10
-  hearts: []
+  totalHealth: 5
+  hearts:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   fullheart: {fileID: 21300000, guid: fd89d1c78dfa9014996095ffa74a5699, type: 3}
   noheart: {fileID: 21300000, guid: 2520d5e351147df43bf143cd220a0d1e, type: 3}
 --- !u!1001 &8496259792242007154

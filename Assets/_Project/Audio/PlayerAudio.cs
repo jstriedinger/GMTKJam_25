@@ -6,8 +6,10 @@ public class PlayerAudio : MonoBehaviour
 {
     [SerializeField] EventReference footstepEvent;
     [SerializeField] EventReference hitEvent;
+    [SerializeField] EventReference diedEvent;
     private EventInstance footstepInstance;
     private EventInstance hitInstance;
+    private EventInstance diedInstance;
     private bool isMovingChanged;
 
 
@@ -44,18 +46,29 @@ public class PlayerAudio : MonoBehaviour
         }
 
         hitInstance.start();
+    }
 
+    private void PlayerDied()
+    {
+        if (!diedInstance.isValid())
+        {
+            diedInstance = RuntimeManager.CreateInstance(diedEvent);
+        }
+
+        diedInstance.start();
     }
 
     private void OnEnable()
     {
         PlayerMovement.isMovingEvent += PlayerFootsteps;
         HealthPlayer.playerDamageEvent += PlayerTakenDamage;
+        HealthPlayer.playerDiedEvent += PlayerDied;
     }
 
     private void OnDisable()
     {
         PlayerMovement.isMovingEvent -= PlayerFootsteps;
         HealthPlayer.playerDamageEvent -= PlayerTakenDamage;
+        HealthPlayer.playerDiedEvent -= PlayerDied;
     }
 }
