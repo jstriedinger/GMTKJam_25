@@ -2,6 +2,7 @@ using UnityEngine;
 using FMODUnity;
 using FMOD.Studio;
 using System;
+using Unity.VisualScripting;
 
 public class MusicManager : MonoBehaviour
 {
@@ -20,6 +21,12 @@ public class MusicManager : MonoBehaviour
     public float lowerIntensityRepeatRate;
     public float lowerIntensityAmount;
 
+    // Music events
+    [SerializeField] private EventReference levelMusicEvent;
+    [SerializeField] private EventReference hubMusicEvent;
+
+    //Music instance
+    private EventInstance musicInstance;
 
 
     private void Awake()
@@ -43,7 +50,7 @@ public class MusicManager : MonoBehaviour
 
     private void Start()
     {
-        LevelMusicStart();
+        StartMusic(hubMusicEvent);
         InvokeRepeating("PeriodiclyLowerIntensity", 0, lowerIntensityRepeatRate);
     }
 
@@ -60,25 +67,40 @@ public class MusicManager : MonoBehaviour
 
 
 
-    [SerializeField] private EventReference gameMusicEvent;
-
-    private EventInstance musicInstance;
 
 
-    private void LevelMusicStart()
+
+
+    private void StartMusic(EventReference musicEvent)
     {
-        musicInstance = RuntimeManager.CreateInstance(gameMusicEvent);
-        SetGlobalIntensityParameter(0);
-        musicInstance.start();
+        if (musicInstance.isValid() == false)
+        {
+            musicInstance = RuntimeManager.CreateInstance(musicEvent);
+            SetGlobalIntensityParameter(0);
+            musicInstance.start();
+        }
+        else
+        {
+            musicInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+            musicInstance.release();
+            musicInstance = RuntimeManager.CreateInstance(musicEvent);
+            musicInstance.start();
+        }
 
     }
+    private void StopMusic()
+    {
+        musicInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+        musicInstance.release();
+    }
+
 
     private void SetGlobalIntensityParameter(float parameterValue)
     {
         //CheckLimits(parameterValue);
 
         RuntimeManager.StudioSystem.setParameterByName("Intensity", currentIntensity);
-        
+
         if (debugMode == true)
         {
             Debug.Log("Current music intensity: " + currentIntensity);
@@ -108,65 +130,92 @@ public class MusicManager : MonoBehaviour
         SetGlobalIntensityParameter(currentIntensity);
     }
 
-    private void DecreaseIntensity(float intensity)
+    private void PlayerTakenDamage()
     {
-        currentIntensity -= intensity;
-
-        if (intensity > maxIntensity)
-        {
-            intensity = maxIntensity;
-        }
-
-        if (intensity < minIntensity)
-        {
-            intensity = minIntensity;
-        }
-
-        SetGlobalIntensityParameter(intensity);
+        ChangeIntensity(playerDamageIntensity);
     }
 
-    private void LevelMusicStop()
+    private void PlayerDied()
     {
-        musicInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+        // TODO: play player died sting
+
+        //ChangeIntensity(playerDamageIntensity);
     }
 
-    private void TakenDamage(GameObject gameObject)
-    {
-        if (gameObject.tag == "Player")
-        {
-            ChangeIntensity(playerDamageIntensity);
-        }
 
-        if (gameObject.tag == "Enemy")
-        {
-            ChangeIntensity(enemyDamageIntensity);
-        }
+
+
+    private void EnemyTakenDamage()
+    {
+        ChangeIntensity(enemyDamageIntensity);
+
+    }
+
+    private void EnemyDied()
+    {
+        ChangeIntensity(enemyDamageIntensity);        
     }
 
     private void StartedMusicSheet()
     {
-        LevelMusicStop();
-        
+        StopMusic();
+
     }
 
     private void FinishedMusicSheet()
     {
-        LevelMusicStart();
+        //StartMusic();
+    }
+
+    private void ChangeLevelMusic(int level)
+    {
+        switch (level)
+        {
+            case 0:
+                StartMusic(hubMusicEvent);
+                break;
+            case 1:
+                StartMusic(levelMusicEvent);
+                ChangeIntensity(2);
+                break;
+            case 2:
+                StartMusic(levelMusicEvent);
+                ChangeIntensity(2);
+                break;
+            case 3:
+                StartMusic(levelMusicEvent);
+                ChangeIntensity(2);
+                break;
+            default:
+                Debug.LogError("Invalid change music int");
+                break;
+
+
+        }
+
     }
 
 
     private void OnEnable()
     {
-        Health.takenDamageEvent += TakenDamage;
+        Health.enemyTakenDamageEvent += EnemyTakenDamage;
+        Health.enemyDiedEvent += EnemyDied;
+        HealthPlayer.playerDamageEvent += PlayerTakenDamage;
+        HealthPlayer.playerDiedEvent += PlayerDied;
         Instrument.startedMusicSheetEvent += StartedMusicSheet;
         Instrument.finishedMusicSheetEvent += FinishedMusicSheet;
+        GameManager.levelChangedEvent += ChangeLevelMusic;
     }
 
     private void OnDisable()
     {
-        Health.takenDamageEvent -= TakenDamage;
+        Health.enemyTakenDamageEvent -= EnemyTakenDamage;
+        Health.enemyDiedEvent -= EnemyDied;
+        HealthPlayer.playerDamageEvent -= PlayerTakenDamage;
+        HealthPlayer.playerDiedEvent -= PlayerDied;
         Instrument.startedMusicSheetEvent -= StartedMusicSheet;
         Instrument.finishedMusicSheetEvent -= FinishedMusicSheet;
+        GameManager.levelChangedEvent -= ChangeLevelMusic;
     }
 
 

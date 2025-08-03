@@ -8,7 +8,8 @@ public class HealthPlayer : MonoBehaviour
 {
 
     [SerializeField] private Animator charAnimator;
-    public static event Action<GameObject> takenDamageEvent;
+    public static event Action playerDamageEvent;
+    public static event Action playerDiedEvent;
     [SerializeField] public int totalHealth = 3;
     int _initialHealth;
     private bool _canTakeDamage = true;
@@ -62,7 +63,8 @@ public class HealthPlayer : MonoBehaviour
             }
         }
 
-        takenDamageEvent?.Invoke(gameObject);
+        playerDamageEvent?.Invoke();
+
         if (totalHealth > 0)
             StartCoroutine(_playerMovement.OnTakingDamage());
         else
@@ -74,6 +76,7 @@ public class HealthPlayer : MonoBehaviour
     }
     IEnumerator Die()
     {
+        playerDiedEvent?.Invoke();
         _playerMovement.ToggleCanMove(false);
         charAnimator.SetBool("Dead", true);
         _canTakeDamage = false;

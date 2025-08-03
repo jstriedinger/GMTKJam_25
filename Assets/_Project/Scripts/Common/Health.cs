@@ -5,7 +5,8 @@ using UnityEngine.UI;
 
 public class Health : MonoBehaviour
 {
-    public static event Action<GameObject> takenDamageEvent;
+    public static event Action enemyTakenDamageEvent;
+    public static event Action enemyDiedEvent;
     [SerializeField] public int totalHealth = 3;
 
     [Header("Heart UI Elements")]
@@ -33,11 +34,12 @@ public class Health : MonoBehaviour
             }
         }
 
-        takenDamageEvent?.Invoke(gameObject);
+        enemyTakenDamageEvent?.Invoke();
     }
 
     public bool IsDeath()
     {
+        enemyDiedEvent?.Invoke();
         return totalHealth <= 0;
     }
 }
