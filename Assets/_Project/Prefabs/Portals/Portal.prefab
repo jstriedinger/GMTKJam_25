@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 1962229897988887388}
   - component: {fileID: 5068012216907720140}
   - component: {fileID: 2346523095045669596}
+  - component: {fileID: 7297726005416815416}
   m_Layer: 0
   m_Name: Portal
   m_TagString: Untagged
@@ -125,3 +126,38 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _isUnlocked: 0
   gameLevel: 0
+  Spotlight: {fileID: 0}
+  capsuleCollider: {fileID: 0}
+  PedestalItem: {fileID: 0}
+  openPortalEmitter: {fileID: 7297726005416815416}
+--- !u!114 &7297726005416815416
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4397515717043951386}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: 925636349
+      Data2: 1243873395
+      Data3: -1189520759
+      Data4: 1670735795
+    Path: event:/Enviroment/Env_Pedestal
+  Event: 
+  EventPlayTrigger: 0
+  EventStopTrigger: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  NonRigidbodyVelocity: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
