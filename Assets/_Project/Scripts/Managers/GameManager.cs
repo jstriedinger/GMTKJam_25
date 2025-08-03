@@ -11,6 +11,8 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private GameObject _hubPosition;
 
+    [SerializeField] private MainMenuManager mainMenuManager;
+
     [SerializeField] private List<AbstractDungeonGenerator> generators;
     [SerializeField] private List<Dungeon> dungeons;
     [SerializeField] private List<Dungeon> _instrumentPosition;
@@ -172,7 +174,7 @@ public class GameManager : MonoBehaviour
         if (count >= 9 && !_unlockedGameLevels.Contains(GameLevel.Manor))
         {
             _portals[2].ClosePortal();
-            _unlockedGameLevels.Add(GameLevel.Manor);
+            mainMenuManager.EndScene();
         }
     }
 

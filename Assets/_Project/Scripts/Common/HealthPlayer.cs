@@ -9,10 +9,10 @@ public class HealthPlayer : MonoBehaviour
 
     [SerializeField] private Animator charAnimator;
     public static event Action<GameObject> takenDamageEvent;
-    [SerializeField] public int totalHealth = 3;
+    [SerializeField] public int totalHealth;
     int _initialHealth;
     private bool _canTakeDamage = true;
-    
+
 
     [Header("Heart UI Elements")]
     [SerializeField] private List<Image> hearts;
@@ -20,7 +20,7 @@ public class HealthPlayer : MonoBehaviour
     [Header("Heart Sprites")]
     [SerializeField] private Sprite fullheart;
     [SerializeField] private Sprite noheart;
-    
+
     PlayerMovement _playerMovement;
 
     private void Start()
@@ -44,23 +44,19 @@ public class HealthPlayer : MonoBehaviour
     {
         if (!_canTakeDamage)
             return;
-        
+
         totalHealth = Mathf.Max(0, totalHealth - damage);
 
-        // Reset all to full first
-        
-        foreach (var heart in hearts)
+
+        // Update heart sprites based on current health
+        for (int i = 0; i < hearts.Count; i++)
         {
-            heart.sprite = fullheart;
-            if (totalHealth <= 2)
-                heart.sprite = noheart;
-            if (totalHealth <= 1)
-                heart.sprite = noheart;
-            if (totalHealth <= 0)
-            {
-                heart.sprite = noheart;
-            }
+            if (i < totalHealth)
+                hearts[i].sprite = fullheart;
+            else
+                hearts[i].sprite = noheart;
         }
+
 
         takenDamageEvent?.Invoke(gameObject);
         if (totalHealth > 0)
@@ -69,9 +65,10 @@ public class HealthPlayer : MonoBehaviour
         {
             StartCoroutine(Die());
         }
-        
+
 
     }
+
     IEnumerator Die()
     {
         _playerMovement.ToggleCanMove(false);
