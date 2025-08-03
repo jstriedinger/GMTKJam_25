@@ -151,6 +151,7 @@ MonoBehaviour:
   shootCooldown: 2
   projectile: {fileID: 898967331126844404, guid: c883e5c8e315b5a43b08c251649e6aba, type: 3}
   projectileForce: 100
+  animator: {fileID: 2074115842629186133}
 --- !u!114 &4649266985373106631
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -331,6 +332,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 744ab6372e517a440879440b2267fde3, type: 3}
+--- !u!95 &2074115842629186133 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 2107767321729760401, guid: 744ab6372e517a440879440b2267fde3, type: 3}
+  m_PrefabInstance: {fileID: 110609119925030596}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &6635311343282061799 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6745735740757266211, guid: 744ab6372e517a440879440b2267fde3, type: 3}

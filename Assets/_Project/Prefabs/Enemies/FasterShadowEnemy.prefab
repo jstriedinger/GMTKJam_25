@@ -134,6 +134,7 @@ MonoBehaviour:
   shootCooldown: 2
   projectile: {fileID: 898967331126844404, guid: c883e5c8e315b5a43b08c251649e6aba, type: 3}
   projectileForce: 100
+  animator: {fileID: 9172613625540445126}
 --- !u!114 &1882514122841590397
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -548,5 +549,10 @@ PrefabInstance:
 --- !u!4 &4581931731290009716 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6745735740757266211, guid: 744ab6372e517a440879440b2267fde3, type: 3}
+  m_PrefabInstance: {fileID: 7064987041861205847}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &9172613625540445126 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 2107767321729760401, guid: 744ab6372e517a440879440b2267fde3, type: 3}
   m_PrefabInstance: {fileID: 7064987041861205847}
   m_PrefabAsset: {fileID: 0}
