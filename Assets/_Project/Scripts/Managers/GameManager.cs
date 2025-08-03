@@ -134,19 +134,28 @@ public class GameManager : MonoBehaviour
 
         if (count >= 1 && !_unlockedGameLevels.Contains(GameLevel.Forest))
         {
+            _portals[3].ClosePortal();
             _portals[0].OpenPortal();
             _unlockedGameLevels.Add(GameLevel.Forest);
         }
 
         if (count >= 3 && !_unlockedGameLevels.Contains(GameLevel.Temple))
         {
+            _portals[0].ClosePortal();
             _portals[1].OpenPortal();
             _unlockedGameLevels.Add(GameLevel.Temple);
         }
 
         if (count >= 6 && !_unlockedGameLevels.Contains(GameLevel.Manor))
         {
+            _portals[1].ClosePortal();
             _portals[2].OpenPortal();
+            _unlockedGameLevels.Add(GameLevel.Manor);
+        }
+
+        if (count >= 9 && !_unlockedGameLevels.Contains(GameLevel.Manor))
+        {
+            _portals[2].ClosePortal();
             _unlockedGameLevels.Add(GameLevel.Manor);
         }
     }
