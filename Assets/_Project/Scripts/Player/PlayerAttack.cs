@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
@@ -10,6 +11,8 @@ public class PlayerAttack : MonoBehaviour
     [SerializeField] private int maxLinePoints = 50;
     private float _minPointDistance = 0.0001f;
     private List<Vector3> _linePositions;
+    private float timer;
+    private float timercooldown = 0.03f;
     
     [SerializeField] private Animator charAnimator;
     private LineRenderer _line;
@@ -51,11 +54,17 @@ public class PlayerAttack : MonoBehaviour
         currentPosition = _mainCamera.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, lineZSpace));
         mousePositionObject.transform.position = currentPosition;
 
+        timer += Time.deltaTime;
+
         if (Input.GetMouseButton(0))
         {
             _isDrawing = true;
 
-            Draw();
+            if (timer >= timercooldown)
+            {
+                Draw();
+                timer = 0;                
+            }
 
             if (!_previousHasRun)
             {
@@ -78,6 +87,7 @@ public class PlayerAttack : MonoBehaviour
             _previousHasRun = false;
         }
     }
+
 
     // Send out event when drawing. previousHasRun is used so it doesn't repeat in the update loop
     private void InvokeDraw()
