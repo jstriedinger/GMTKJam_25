@@ -29,6 +29,8 @@ public class EnemyBaseAI : MonoBehaviour
     private bool isDeath = false;
     private float deathCountdown = 2.5f;
 
+    public static event Action enemyDiedEvent;
+
     // Audio
     [SerializeField] private StudioEventEmitter hitAudioEmitter;
     [SerializeField] private StudioEventEmitter deathAudioEmitter;
@@ -260,6 +262,7 @@ public class EnemyBaseAI : MonoBehaviour
             animator.SetBool("Dead", true);
             isDeath = true;
             Debug.Log("line hit this enemy, die!");
+            enemyDiedEvent?.Invoke();
         }
         else
         {
