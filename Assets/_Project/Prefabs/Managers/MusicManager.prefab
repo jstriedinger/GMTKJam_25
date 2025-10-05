@@ -45,10 +45,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   debugMode: 1
-  playerDamageIntensity: 0.5
-  enemyDamageIntensity: 0.25
+  playerDamageIntensity: 1
+  enemyDamageIntensity: 1
   enemyDeathIntensity: -0.5
-  lowerIntensityRepeatRate: 15
+  lowerIntensityRepeatRate: 5
   lowerIntensityAmount: -1
   levelMusicEvent:
     Guid:
