@@ -228,7 +228,7 @@ public class MusicManager : MonoBehaviour
     private void OnEnable()
     {
         Health.enemyTakenDamageEvent += EnemyTakenDamage;
-        Health.enemyDiedEvent += EnemyDied;
+        EnemyBaseAI.enemyDiedEvent += EnemyDied;
         HealthPlayer.playerDamageEvent += PlayerTakenDamage;
         HealthPlayer.playerDiedEvent += PlayerDied;
         Instrument.startedMusicSheetEvent += StartedMusicSheet;
@@ -240,7 +240,7 @@ public class MusicManager : MonoBehaviour
     private void OnDisable()
     {
         Health.enemyTakenDamageEvent -= EnemyTakenDamage;
-        Health.enemyDiedEvent -= EnemyDied;
+        EnemyBaseAI.enemyDiedEvent -= EnemyDied;
         HealthPlayer.playerDamageEvent -= PlayerTakenDamage;
         HealthPlayer.playerDiedEvent -= PlayerDied;
         Instrument.startedMusicSheetEvent -= StartedMusicSheet;
@@ -248,18 +248,4 @@ public class MusicManager : MonoBehaviour
         Instrument.failedMusicSheetEvent -= FailedMusicSheet;
         GameManager.levelChangedEvent -= ChangeLevelMusic;
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 }
