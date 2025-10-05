@@ -48,7 +48,7 @@ MonoBehaviour:
   playerDamageIntensity: 1
   enemyDamageIntensity: 1
   enemyDeathIntensity: -0.5
-  lowerIntensityRepeatRate: 5
+  lowerIntensityRepeatRate: 7
   lowerIntensityAmount: -1
   levelMusicEvent:
     Guid:
